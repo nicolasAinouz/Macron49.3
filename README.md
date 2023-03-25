@@ -1,2 +1,2 @@
 # Macron49.3
-test
+Controle shift i -> formatter sous vsc
