@@ -1,0 +1,51 @@
+\hypertarget{main_8c}{}\doxysection{Référence du fichier main.\+c}
+\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Graphe des dépendances par inclusion de main.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main}} (int argc, char const $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}\label{main_8c_abf9e6b7e6f15df4b525a2e7705ba3089}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char const $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 7 du fichier main.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     \textcolor{keywordtype}{int} accum = 0;}
+\DoxyCodeLine{10     \textcolor{keywordtype}{bool} quit = \textcolor{keyword}{false};}
+\DoxyCodeLine{11     \textcolor{comment}{//Pas fonctionnel}}
+\DoxyCodeLine{12     \textcolor{comment}{// clockid\_t clock\_id = CLOCK\_MONOTONIC;}}
+\DoxyCodeLine{13     \textcolor{comment}{// /* code */}}
+\DoxyCodeLine{14     \textcolor{comment}{//         //}}
+\DoxyCodeLine{15     \textcolor{comment}{//     MLV\_create\_window( "beginner -\/ 1 -\/ hello world", "hello world", 640, 480 );}}
+\DoxyCodeLine{16     \textcolor{comment}{//     while(!quit)\{}}
+\DoxyCodeLine{17     \textcolor{comment}{//         clock\_gettime(clock\_id, \&last);}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{comment}{//         accum = (new.tv\_sec -\/ last.tv\_sec) + ((new.tv\_nsec -\/ last.tv\_nsec) / 1000000);}}
+\DoxyCodeLine{20     \textcolor{comment}{//         if(accum < (1.0/48.0))\{}}
+\DoxyCodeLine{21     \textcolor{comment}{//             MLV\_wait\_milliseconds((((1.0/48.0) -\/ accum)*1000));}}
+\DoxyCodeLine{22     \textcolor{comment}{//         \}}}
+\DoxyCodeLine{23     \textcolor{comment}{//     \}}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         MLV\_free\_window();}
+\DoxyCodeLine{26     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}

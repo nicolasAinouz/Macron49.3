@@ -1,13 +1,19 @@
-CC = gcc
-CFLAGS = -g -O2 -Wall `pkg-config --cflags MLV`
-LDFLAGS = `pkg-config --libs-only-other --libs-only-L MLV`
-LDLIBS = `pkg-config --libs-only-l MLV`
+CC=gcc
+CFLAGS=-Wall
+LDFLAGS=-lMLV
+REPOBJ=bin/main.o bin/window.o
+OBJ=main.o window.o 
+MAIN=main
+BIN=bin/
 
-main:
-	$(CC) $(CFLAGS) $(LDFLAGS) main.c $(LDLIBS) -o main
+all: $(OBJ)
+	$(CC) $(REPOBJ) $(LDFLAGS) -o $(MAIN)
+
+main.o: src/main.c src/include/window.h
+	$(CC) -c src/main.c $(CFLAGS) -o $(BIN)$@
+
+window.o: src/view/window.c src/include/window.h
+	$(CC) -c src/view/window.c $(CFLAGS) -o $(BIN)$@
 
 run:
-	rm main 
-	make
-	./main
-
+	./$(MAIN)
