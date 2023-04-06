@@ -13,7 +13,7 @@ void init_player()
 {
     player.health = 5;
     player.size = 50;
-    player.speed = 10;
+    player.speed = 30;
     player.position.x = WIDTH_FRAME / 2 - player.size;
     player.position.y = HEIGHT_FRAME - (player.size * 2);
 }

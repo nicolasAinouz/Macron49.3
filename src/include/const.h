@@ -10,5 +10,6 @@
 
 #define SIZE_PLAYER 100
 #define NUMBER_OF_ROCKET 100
+#define NUMBER_OF_ENEMY 10
 
 #endif

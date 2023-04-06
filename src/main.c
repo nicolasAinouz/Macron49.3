@@ -32,6 +32,7 @@ int main(int argc, char const *argv[])
         /* refresh de la window*/
         clear_window();
         draw_window();
+        
         //On récupère les évènements clavier
         key_listener();
 

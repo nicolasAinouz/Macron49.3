@@ -22,7 +22,16 @@ typedef struct rocket
     Position position;
     int size;
     int speed;
+    int damage;
 
 } Rocket;
+
+typedef struct enemy
+{
+    Position position;
+    int size;
+    int health;
+    int speed;
+} Enemy;
 
 #endif

@@ -14,6 +14,8 @@
 Rocket *tab_rocket[NUMBER_OF_ROCKET];
 int number_rocket = 0;
 
+Enemy *tab_enemy[NUMBER_OF_ENEMY];
+
 int init_window()
 {
     MLV_create_window(NAME_FRAME, NULL, WIDTH_FRAME, HEIGHT_FRAME);
@@ -32,8 +34,6 @@ int clear_window()
     return EXIT_SUCCESS;
 }
 
-
-
 /**
  * @brief redessine la window
  *
@@ -43,11 +43,10 @@ int clear_window()
 int draw_window()
 {
 
-    MLV_Image *img;
-    img = MLV_load_image("src/data/vaisseau.png");
+    MLV_Image *img = MLV_load_image("src/data/vaisseau.png");
     MLV_resize_image_with_proportions(img, get_player_size(), get_player_size());
     MLV_draw_image(img, get_player_position_x(), get_player_position_y());
-    MLV_Image * img_rocket = MLV_load_image("src/data/rocket.png");
+    MLV_Image *img_rocket = MLV_load_image("src/data/rocket.png");
 
     get_tab_rocket(tab_rocket, number_rocket);
     number_rocket = get_number_rocket();
@@ -58,11 +57,14 @@ int draw_window()
         MLV_draw_image(img_rocket, tab_rocket[i]->position.x, tab_rocket[i]->position.y);
         tab_rocket[i]->position.y -= tab_rocket[i]->speed;
     }
+
     
-    MLV_actualise_window();
     free(img);
     free(img_rocket);
-    return EXIT_SUCCESS;
+
+    MLV_actualise_window();
+
+    return 0;
 }
 
 /**
@@ -76,4 +78,3 @@ int free_window()
 
     return EXIT_SUCCESS;
 }
-

@@ -45,6 +45,7 @@ void get_tab_rocket(Rocket **tab_rocket_old, int size)
         tab_rocket_old[i]->position = tab_rocket[i]->position;
         tab_rocket_old[i]->size = tab_rocket[i]->size;
         tab_rocket_old[i]->speed = tab_rocket[i]->speed;
+        tab_rocket_old[i]->damage = tab_rocket[i]->damage;
     }
     if (number_rocket_key < size)
     {
@@ -63,8 +64,9 @@ void shoot()
 
     rocket->position.x = get_player_position_x() + get_player_size() / 2;
     rocket->position.y = get_player_position_y();
-    rocket->size = 10;
-    rocket->speed = 10;
+    rocket->size = 20;
+    rocket->speed = 30;
+    rocket->damage = 50;
 
     tab_rocket[number_rocket_key] = rocket;
     number_rocket_key++;
@@ -76,25 +78,27 @@ void key_listener()
     MLV_Keyboard_button key;
     MLV_Button_state state;
     MLV_get_event(&key, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &state);
-    if (key == MLV_KEYBOARD_LEFT)
+    if (state == MLV_PRESSED)
     {
-        move_player_left();
-    }
-    else if (key == MLV_KEYBOARD_RIGHT)
-    {
-        move_player_right();
-    }
-    else if (key == MLV_KEYBOARD_UP)
-    {
-        move_player_up();
-    }
-    else if (key == MLV_KEYBOARD_DOWN)
-    {
-        move_player_down();
-    }
-    else if (key == MLV_KEYBOARD_SPACE)
-    {
-
-        shoot();
+        if (key == MLV_KEYBOARD_LEFT)
+        {
+            move_player_left();
+        }
+        else if (key == MLV_KEYBOARD_RIGHT)
+        {
+            move_player_right();
+        }
+        else if (key == MLV_KEYBOARD_UP)
+        {
+            move_player_up();
+        }
+        else if (key == MLV_KEYBOARD_DOWN)
+        {
+            move_player_down();
+        }
+        else if (key == MLV_KEYBOARD_SPACE)
+        {
+            shoot();
+        }
     }
 }
