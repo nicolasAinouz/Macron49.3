@@ -21,11 +21,12 @@ void rocket_available()
 {
     for (int i = 0; i < number_rocket_key; i++)
     {
-        if (tab_rocket[i]->position.y < 0)
+        if (tab_rocket[i]->position.y + tab_rocket[i]->size < 0)
         {
-            for (int j = i; j < number_rocket_key; j++)
+            for (int j = i + 1; j < number_rocket_key; j++)
             {
-                tab_rocket[j] = tab_rocket[j + 1];
+                tab_rocket[j - 1] = tab_rocket[j];
+                
             }
             number_rocket_key--;
         }
@@ -46,13 +47,19 @@ void get_tab_rocket(Rocket **tab_rocket_old, int size)
         tab_rocket_old[i]->size = tab_rocket[i]->size;
         tab_rocket_old[i]->speed = tab_rocket[i]->speed;
         tab_rocket_old[i]->damage = tab_rocket[i]->damage;
+        tab_rocket_old[i]->is_alive = tab_rocket[i]->is_alive;
     }
     if (number_rocket_key < size)
     {
         for (int i = number_rocket_key; i < size; i++)
         {
 
-            free(tab_rocket[i]);
+            tab_rocket_old[i]->position.x = 0;
+            tab_rocket_old[i]->position.y = 0;
+            tab_rocket_old[i]->size = 0;
+            tab_rocket_old[i]->speed = 0;
+            tab_rocket_old[i]->damage = 0;
+            tab_rocket_old[i]->is_alive = 0;
         }
     }
 }
@@ -62,11 +69,12 @@ void shoot()
 
     Rocket *rocket = malloc(sizeof(Rocket));
 
-    rocket->position.x = get_player_position_x() + get_player_size() / 2;
-    rocket->position.y = get_player_position_y();
-    rocket->size = 20;
+    rocket->position.x = get_player_position_x() + get_player_size() / 2 - ROCKET_SIZE / 3;
+    rocket->position.y = get_player_position_y() - ROCKET_SIZE / 3;
+    rocket->size = ROCKET_SIZE;
     rocket->speed = 30;
     rocket->damage = 50;
+    rocket->is_alive = 1;
 
     tab_rocket[number_rocket_key] = rocket;
     number_rocket_key++;

@@ -1,4 +1,5 @@
 #include <MLV/MLV_all.h>
+#include <MLV/MLV_time.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,9 +42,9 @@ int main(int argc, char const *argv[])
         time_frame = (end_time.tv_sec - start_time.tv_sec) + ((end_time.tv_nsec - start_time.tv_nsec) / BILLION);
 
         /* Si la frame a été trop vite, on attend un peu */
-        if (time_frame < (1.0 / 48.0))
+        if (time_frame < (1.0 / 30.0))
         {
-            MLV_wait_milliseconds((int)(((1.0 / 48.0) - time_frame) * 1000));
+            MLV_wait_milliseconds((int)(((1.0 / 30.0) - time_frame) * 1000));
         }
     }
 

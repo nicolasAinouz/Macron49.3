@@ -23,6 +23,7 @@ typedef struct rocket
     int size;
     int speed;
     int damage;
+    int is_alive;
 
 } Rocket;
 
@@ -32,6 +33,8 @@ typedef struct enemy
     int size;
     int health;
     int speed;
+    int damage;
+    int is_alive;
 } Enemy;
 
 #endif

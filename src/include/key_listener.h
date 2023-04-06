@@ -1,6 +1,6 @@
 #ifndef __KEYLISTENER__
 #define __KEYLISTENER__
-#include "../include/struct_entity.h"
+#include "struct_entity.h"
 
 void key_listener();
 void rocket_available();

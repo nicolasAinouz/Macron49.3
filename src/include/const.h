@@ -10,6 +10,9 @@
 
 #define SIZE_PLAYER 100
 #define NUMBER_OF_ROCKET 100
-#define NUMBER_OF_ENEMY 10
+#define NUMBER_OF_ENEMY 100
+#define ROCKET_SIZE 20
+#define ARRIVAL_RATE (1.0/5) 
+#define ENEMIES_TIME 1
 
 #endif

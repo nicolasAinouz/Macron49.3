@@ -11,4 +11,4 @@ Controle shift i -> formatter sous vsc
 
 
 TODO : 
--> Commencer le projet
+-> faire les assert après Malloc

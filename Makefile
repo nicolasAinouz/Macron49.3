@@ -1,8 +1,8 @@
 CC=gcc
-CFLAGS=-Wall
-LDFLAGS=-lMLV
-REPOBJ=bin/main.o bin/window.o bin/key_listener.o bin/player_controller.o
-OBJ=main.o window.o key_listener.o player_controller.o
+CFLAGS=-Wall 
+LDFLAGS=-lMLV -lm -g
+REPOBJ=bin/main.o bin/window.o bin/key_listener.o bin/player_controller.o bin/enemies_controller.o
+OBJ=main.o window.o key_listener.o player_controller.o enemies_controller.o
 MAIN=main
 BIN=bin/
 
@@ -12,7 +12,7 @@ all: $(OBJ)
 main.o: src/main.c src/include/window.h src/include/key_listener.h src/include/player_controller.h
 	$(CC) -c src/main.c $(CFLAGS) -o $(BIN)$@
 
-window.o: src/view/window.c src/include/window.h src/include/key_listener.h src/include/player_controller.h src/include/struct_entity.h
+window.o: src/view/window.c src/include/enemies_controller.h src/include/window.h src/include/key_listener.h src/include/player_controller.h src/include/struct_entity.h 
 	$(CC) -c src/view/window.c $(CFLAGS) -o $(BIN)$@
 
 key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/include/player_controller.h
@@ -20,6 +20,9 @@ key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/inc
 
 player_controller.o: 
 	$(CC) -c src/controller/player_controller.c $(CFLAGS) -o $(BIN)$@
+
+enemies_controller.o:
+	$(CC) -c src/controller/enemies_controller.c $(CFLAGS) -o $(BIN)$@
 
 run:
 	./$(MAIN)
