@@ -17,6 +17,14 @@
 Rocket *tab_rocket[NUMBER_OF_ROCKET];
 int number_rocket_key = 0;
 
+void move_rocket()
+{
+    for (int i = 0; i < number_rocket_key; i++)
+    {
+        tab_rocket[i]->position.y -= tab_rocket[i]->speed;
+    }
+}
+
 void rocket_available()
 {
     for (int i = 0; i < number_rocket_key; i++)
@@ -26,7 +34,7 @@ void rocket_available()
             for (int j = i + 1; j < number_rocket_key; j++)
             {
                 tab_rocket[j - 1] = tab_rocket[j];
-                
+
             }
             number_rocket_key--;
         }
@@ -41,6 +49,7 @@ int get_number_rocket()
 void get_tab_rocket(Rocket **tab_rocket_old, int size)
 {
     rocket_available();
+    move_rocket();
     for (int i = 0; i < number_rocket_key; i++)
     {
         tab_rocket_old[i]->position = tab_rocket[i]->position;
@@ -49,19 +58,7 @@ void get_tab_rocket(Rocket **tab_rocket_old, int size)
         tab_rocket_old[i]->damage = tab_rocket[i]->damage;
         tab_rocket_old[i]->is_alive = tab_rocket[i]->is_alive;
     }
-    if (number_rocket_key < size)
-    {
-        for (int i = number_rocket_key; i < size; i++)
-        {
-
-            tab_rocket_old[i]->position.x = 0;
-            tab_rocket_old[i]->position.y = 0;
-            tab_rocket_old[i]->size = 0;
-            tab_rocket_old[i]->speed = 0;
-            tab_rocket_old[i]->damage = 0;
-            tab_rocket_old[i]->is_alive = 0;
-        }
-    }
+    
 }
 
 void shoot()

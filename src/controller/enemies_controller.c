@@ -86,18 +86,18 @@ void get_tab_enemy(Enemy **tab_enemy_old, int size)
         tab_enemy_old[i]->damage = tab_enemy[i]->damage;
         tab_enemy_old[i]->is_alive = tab_enemy[i]->is_alive;
     }
-    if (number_enemies_key < size - 1)
-    {
-        for (int i = number_enemies_key; i < size; i++)
-        {
+    // if (number_enemies_key < size - 1)
+    // {
+    //     for (int i = number_enemies_key; i < size; i++)
+    //     {
             
-            tab_enemy_old[i]->position.x = 0;
-            tab_enemy_old[i]->position.y = 0;
-            tab_enemy_old[i]->size = 0;
-            tab_enemy_old[i]->health = 0;
-            tab_enemy_old[i]->speed = 0;
-            tab_enemy_old[i]->damage = 0;
-            tab_enemy_old[i]->is_alive = 0;
-        }
-    }
+    //         tab_enemy_old[i]->position.x = 0;
+    //         tab_enemy_old[i]->position.y = 0;
+    //         tab_enemy_old[i]->size = 0;
+    //         tab_enemy_old[i]->health = 0;
+    //         tab_enemy_old[i]->speed = 0;
+    //         tab_enemy_old[i]->damage = 0;
+    //         tab_enemy_old[i]->is_alive = 0;
+    //     }
+    // }
 }

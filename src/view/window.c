@@ -85,7 +85,7 @@ int draw_window()
         if(tab_rocket[i]->is_alive == 1){
             MLV_resize_image_with_proportions(img_rocket, tab_rocket[i]->size, tab_rocket[i]->size);
             MLV_draw_image(img_rocket, tab_rocket[i]->position.x, tab_rocket[i]->position.y);
-            tab_rocket[i]->position.y -= tab_rocket[i]->speed;
+
         }
         
     }
@@ -100,7 +100,6 @@ int draw_window()
         if(tab_enemy_view[i]->is_alive == 1){
             MLV_resize_image_with_proportions(img_enemy, tab_enemy_view[i]->size, tab_enemy_view[i]->size);
             MLV_draw_image(img_enemy, tab_enemy_view[i]->position.x, tab_enemy_view[i]->position.y);
-            tab_enemy_view[i]->position.y += tab_enemy_view[i]->speed;
         }
     }
 
