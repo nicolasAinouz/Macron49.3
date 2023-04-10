@@ -29,7 +29,8 @@ int init_window()
     img = MLV_load_image("src/data/vaisseau.png");
     img_rocket = MLV_load_image("src/data/rocket.png");
     img_enemy = MLV_load_image("src/data/rocket.png");
-    for(int i = 0; i < NUMBER_OF_ROCKET; i++){
+    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
+    {
         Rocket *rocket = malloc(sizeof(Rocket));
         rocket->position.x = 0;
         rocket->position.y = 0;
@@ -39,7 +40,8 @@ int init_window()
         tab_rocket[i] = rocket;
     }
 
-    for(int i = 0; i < NUMBER_OF_ENEMY; i++){
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
+    {
         Enemy *enemy = malloc(sizeof(Enemy));
         enemy->position.x = 0;
         enemy->position.y = 0;
@@ -72,38 +74,32 @@ int clear_window()
 int draw_window()
 {
 
-    
     MLV_resize_image_with_proportions(img, get_player_size(), get_player_size());
     MLV_draw_image(img, get_player_position_x(), get_player_position_y());
-    
 
     get_tab_rocket(tab_rocket, number_rocket);
     number_rocket = get_number_rocket();
 
     for (int i = 0; i < number_rocket; i++)
     {
-        if(tab_rocket[i]->is_alive == 1){
+        if (tab_rocket[i]->is_alive == 1)
+        {
             MLV_resize_image_with_proportions(img_rocket, tab_rocket[i]->size, tab_rocket[i]->size);
             MLV_draw_image(img_rocket, tab_rocket[i]->position.x, tab_rocket[i]->position.y);
-
         }
-        
     }
-    
+
     get_tab_enemy(tab_enemy_view, number_enemies);
     number_enemies = get_number_enemies();
 
-    
-
     for (int i = 0; i < number_enemies; i++)
     {
-        if(tab_enemy_view[i]->is_alive == 1){
+        if (tab_enemy_view[i]->is_alive == 1)
+        {
             MLV_resize_image_with_proportions(img_enemy, tab_enemy_view[i]->size, tab_enemy_view[i]->size);
             MLV_draw_image(img_enemy, tab_enemy_view[i]->position.x, tab_enemy_view[i]->position.y);
         }
     }
-
-    
 
     MLV_actualise_window();
 
@@ -119,10 +115,12 @@ int free_window()
 {
     MLV_free_window();
 
-    for(int i = 0; i < NUMBER_OF_ROCKET; i++){
+    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
+    {
         free(tab_rocket[i]);
     }
-    for(int i = 0; i < NUMBER_OF_ENEMY; i++){
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
+    {
         free(tab_enemy_view[i]);
     }
     free(img);

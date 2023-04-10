@@ -15,7 +15,7 @@ main.o: src/main.c src/include/window.h src/include/key_listener.h src/include/p
 window.o: src/view/window.c src/include/enemies_controller.h src/include/window.h src/include/key_listener.h src/include/player_controller.h src/include/struct_entity.h 
 	$(CC) -c src/view/window.c $(CFLAGS) -o $(BIN)$@
 
-key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/include/player_controller.h
+key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/include/player_controller.h src/include/main.h
 	$(CC) -c src/controller/key_listener.c $(CFLAGS) -o $(BIN)$@
 
 player_controller.o: 

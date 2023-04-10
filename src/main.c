@@ -9,11 +9,17 @@
 #include "include/key_listener.h"
 #include "include/player_controller.h"
 
+int end_game = 0;
+
+void end_game_signal()
+{
+    end_game = 1;
+}
+
 int main(int argc, char const *argv[])
 {
-    int end_game = 0;
-    int time_frame;
 
+    int time_frame;
     
 
     /* permet de récupérer les temps de début et de fin (pour vérifier si la frame est pas trop rapide)*/
@@ -33,8 +39,8 @@ int main(int argc, char const *argv[])
         /* refresh de la window*/
         clear_window();
         draw_window();
-        
-        //On récupère les évènements clavier
+
+        // On récupère les évènements clavier
         key_listener();
 
         /* Récupération de l'heure en fin */

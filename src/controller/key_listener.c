@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "../include/main.h"
 #include "../include/const.h"
 #include "../include/window.h"
 #include "../include/struct_entity.h"
@@ -104,6 +105,9 @@ void key_listener()
         else if (key == MLV_KEYBOARD_SPACE)
         {
             shoot();
+        }
+        else if(key == MLV_KEYBOARD_ESCAPE){
+            end_game_signal();
         }
     }
 }
