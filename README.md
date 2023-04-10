@@ -12,3 +12,5 @@ Controle shift i -> formatter sous vsc
 
 TODO : 
 -> faire les assert après Malloc
+-> y a un pb de fuite de mémoire :/
+-> il faudrait un fichier pivot dans model qui permettrait de récupérer le nb de rocket ou enemy à l'instanté

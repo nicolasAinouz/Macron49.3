@@ -37,6 +37,8 @@ int init_window()
         rocket->size = 0;
         rocket->speed = 0;
         rocket->damage = 0;
+        rocket->is_alive = 0;
+
         tab_rocket[i] = rocket;
     }
 

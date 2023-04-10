@@ -23,6 +23,10 @@ void move_rocket()
     for (int i = 0; i < number_rocket_key; i++)
     {
         tab_rocket[i]->position.y -= tab_rocket[i]->speed;
+        Hitbox hitbox;
+        hitbox.position = tab_rocket[i]->position;
+        hitbox.size = tab_rocket[i]->size;
+        tab_rocket[i]->hitbox = hitbox;
     }
 }
 
@@ -35,7 +39,6 @@ void rocket_available()
             for (int j = i + 1; j < number_rocket_key; j++)
             {
                 tab_rocket[j - 1] = tab_rocket[j];
-
             }
             number_rocket_key--;
         }
@@ -57,9 +60,9 @@ void get_tab_rocket(Rocket **tab_rocket_old, int size)
         tab_rocket_old[i]->size = tab_rocket[i]->size;
         tab_rocket_old[i]->speed = tab_rocket[i]->speed;
         tab_rocket_old[i]->damage = tab_rocket[i]->damage;
+        tab_rocket_old[i]->hitbox = tab_rocket[i]->hitbox;
         tab_rocket_old[i]->is_alive = tab_rocket[i]->is_alive;
     }
-    
 }
 
 void shoot()
@@ -70,6 +73,10 @@ void shoot()
     rocket->position.x = get_player_position_x() + get_player_size() / 2 - ROCKET_SIZE / 3;
     rocket->position.y = get_player_position_y() - ROCKET_SIZE / 3;
     rocket->size = ROCKET_SIZE;
+    Hitbox hitbox;
+    hitbox.position = rocket->position;
+    hitbox.size = rocket->size;
+    rocket->hitbox = hitbox;
     rocket->speed = 30;
     rocket->damage = 50;
     rocket->is_alive = 1;
@@ -106,7 +113,8 @@ void key_listener()
         {
             shoot();
         }
-        else if(key == MLV_KEYBOARD_ESCAPE){
+        else if (key == MLV_KEYBOARD_ESCAPE)
+        {
             end_game_signal();
         }
     }

@@ -9,12 +9,19 @@ typedef struct position
     int y;
 } Position;
 
+typedef struct hitbox
+{
+    Position position;
+    int size;
+} Hitbox;
+
 typedef struct player
 {
     Position position;
     int size;
     int health;
     int speed;
+    Hitbox hitbox;
 } Player;
 
 typedef struct rocket
@@ -24,7 +31,7 @@ typedef struct rocket
     int speed;
     int damage;
     int is_alive;
-
+    Hitbox hitbox;
 } Rocket;
 
 typedef struct enemy
@@ -35,6 +42,7 @@ typedef struct enemy
     int speed;
     int damage;
     int is_alive;
+    Hitbox hitbox;
 } Enemy;
 
 #endif

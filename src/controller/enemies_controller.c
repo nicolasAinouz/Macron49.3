@@ -4,8 +4,10 @@
 
 #include "../include/const.h"
 #include "../include/struct_entity.h"
+#include "../include/key_listener.h"
 
 Enemy *tab_enemy[NUMBER_OF_ENEMY];
+Rocket *tab_rocket[NUMBER_OF_ROCKET];
 int number_enemies_key = 0;
 
 void printvalue(int value)
@@ -17,87 +19,116 @@ double normal_delay(double mean)
     return -mean * log(1 - ((double)rand() / RAND_MAX));
 }
 
-void move_enemies()
+int is_inside_hitbox(Rocket * rocket, Enemy * enemy)
 {
-    for (int i = 0; i < number_enemies_key; i++)
+    if(rocket->hitbox.position.x + rocket->hitbox.size > enemy->hitbox.position.x && rocket->hitbox.position.x < enemy->hitbox.position.x + enemy->hitbox.size && rocket->hitbox.position.y + rocket->hitbox.size > enemy->hitbox.position.y && rocket->hitbox.position.y < enemy->hitbox.position.y + enemy->hitbox.size)
     {
-        tab_enemy[i]->position.y += tab_enemy[i]->speed;
+        return 1;
     }
+    return 0;
 }
 
-void create_enemy()
+void touch_by_rocket()
 {
-    Enemy *enemy = malloc(sizeof(Enemy));
-
-    enemy->position.x = rand() % (WIDTH_FRAME - 50);
-    enemy->position.y = -50;
-    enemy->size = 50;
-    enemy->health = 100;
-    enemy->speed = 10;
-    enemy->damage = 10;
-    enemy->is_alive = 1;
-
-    tab_enemy[number_enemies_key] = enemy;
-    number_enemies_key++;
-}
-
-void enemies_available()
-{
+    get_tab_rocket(tab_rocket, get_number_rocket());
     for (int i = 0; i < number_enemies_key; i++)
     {
-        if (tab_enemy[i]->position.y > HEIGHT_FRAME + tab_enemy[i]->size)
+        for (int j = 0; j < get_number_rocket(); j++)
         {
-            for (int j = i + 1; j < number_enemies_key; j++)
+            if(is_inside_hitbox(tab_rocket[j], tab_enemy[i]))
             {
-                tab_enemy[j - 1] = tab_enemy[j];
-                
+                tab_enemy[i]->health -= tab_rocket[j]->damage;
+                if (tab_enemy[i]->health <= 0)
+                    tab_enemy[i]->is_alive = 0;
             }
-            number_enemies_key--;
+           
         }
     }
 }
-
-int get_number_enemies()
-{
-    return number_enemies_key;
-}
-
-void get_tab_enemy(Enemy **tab_enemy_old, int size)
-{
-   if (normal_delay(15) < 1)
-         create_enemy();
-
-    // printf("number_enemies : %d \n", number_enemies_key);
-
-    enemies_available();
-    move_enemies();
-    fflush(stdout);
-    printf("number_enemies \n");
-    printvalue(number_enemies_key);
-    printf("size \n");
-    printvalue(size);
-    
-    for (int i = 0; i < number_enemies_key; i++)
+    void move_enemies()
     {
-        tab_enemy_old[i]->position = tab_enemy[i]->position;
-        tab_enemy_old[i]->size = tab_enemy[i]->size;
-        tab_enemy_old[i]->health = tab_enemy[i]->health;
-        tab_enemy_old[i]->speed = tab_enemy[i]->speed;
-        tab_enemy_old[i]->damage = tab_enemy[i]->damage;
-        tab_enemy_old[i]->is_alive = tab_enemy[i]->is_alive;
+        for (int i = 0; i < number_enemies_key; i++)
+        {
+            tab_enemy[i]->position.y += tab_enemy[i]->speed;
+            Hitbox hitbox;
+            hitbox.position = tab_enemy[i]->position;
+            hitbox.size = tab_enemy[i]->size;
+            tab_enemy[i]->hitbox = hitbox;
+        }
     }
-    // if (number_enemies_key < size - 1)
-    // {
-    //     for (int i = number_enemies_key; i < size; i++)
-    //     {
-            
-    //         tab_enemy_old[i]->position.x = 0;
-    //         tab_enemy_old[i]->position.y = 0;
-    //         tab_enemy_old[i]->size = 0;
-    //         tab_enemy_old[i]->health = 0;
-    //         tab_enemy_old[i]->speed = 0;
-    //         tab_enemy_old[i]->damage = 0;
-    //         tab_enemy_old[i]->is_alive = 0;
-    //     }
-    // }
-}
+
+    void create_enemy()
+    {
+        Enemy *enemy = malloc(sizeof(Enemy));
+
+        enemy->position.x = rand() % (WIDTH_FRAME - 50);
+        enemy->position.y = -50;
+        enemy->size = 50;
+        Hitbox hitbox;
+        hitbox.position = enemy->position;
+        hitbox.size = enemy->size;
+        enemy->hitbox = hitbox;
+        enemy->health = 100;
+        enemy->speed = 10;
+        enemy->damage = 10;
+        enemy->is_alive = 1;
+
+        tab_enemy[number_enemies_key] = enemy;
+        number_enemies_key++;
+    }
+
+    void enemies_available()
+    {
+        for (int i = 0; i < number_enemies_key; i++)
+        {
+            if (tab_enemy[i]->position.y > HEIGHT_FRAME + tab_enemy[i]->size)
+            {
+                for (int j = i + 1; j < number_enemies_key; j++)
+                {
+                    tab_enemy[j - 1] = tab_enemy[j];
+                }
+                number_enemies_key--;
+            }
+        }
+    }
+
+    int get_number_enemies()
+    {
+        return number_enemies_key;
+    }
+
+    void get_tab_enemy(Enemy * *tab_enemy_old, int size)
+    {
+        if (normal_delay(15) < 1)
+            create_enemy();
+
+        // printf("number_enemies : %d \n", number_enemies_key);
+
+        enemies_available();
+        move_enemies();
+        touch_by_rocket();
+        for (int i = 0; i < number_enemies_key; i++)
+        {
+            tab_enemy_old[i]->position = tab_enemy[i]->position;
+            tab_enemy_old[i]->size = tab_enemy[i]->size;
+            tab_enemy_old[i]->health = tab_enemy[i]->health;
+            tab_enemy_old[i]->speed = tab_enemy[i]->speed;
+            tab_enemy_old[i]->damage = tab_enemy[i]->damage;
+            tab_enemy_old[i]->is_alive = tab_enemy[i]->is_alive;
+            tab_enemy_old[i]->hitbox = tab_enemy[i]->hitbox;
+        }
+        // if (number_enemies_key < size - 1)
+        // {
+        //     for (int i = number_enemies_key; i < size; i++)
+        //     {
+
+        //         tab_enemy_old[i]->position.x = 0;
+        //         tab_enemy_old[i]->position.y = 0;
+        //         tab_enemy_old[i]->size = 0;
+        //         tab_enemy_old[i]->health = 0;
+        //         tab_enemy_old[i]->speed = 0;
+        //         tab_enemy_old[i]->damage = 0;
+        //         tab_enemy_old[i]->is_alive = 0;
+        //     }
+        // }
+    }
