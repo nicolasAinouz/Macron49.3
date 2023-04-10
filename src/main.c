@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
         draw_window();
 
         // On récupère les évènements clavier
+        
         key_listener();
 
         /* Récupération de l'heure en fin */

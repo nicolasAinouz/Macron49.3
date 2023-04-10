@@ -38,6 +38,7 @@ int init_window()
         rocket->speed = 0;
         rocket->damage = 0;
         rocket->is_alive = 0;
+        rocket->is_player = 0;
 
         tab_rocket[i] = rocket;
     }
@@ -79,6 +80,7 @@ int draw_window()
     MLV_resize_image_with_proportions(img, get_player_size(), get_player_size());
     MLV_draw_image(img, get_player_position_x(), get_player_position_y());
 
+    move_rocket();
     get_tab_rocket(tab_rocket, number_rocket);
     number_rocket = get_number_rocket();
 
@@ -103,6 +105,16 @@ int draw_window()
         }
     }
 
+   
+
+    
+    MLV_draw_text(10, 30, "Health : ", MLV_COLOR_RED);
+    for(int i = 0; i < get_player_health(); i++)
+    {
+        MLV_draw_filled_rectangle(10 + (i * 20), 50, 10, 10, MLV_COLOR_RED);
+    }
+
+
     MLV_actualise_window();
 
     return 0;
@@ -116,15 +128,9 @@ int draw_window()
 int free_window()
 {
     MLV_free_window();
+   
+   
 
-    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
-    {
-        free(tab_rocket[i]);
-    }
-    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
-    {
-        free(tab_enemy_view[i]);
-    }
     free(img);
     free(img_rocket);
     free(img_enemy);

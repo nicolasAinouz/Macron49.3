@@ -18,6 +18,10 @@ void init_player()
     player.position.y = HEIGHT_FRAME - (player.size * 2);
 }
 
+Position get_player_position()
+{
+    return player.position;
+}
 int get_player_position_x()
 {
     return player.position.x;
@@ -34,6 +38,16 @@ int get_player_position_y()
 void set_player_position_y(int y)
 {
     player.position.y = y;
+}
+
+void set_player_health(int health)
+{
+    player.health = health;
+}
+
+int get_player_health()
+{
+    return player.health;
 }
 
 int get_player_size()
