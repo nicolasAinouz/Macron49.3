@@ -61,7 +61,7 @@ void rocket_available()
             }
             number_rocket_key--;
         }
-        if(rocket_touch_player(tab_rocket[i]))
+        if (rocket_touch_player(tab_rocket[i]))
         {
             set_player_health(get_player_health() - tab_rocket[i]->damage);
             for (int j = i + 1; j < number_rocket_key; j++)
@@ -69,7 +69,6 @@ void rocket_available()
                 tab_rocket[j - 1] = tab_rocket[j];
             }
             number_rocket_key--;
-            
         }
     }
 }
@@ -117,35 +116,37 @@ void shoot()
 void key_listener()
 
 {
-    MLV_Keyboard_button key;
-    MLV_Button_state state;
-    MLV_get_event(&key, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &state);
 
-    if (state == MLV_PRESSED)
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
     {
-        if (key == MLV_KEYBOARD_LEFT)
-        {
-            move_player_left();
-        }
-        else if (key == MLV_KEYBOARD_RIGHT)
-        {
-            move_player_right();
-        }
-        else if (key == MLV_KEYBOARD_UP)
-        {
-            move_player_up();
-        }
-        else if (key == MLV_KEYBOARD_DOWN)
-        {
-            move_player_down();
-        }
-        else if (key == MLV_KEYBOARD_SPACE)
-        {
-            shoot();
-        }
-        else if (key == MLV_KEYBOARD_ESCAPE)
-        {
-            end_game_signal();
-        }
+        end_game_signal();
+    }
+    // if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED && MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
+    // {
+    //     move_player_left();
+    //     move_player_up();
+    // }
+   
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED )
+    {
+        move_player_left();
+    }
+     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
+    {
+        move_player_up();
+    }
+
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_RIGHT) == MLV_PRESSED)
+    {
+        move_player_right();
+    }
+   
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_DOWN) == MLV_PRESSED)
+    {
+        move_player_down();
+    }
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
+    {
+        shoot();
     }
 }
