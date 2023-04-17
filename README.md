@@ -13,6 +13,6 @@ Controle shift i -> formatter sous vsc
 TODO : 
 -> ADD : faire les assert après Malloc
 -> FIXME : y a un pb de fuite de mémoire :/
--> ADD : il faudrait un fichier pivot dans model qui permettrait de récupérer le nb de rocket ou enemy à l'instanté
+-> ADD : il faudrait un fichier rocket controller pour pouvoir mieux separer le fichier key listener.c
 -> FIXME : le vaisseau se deplace en tapotant et non en restant appuyer
 -> FIXME : il y a comme des incohérences sur comment sont gérer les rockets etc...

@@ -17,6 +17,9 @@ int get_player_health();
 
 int get_player_size();
 
+int get_player_score();
+void set_player_score(int score);
+
 void move_player_left();
 void move_player_right();
 void move_player_up();

@@ -20,7 +20,6 @@ int main(int argc, char const *argv[])
 {
 
     int time_frame;
-    
 
     /* permet de récupérer les temps de début et de fin (pour vérifier si la frame est pas trop rapide)*/
     struct timespec start_time, end_time;
@@ -41,7 +40,7 @@ int main(int argc, char const *argv[])
         draw_window();
 
         // On récupère les évènements clavier
-        
+
         key_listener();
 
         /* Récupération de l'heure en fin */

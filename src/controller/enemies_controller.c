@@ -5,11 +5,12 @@
 #include "../include/const.h"
 #include "../include/struct_entity.h"
 #include "../include/key_listener.h"
+#include "../include/player_controller.h"
 
 Enemy *tab_enemy[NUMBER_OF_ENEMY];
 Rocket *tab_rocket[NUMBER_OF_ROCKET];
 int number_enemies_key = 0;
-
+int pouet = 0;
 void printvalue(int value)
 {
     printf("%d ", value);
@@ -60,11 +61,17 @@ void touch_by_rocket()
     {
         for (int j = 0; j < get_number_rocket(); j++)
         {
-            if (is_inside_hitbox(tab_rocket[j], tab_enemy[i]))
+            if (is_inside_hitbox(tab_rocket[j], tab_enemy[i]) && tab_rocket[j]->is_alive == 1 && tab_enemy[i]->is_alive == 1)
             {
+
                 tab_enemy[i]->health -= tab_rocket[j]->damage;
+                set_player_score(get_player_score() + 20);
+
                 if (tab_enemy[i]->health <= 0)
+                {
+                    set_player_score(get_player_score() + 100);
                     tab_enemy[i]->is_alive = 0;
+                }
             }
         }
     }
@@ -86,7 +93,7 @@ void create_enemy()
     Enemy *enemy = malloc(sizeof(Enemy));
 
     enemy->position.x = rand() % (WIDTH_FRAME - 50);
-    enemy->position.y = -50;
+    enemy->position.y = -30;
     enemy->size = 50;
     Hitbox hitbox;
     hitbox.position = enemy->position;

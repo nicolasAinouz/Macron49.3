@@ -21,8 +21,11 @@ key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/inc
 player_controller.o: 
 	$(CC) -c src/controller/player_controller.c $(CFLAGS) -o $(BIN)$@
 
-enemies_controller.o: src/include/key_listener.h
+enemies_controller.o: src/include/key_listener.h src/include/player_controller.h
 	$(CC) -c src/controller/enemies_controller.c $(CFLAGS) -o $(BIN)$@
 
 run:
 	./$(MAIN)
+
+clean:
+	rm -rf $(BIN)*.o $(MAIN)

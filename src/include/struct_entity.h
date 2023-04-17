@@ -21,6 +21,7 @@ typedef struct player
     int size;
     int health;
     int speed;
+    int score;
     Hitbox hitbox;
 } Player;
 

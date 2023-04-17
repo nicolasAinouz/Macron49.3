@@ -14,6 +14,7 @@ void init_player()
     player.health = 5;
     player.size = 50;
     player.speed = 30;
+    player.score = 0;
     player.position.x = WIDTH_FRAME / 2 - player.size;
     player.position.y = HEIGHT_FRAME - (player.size * 2);
 }
@@ -50,6 +51,15 @@ int get_player_health()
     return player.health;
 }
 
+int get_player_score()
+{
+    return player.score;
+}
+void set_player_score(int score)
+{
+    player.score = score;
+}
+
 int get_player_size()
 {
     return player.size;
@@ -83,5 +93,3 @@ void move_player_down()
         set_player_position_y(get_player_position_y() + player.speed);
     }
 }
-
-

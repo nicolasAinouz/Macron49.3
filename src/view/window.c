@@ -114,6 +114,15 @@ int draw_window()
         MLV_draw_filled_rectangle(10 + (i * 20), 50, 10, 10, MLV_COLOR_RED);
     }
 
+    MLV_draw_text(10, 70, "Score : ", MLV_COLOR_RED);
+
+    int entier = get_player_score();
+
+    char chaine[100];
+
+    sprintf(chaine, "%d", entier);
+    MLV_draw_text(10, 90,chaine, MLV_COLOR_RED);
+
 
     MLV_actualise_window();
 
