@@ -117,21 +117,11 @@ void key_listener()
 
 {
 
-    if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
-    {
-        end_game_signal();
-    }
-    // if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED && MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
-    // {
-    //     move_player_left();
-    //     move_player_up();
-    // }
-   
-    if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED )
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
         move_player_left();
     }
-     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
         move_player_up();
     }
@@ -140,7 +130,7 @@ void key_listener()
     {
         move_player_right();
     }
-   
+
     if (MLV_get_keyboard_state(MLV_KEYBOARD_DOWN) == MLV_PRESSED)
     {
         move_player_down();
@@ -148,5 +138,9 @@ void key_listener()
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
     {
         shoot();
+    }
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
+    {
+        end_game_signal();
     }
 }

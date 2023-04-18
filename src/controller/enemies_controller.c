@@ -33,7 +33,7 @@ void enemy_shoot()
 {
     for (int i = 0; i < number_enemies_key; i++)
     {
-        if (normal_delay(1) < 0.05 && tab_enemy[i]->is_alive == 1)
+        if (normal_delay(1) < 0.02 && tab_enemy[i]->is_alive == 1)
         {
             Rocket *rocket = malloc(sizeof(Rocket));
             rocket->position.x = tab_enemy[i]->position.x + tab_enemy[i]->size / 2;
@@ -132,8 +132,6 @@ void get_tab_enemy(Enemy **tab_enemy_old, int size)
 {
     if (normal_delay(15) < 1)
         create_enemy();
-
-    // printf("number_enemies : %d \n", number_enemies_key);
 
     enemies_available();
     touch_by_rocket();
