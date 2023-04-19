@@ -4,7 +4,6 @@
 #include "struct_entity.h"
 
 
-int get_number_enemies();
 
-void get_tab_enemy(Enemy **tab_enemy_old, int size);
+void move_enemies(Enemy *tab_enemy, Rocket *tab_rocket);
 #endif

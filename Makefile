@@ -9,7 +9,7 @@ BIN=bin/
 all: $(OBJ)
 	$(CC) $(REPOBJ) $(LDFLAGS) -o $(MAIN)
 
-main.o: src/main.c src/include/window.h src/include/key_listener.h src/include/player_controller.h
+main.o: src/main.c src/include/window.h src/include/key_listener.h src/include/player_controller.h src/include/enemies_controller.h
 	$(CC) -c src/main.c $(CFLAGS) -o $(BIN)$@
 
 window.o: src/view/window.c src/include/enemies_controller.h src/include/window.h src/include/key_listener.h src/include/player_controller.h src/include/struct_entity.h 
@@ -21,7 +21,7 @@ key_listener.o: src/controller/key_listener.c src/include/key_listener.h src/inc
 player_controller.o: 
 	$(CC) -c src/controller/player_controller.c $(CFLAGS) -o $(BIN)$@
 
-enemies_controller.o: src/include/key_listener.h src/include/player_controller.h
+enemies_controller.o: src/include/key_listener.h src/include/player_controller.h src/include/window.h
 	$(CC) -c src/controller/enemies_controller.c $(CFLAGS) -o $(BIN)$@
 
 run:

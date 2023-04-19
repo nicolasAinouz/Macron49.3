@@ -6,47 +6,42 @@
 #include "../include/struct_entity.h"
 #include "../include/key_listener.h"
 #include "../include/player_controller.h"
+#include "../include/window.h"
 
-Enemy *tab_enemy[NUMBER_OF_ENEMY];
-Rocket *tab_rocket[NUMBER_OF_ROCKET];
 int number_enemies_key = 0;
-int pouet = 0;
-void printvalue(int value)
-{
-    printf("%d ", value);
-}
+
 double normal_delay(double mean)
 {
     return -mean * log(1 - ((double)rand() / RAND_MAX));
 }
 
-int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
+int is_inside_hitbox(Rocket rocket, Enemy enemy)
 {
-    if (rocket->hitbox.position.x + rocket->hitbox.size > enemy->hitbox.position.x && rocket->hitbox.position.x < enemy->hitbox.position.x + enemy->hitbox.size && rocket->hitbox.position.y + rocket->hitbox.size > enemy->hitbox.position.y && rocket->hitbox.position.y < enemy->hitbox.position.y + enemy->hitbox.size)
+    if (rocket.hitbox.position.x + rocket.hitbox.size > enemy.hitbox.position.x && rocket.hitbox.position.x < enemy.hitbox.position.x + enemy.hitbox.size && rocket.hitbox.position.y + rocket.hitbox.size > enemy.hitbox.position.y && rocket.hitbox.position.y < enemy.hitbox.position.y + enemy.hitbox.size)
     {
         return 1;
     }
     return 0;
 }
 
-void enemy_shoot()
+void enemy_shoot(Enemy* tab_enemy, Rocket* tab_rocket)
 {
     for (int i = 0; i < number_enemies_key; i++)
     {
-        if (normal_delay(1) < 0.02 && tab_enemy[i]->is_alive == 1)
+        if (normal_delay(1) < 0.02 && tab_enemy[i].is_alive == 1)
         {
-            Rocket *rocket = malloc(sizeof(Rocket));
-            rocket->position.x = tab_enemy[i]->position.x + tab_enemy[i]->size / 2;
-            rocket->position.y = tab_enemy[i]->position.y + tab_enemy[i]->size;
-            rocket->size = 10;
-            rocket->speed = 15;
-            rocket->damage = 1;
-            rocket->is_alive = 1;
+            Rocket rocket;
+            rocket.position.x = tab_enemy[i].position.x + tab_enemy[i].size / 2;
+            rocket.position.y = tab_enemy[i].position.y + tab_enemy[i].size;
+            rocket.size = 10;
+            rocket.speed = 15;
+            rocket.damage = 1;
+            rocket.is_alive = 1;
             Hitbox hitbox;
-            hitbox.position = rocket->position;
-            hitbox.size = rocket->size;
-            rocket->hitbox = hitbox;
-            rocket->is_player = 0;
+            hitbox.position = rocket.position;
+            hitbox.size = rocket.size;
+            rocket.hitbox = hitbox;
+            rocket.is_player = 0;
             tab_rocket[get_number_rocket()] = rocket;
 
             set_number_rocket(get_number_rocket() + 1);
@@ -54,65 +49,67 @@ void enemy_shoot()
     }
 }
 
-void touch_by_rocket()
+void touch_by_rocket(Enemy* tab_enemy, Rocket* tab_rocket)
 {
-    get_tab_rocket(tab_rocket, get_number_rocket());
-    for (int i = 0; i < number_enemies_key; i++)
+    
+    rocket_available(tab_rocket);
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
-        for (int j = 0; j < get_number_rocket(); j++)
+        for (int j = 0; j < NUMBER_OF_ROCKET; j++)
         {
-            if (is_inside_hitbox(tab_rocket[j], tab_enemy[i]) && tab_rocket[j]->is_alive == 1 && tab_enemy[i]->is_alive == 1)
+            
+            if (tab_rocket[j].is_alive == 1 && tab_enemy[i].is_alive == 1 && is_inside_hitbox(tab_rocket[j], tab_enemy[i]))
             {
 
-                tab_enemy[i]->health -= tab_rocket[j]->damage;
+                tab_enemy[i].health -= tab_rocket[j].damage;
                 set_player_score(get_player_score() + 20);
 
-                if (tab_enemy[i]->health <= 0)
+                if (tab_enemy[i].health <= 0)
                 {
                     set_player_score(get_player_score() + 100);
-                    tab_enemy[i]->is_alive = 0;
+                    tab_enemy[i].is_alive = 0;
                 }
             }
         }
     }
 }
-void move_enemies()
+void move(Enemy *tab_enemy)
 {
     for (int i = 0; i < number_enemies_key; i++)
     {
-        tab_enemy[i]->position.y += tab_enemy[i]->speed;
+        tab_enemy[i].position.y += tab_enemy[i].speed;
         Hitbox hitbox;
-        hitbox.position = tab_enemy[i]->position;
-        hitbox.size = tab_enemy[i]->size;
-        tab_enemy[i]->hitbox = hitbox;
+        hitbox.position = tab_enemy[i].position;
+        hitbox.size = tab_enemy[i].size;
+        tab_enemy[i].hitbox = hitbox;
     }
 }
 
-void create_enemy()
+void create_enemy(Enemy *tab_enemy)
 {
-    Enemy *enemy = malloc(sizeof(Enemy));
+    Enemy enemy;
 
-    enemy->position.x = rand() % (WIDTH_FRAME - 50);
-    enemy->position.y = -30;
-    enemy->size = 50;
+    enemy.position.x = rand() % (WIDTH_FRAME - 50);
+    enemy.position.y = -30;
+    enemy.size = 50;
     Hitbox hitbox;
-    hitbox.position = enemy->position;
-    hitbox.size = enemy->size;
-    enemy->hitbox = hitbox;
-    enemy->health = 100;
-    enemy->speed = 5;
-    enemy->damage = 10;
-    enemy->is_alive = 1;
+    hitbox.position = enemy.position;
+    hitbox.size = enemy.size;
+    enemy.hitbox = hitbox;
+    enemy.health = 100;
+    enemy.speed = 5;
+    enemy.damage = 10;
+    enemy.is_alive = 1;
 
     tab_enemy[number_enemies_key] = enemy;
     number_enemies_key++;
 }
 
-void enemies_available()
+void enemies_available(Enemy *tab_enemy)
 {
     for (int i = 0; i < number_enemies_key; i++)
     {
-        if (tab_enemy[i]->position.y > HEIGHT_FRAME + tab_enemy[i]->size)
+        if (tab_enemy[i].position.y > HEIGHT_FRAME + tab_enemy[i].size)
         {
             for (int j = i + 1; j < number_enemies_key; j++)
             {
@@ -128,24 +125,19 @@ int get_number_enemies()
     return number_enemies_key;
 }
 
-void get_tab_enemy(Enemy **tab_enemy_old, int size)
+void move_enemies(Enemy *tab_enemy, Rocket *tab_rocket)
 {
     if (normal_delay(15) < 1)
-        create_enemy();
+        create_enemy(tab_enemy);
 
-    enemies_available();
-    touch_by_rocket();
-    move_enemies();
-    enemy_shoot();
+    enemies_available(tab_enemy);
+    touch_by_rocket(tab_enemy, tab_rocket);
+    move(tab_enemy);
+    enemy_shoot(tab_enemy, tab_rocket);
 
     for (int i = 0; i < number_enemies_key; i++)
     {
-        tab_enemy_old[i]->position = tab_enemy[i]->position;
-        tab_enemy_old[i]->size = tab_enemy[i]->size;
-        tab_enemy_old[i]->health = tab_enemy[i]->health;
-        tab_enemy_old[i]->speed = tab_enemy[i]->speed;
-        tab_enemy_old[i]->damage = tab_enemy[i]->damage;
-        tab_enemy_old[i]->is_alive = tab_enemy[i]->is_alive;
-        tab_enemy_old[i]->hitbox = tab_enemy[i]->hitbox;
+        if (tab_enemy[i].is_alive == 1)
+            draw_enemy(tab_enemy[i]);
     }
 }

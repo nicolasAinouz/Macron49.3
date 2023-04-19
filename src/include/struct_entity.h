@@ -47,4 +47,6 @@ typedef struct enemy
     Hitbox hitbox; 
 } Enemy;
 
+
+
 #endif
