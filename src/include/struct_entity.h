@@ -11,40 +11,40 @@ typedef struct position
 
 typedef struct hitbox
 {
-    Position position;
+    Position *position;
     int size;
 } Hitbox;
 
 typedef struct player
 {
-    Position position;
+    Position *position;
     int size;
     int health;
     int speed;
     int score;
-    Hitbox hitbox;
+    Hitbox *hitbox;
 } Player;
 
 typedef struct rocket
 {
-    Position position;
+    Position *position;
     int size;
     int speed;
     int damage;
     int is_alive;
-    Hitbox hitbox;
+    Hitbox *hitbox;
     int is_player; //1 si tiré par le joueur
 } Rocket;
 
 typedef struct enemy
 {
-    Position position;
+    Position *position;
     int size;
     int health;
     int speed;
     int damage;
     int is_alive; //est en vie si = 1
-    Hitbox hitbox; 
+    Hitbox *hitbox; 
 } Enemy;
 
 

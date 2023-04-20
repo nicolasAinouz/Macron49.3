@@ -22,12 +22,15 @@ int main(int argc, char const *argv[])
 
     int time_frame;
 
-    Enemy tab_enemy[100];
-    Rocket tab_rocket[100];
+    Enemy *tab_enemy[100];
+    Rocket *tab_rocket[100];
 
-    struct timespec start_time, end_time;
+    init_tab_enemy(tab_enemy);
+    init_tab_rocket(tab_rocket);
 
-    init_window(tab_enemy, tab_rocket);
+       struct timespec start_time, end_time;
+
+    init_window();
 
     init_player();
 
@@ -36,7 +39,7 @@ int main(int argc, char const *argv[])
         clock_gettime(CLOCK_REALTIME, &start_time);
 
         clear_window();
-        
+
         move_enemies(tab_enemy, tab_rocket);
         draw_window();
 

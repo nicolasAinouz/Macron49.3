@@ -6,11 +6,11 @@
 
 
 void shoot();
-void init_window(Enemy* tab_enemy_view, Rocket* tab_rocket);
+void init_window();
 int draw_window();
 int clear_window();
 int free_window();
-void draw_enemy(Enemy enemy);
-void draw_rocket(Rocket rocket);
+void draw_enemy(Enemy *enemy);
+void draw_rocket(Rocket *rocket);
 
 #endif

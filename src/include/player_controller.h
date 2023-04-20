@@ -10,10 +10,15 @@ void set_player_position_x(int x);
 
 int get_player_position_y();
 void set_player_position_y(int y);
-Position get_player_position();
+
+Position *get_player_position();
 
 void set_player_health(int health);
 int get_player_health();
+
+
+void set_player_speed(int speed);
+int get_player_speed();
 
 int get_player_size();
 

@@ -17,7 +17,7 @@ MLV_Image *img_rocket;
 MLV_Image *img_enemy;
 MLV_Image *img;
 
-void init_window(Enemy* tab_enemy_view, Rocket* tab_rocket)
+void init_window()
 {
     MLV_create_window(NAME_FRAME, NULL, WIDTH_FRAME, HEIGHT_FRAME);
     MLV_clear_window(MLV_COLOR_WHITE);
@@ -26,31 +26,9 @@ void init_window(Enemy* tab_enemy_view, Rocket* tab_rocket)
     img_rocket = MLV_load_image("src/data/rocket.png");
     img_enemy = MLV_load_image("src/data/rocket.png");
 
-    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
-    {
-        Rocket rocket;
-        rocket.position.x = 0;
-        rocket.position.y = 0;
-        rocket.size = 0;
-        rocket.speed = 0;
-        rocket.damage = 0;
-        rocket.is_alive = 0;
-        rocket.is_player = 0;
+    
 
-        tab_rocket[i] = rocket;
-    }
-
-    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
-    {
-        Enemy enemy;
-        enemy.position.x = 0;
-        enemy.position.y = 0;
-        enemy.size = 0;
-        enemy.speed = 0;
-        enemy.damage = 0;
-        tab_enemy_view[i] = enemy;
-    }
-
+    
 
 }
 
@@ -70,18 +48,18 @@ int clear_window()
  *
  * @param enemy
  */
-void draw_enemy(Enemy enemy)
+void draw_enemy(Enemy *enemy)
 {
 
-    MLV_resize_image_with_proportions(img_enemy, enemy.size, enemy.size);
-    MLV_draw_image(img_enemy, enemy.position.x, enemy.position.y);
+    MLV_resize_image_with_proportions(img_enemy, enemy->size, enemy->size);
+    MLV_draw_image(img_enemy, enemy->position->x, enemy->position->y);
 }
 
-void draw_rocket(Rocket rocket)
+void draw_rocket(Rocket *rocket)
 {
 
-    MLV_resize_image_with_proportions(img_rocket, rocket.size, rocket.size);
-    MLV_draw_image(img_rocket, rocket.position.x, rocket.position.y);
+    MLV_resize_image_with_proportions(img_rocket, rocket->size, rocket->size);
+    MLV_draw_image(img_rocket, rocket->position->x, rocket->position->y);
 }
 
 /**

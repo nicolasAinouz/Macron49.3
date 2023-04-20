@@ -3,7 +3,6 @@
 
 #include "struct_entity.h"
 
-
-
-void move_enemies(Enemy *tab_enemy, Rocket *tab_rocket);
+void init_tab_enemy(Enemy **tab_enemy);
+void move_enemies(Enemy **tab_enemy, Rocket **tab_rocket);
 #endif
