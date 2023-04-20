@@ -9,9 +9,11 @@
 #define NAME_FRAME "shootem up"
 
 #define SIZE_PLAYER 100
+#define SIZE_ENEMY 50
 #define NUMBER_OF_ROCKET 100
 #define NUMBER_OF_ENEMY 100
 #define ROCKET_SIZE 20
+#define ROCKET_ENNEMY_SIZE 10
 #define ARRIVAL_RATE (1.0/5) 
 #define ENEMIES_TIME 1
 

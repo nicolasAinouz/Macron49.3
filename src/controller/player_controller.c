@@ -12,7 +12,7 @@ Player *player;
 void init_player()
 {
     player = malloc(sizeof(Player));
-    player->size = 50;
+    player->size = SIZE_PLAYER;
     Position *position = malloc(sizeof(Position));
     position->x = WIDTH_FRAME / 2 - player->size;
     position->y = HEIGHT_FRAME - (player->size * 2);

@@ -10,7 +10,8 @@
 
 int number_enemies_key = 0;
 
-void init_tab_enemy(Enemy **tab_enemy){
+void init_tab_enemy(Enemy **tab_enemy)
+{
     for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
         Enemy *enemy = malloc(sizeof(Enemy));
@@ -43,14 +44,14 @@ void enemy_shoot(Enemy **tab_enemy, Rocket **tab_rocket)
 {
     for (int i = 0; i < number_enemies_key; i++)
     {
-        if (normal_delay(1) < 0.02 && tab_enemy[i]->is_alive == 1)
+        if (normal_delay(1) < 0.02 && tab_enemy[i]->is_alive == 1 && tab_enemy[i]->is_special == 0)
         {
             Rocket *rocket = malloc(sizeof(Rocket));
             Position *position = malloc(sizeof(Position));
             position->x = tab_enemy[i]->position->x + tab_enemy[i]->size / 2;
             position->y = tab_enemy[i]->position->y + tab_enemy[i]->size;
             rocket->position = position;
-            rocket->size = 10;
+            rocket->size = ROCKET_ENNEMY_SIZE;
             rocket->speed = 15;
             rocket->damage = 1;
             rocket->is_alive = 1;
@@ -59,6 +60,28 @@ void enemy_shoot(Enemy **tab_enemy, Rocket **tab_rocket)
             hitbox->size = rocket->size;
             rocket->hitbox = hitbox;
             rocket->is_player = 0;
+            rocket->is_special = 0;
+            tab_rocket[get_number_rocket()] = rocket;
+
+            set_number_rocket(get_number_rocket() + 1);
+        }
+        else if (normal_delay(1) < 0.005 && tab_enemy[i]->is_alive == 1 && tab_enemy[i]->is_special == 1)
+        {
+           Rocket *rocket = malloc(sizeof(Rocket));
+            Position *position = malloc(sizeof(Position));
+            position->x = tab_enemy[i]->position->x + tab_enemy[i]->size / 2;
+            position->y = tab_enemy[i]->position->y + tab_enemy[i]->size;
+            rocket->position = position;
+            rocket->size = ROCKET_ENNEMY_SIZE;
+            rocket->speed = 5;
+            rocket->damage = 1;
+            rocket->is_alive = 1;
+            Hitbox *hitbox = malloc(sizeof(Hitbox));
+            hitbox->position = rocket->position;
+            hitbox->size = rocket->size;
+            rocket->hitbox = hitbox;
+            rocket->is_player = 0;
+            rocket->is_special = 1;
             tab_rocket[get_number_rocket()] = rocket;
 
             set_number_rocket(get_number_rocket() + 1);
@@ -110,7 +133,7 @@ void create_enemy(Enemy **tab_enemy)
     position->y = -30;
     enemy->position = position;
 
-    enemy->size = 50;
+    enemy->size = SIZE_ENEMY;
     Hitbox *hitbox = malloc(sizeof(Hitbox));
     hitbox->position = enemy->position;
     hitbox->size = enemy->size;
@@ -119,6 +142,30 @@ void create_enemy(Enemy **tab_enemy)
     enemy->speed = 5;
     enemy->damage = 10;
     enemy->is_alive = 1;
+    enemy->is_special = 0;
+
+    tab_enemy[number_enemies_key] = enemy;
+    number_enemies_key++;
+}
+
+void create_special_enemy(Enemy **tab_enemy)
+{
+    Enemy *enemy = malloc(sizeof(Enemy));
+    Position *position = malloc(sizeof(Position));
+    position->x = rand() % (WIDTH_FRAME - 50);
+    position->y = -30;
+    enemy->position = position;
+
+    enemy->size = SIZE_ENEMY + 50;
+    Hitbox *hitbox = malloc(sizeof(Hitbox));
+    hitbox->position = enemy->position;
+    hitbox->size = enemy->size;
+    enemy->hitbox = hitbox;
+    enemy->health = 500;
+    enemy->speed = 1;
+    enemy->damage = 10;
+    enemy->is_alive = 1;
+    enemy->is_special = 1;
 
     tab_enemy[number_enemies_key] = enemy;
     number_enemies_key++;
@@ -146,8 +193,11 @@ int get_number_enemies()
 
 void move_enemies(Enemy **tab_enemy, Rocket **tab_rocket)
 {
-    if (normal_delay(15) < 1)
+    if (normal_delay(15) < 0.3)
         create_enemy(tab_enemy);
+
+    if (normal_delay(15) < 0.1)
+        create_special_enemy(tab_enemy);
 
     enemies_available(tab_enemy);
     touch_by_rocket(tab_enemy, tab_rocket);

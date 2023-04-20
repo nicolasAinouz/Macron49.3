@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
 
 #include "../include/main.h"
 #include "../include/const.h"
@@ -10,9 +11,9 @@
 #include "../include/struct_entity.h"
 #include "../include/player_controller.h"
 
-
-void init_tab_rocket(Rocket **tab_rocket){
-     for (int i = 0; i < NUMBER_OF_ROCKET; i++)
+void init_tab_rocket(Rocket **tab_rocket)
+{
+    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
     {
         Rocket *rocket = malloc(sizeof(Rocket));
         Position *position = malloc(sizeof(Position));
@@ -41,13 +42,30 @@ void move_rocket(Rocket **tab_rocket)
 {
     for (int i = 0; i < number_rocket_key; i++)
     {
-        if (tab_rocket[i]->is_player == 0)
+
+        if (tab_rocket[i]->is_player == 1)
         {
-            tab_rocket[i]->position->y += tab_rocket[i]->speed;
+            tab_rocket[i]->position->y -= tab_rocket[i]->speed;
+        }
+
+        else if (tab_rocket[i]->is_special == 1 && tab_rocket[i]->position->y < get_player_position_y() +10)
+        {
+
+            float dx = (float)(get_player_position_x() - tab_rocket[i]->position->x);
+            float dy = (float)(get_player_position_y() - tab_rocket[i]->position->y);
+            float length = sqrt(dx * dx + dy * dy);
+            float dirx = dx / length;
+            float diry = dy / length;
+
+            float move_x = dirx * tab_rocket[i]->speed;
+            float move_y = diry * tab_rocket[i]->speed;
+
+            tab_rocket[i]->position->x += move_x;
+            tab_rocket[i]->position->y += move_y;
         }
         else
         {
-            tab_rocket[i]->position->y -= tab_rocket[i]->speed;
+            tab_rocket[i]->position->y += tab_rocket[i]->speed;
         }
         Hitbox *hitbox = malloc(sizeof(Hitbox));
         hitbox->position = tab_rocket[i]->position;
@@ -126,6 +144,7 @@ void shoot(Rocket **tab_rocket)
 
     rocket->is_alive = 1;
     rocket->is_player = 1;
+    rocket->is_special = 0;
 
     tab_rocket[number_rocket_key] = rocket;
     number_rocket_key++;

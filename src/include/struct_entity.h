@@ -34,6 +34,7 @@ typedef struct rocket
     int is_alive;
     Hitbox *hitbox;
     int is_player; //1 si tiré par le joueur
+    int is_special; //1 si spécial
 } Rocket;
 
 typedef struct enemy
@@ -44,6 +45,7 @@ typedef struct enemy
     int speed;
     int damage;
     int is_alive; //est en vie si = 1
+    int is_special; //est spécial si = 1
     Hitbox *hitbox; 
 } Enemy;
 
