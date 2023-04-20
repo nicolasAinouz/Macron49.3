@@ -8,6 +8,7 @@
 #include "../include/player_controller.h"
 #include "../include/window.h"
 
+
 int number_enemies_key = 0;
 
 void init_tab_enemy(Enemy **tab_enemy)
@@ -61,13 +62,17 @@ void enemy_shoot(Enemy **tab_enemy, Rocket **tab_rocket)
             rocket->hitbox = hitbox;
             rocket->is_player = 0;
             rocket->is_special = 0;
+            Position *position_shoot = malloc(sizeof(Position));
+            position_shoot->x = 0;
+            position_shoot->y = 0;
+            rocket->position_shoot = position_shoot;
             tab_rocket[get_number_rocket()] = rocket;
 
             set_number_rocket(get_number_rocket() + 1);
         }
         else if (normal_delay(1) < 0.005 && tab_enemy[i]->is_alive == 1 && tab_enemy[i]->is_special == 1)
         {
-           Rocket *rocket = malloc(sizeof(Rocket));
+            Rocket *rocket = malloc(sizeof(Rocket));
             Position *position = malloc(sizeof(Position));
             position->x = tab_enemy[i]->position->x + tab_enemy[i]->size / 2;
             position->y = tab_enemy[i]->position->y + tab_enemy[i]->size;
@@ -82,6 +87,27 @@ void enemy_shoot(Enemy **tab_enemy, Rocket **tab_rocket)
             rocket->hitbox = hitbox;
             rocket->is_player = 0;
             rocket->is_special = 1;
+
+           // pour tete chercheuse
+             Position *position_shoot = malloc(sizeof(Position));
+             position_shoot->x = 0;
+             position_shoot->y = 0;
+             rocket->position_shoot = position_shoot;
+             tab_rocket[get_number_rocket()] = rocket;
+
+            //pour shooter
+            //marche pas
+    //         Position *position_shoot = malloc(sizeof(Position));
+    //         int dx = get_player_position_x() - rocket->position->x;
+    // int dy = get_player_position_y() - rocket->position->y;
+    // int length = sqrt(dx * dx + dy * dy);
+    // int dirx = dx / length;
+    // int diry = dy / length;
+    // position_shoot->x = dirx;
+    // position_shoot->y = diry;
+    //         rocket->position_shoot = position_shoot;
+
+
             tab_rocket[get_number_rocket()] = rocket;
 
             set_number_rocket(get_number_rocket() + 1);
@@ -193,10 +219,10 @@ int get_number_enemies()
 
 void move_enemies(Enemy **tab_enemy, Rocket **tab_rocket)
 {
-    if (normal_delay(15) < 0.3)
+    if (normal_delay(15) < 0.5)
         create_enemy(tab_enemy);
 
-    if (normal_delay(15) < 0.1)
+    if (normal_delay(15) < 0.05)
         create_special_enemy(tab_enemy);
 
     enemies_available(tab_enemy);

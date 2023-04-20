@@ -35,6 +35,7 @@ typedef struct rocket
     Hitbox *hitbox;
     int is_player; //1 si tiré par le joueur
     int is_special; //1 si spécial
+    Position *position_shoot;
 } Rocket;
 
 typedef struct enemy

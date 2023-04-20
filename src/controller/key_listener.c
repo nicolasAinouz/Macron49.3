@@ -47,9 +47,9 @@ void move_rocket(Rocket **tab_rocket)
         {
             tab_rocket[i]->position->y -= tab_rocket[i]->speed;
         }
-
-        else if (tab_rocket[i]->is_special == 1 && tab_rocket[i]->position->y < get_player_position_y() +10)
-        {
+        // tete chercheuse
+         else if (tab_rocket[i]->is_special == 1 && tab_rocket[i]->position->y < get_player_position_y() +10)
+         {
 
             float dx = (float)(get_player_position_x() - tab_rocket[i]->position->x);
             float dy = (float)(get_player_position_y() - tab_rocket[i]->position->y);
@@ -63,6 +63,18 @@ void move_rocket(Rocket **tab_rocket)
             tab_rocket[i]->position->x += move_x;
             tab_rocket[i]->position->y += move_y;
         }
+        //pour shooter ne marche pas
+        // else if (tab_rocket[i]->is_special == 1)
+        // {
+        //     printf("je suis a");
+
+        //     int move_x = tab_rocket[i]->position_shoot->x * tab_rocket[i]->speed;
+        //     int move_y = tab_rocket[i]->position_shoot->y * tab_rocket[i]->speed;
+        //     tab_rocket[i]->position->x += move_x;
+        //     tab_rocket[i]->position->y += move_y;
+            
+        // }
+
         else
         {
             tab_rocket[i]->position->y += tab_rocket[i]->speed;
@@ -145,6 +157,11 @@ void shoot(Rocket **tab_rocket)
     rocket->is_alive = 1;
     rocket->is_player = 1;
     rocket->is_special = 0;
+
+    Position *position_shoot = malloc(sizeof(Position));
+    position_shoot->x = 0;
+    position_shoot->y = 0;
+    rocket->position_shoot = position_shoot;
 
     tab_rocket[number_rocket_key] = rocket;
     number_rocket_key++;
