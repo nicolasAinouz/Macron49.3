@@ -17,3 +17,4 @@ TODO :
 -> FIXME : le vaisseau se deplace en tapotant et non en restant appuyer
 -> FIXME : il y a comme des incohérences sur comment sont gérer les rockets etc...
 -> FIXME : Bouger player dans main
+-> FIXME : if toto ==0 par !toto
