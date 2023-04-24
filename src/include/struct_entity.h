@@ -22,6 +22,7 @@ typedef struct player
     int health;
     int speed;
     int score;
+  
     Hitbox *hitbox;
 } Player;
 
@@ -35,6 +36,7 @@ typedef struct rocket
     Hitbox *hitbox;
     int is_player; //1 si tiré par le joueur
     int is_special; //1 si spécial
+    int time; //temps de vie (que pour special)
     Position *position_shoot;
 } Rocket;
 
@@ -50,6 +52,11 @@ typedef struct enemy
     Hitbox *hitbox; 
 } Enemy;
 
-
+typedef struct game
+{
+    Enemy *tab_enemy[NUMBER_OF_ENEMY];
+    Rocket *tab_rocket[NUMBER_OF_ROCKET];
+    Player *player;
+} Game;
 
 #endif

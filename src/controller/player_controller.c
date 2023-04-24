@@ -7,107 +7,62 @@
 #include "../include/const.h"
 #include "../include/struct_entity.h"
 
-Player *player;
-
-void init_player()
+Player *init_player()
 {
-    player = malloc(sizeof(Player));
+
+    Player *player = malloc(sizeof(Player));
+    assert(player != NULL);
+
+    
     player->size = SIZE_PLAYER;
     Position *position = malloc(sizeof(Position));
-    position->x = WIDTH_FRAME / 2 - player->size;
-    position->y = HEIGHT_FRAME - (player->size * 2);
+    assert(position != NULL);
+    position->x = (player->size);
+    position->y = HEIGHT_FRAME  / 2 - player->size /2;
     player->position = position;
+   
 
     player->health = 5;
+
+    
 
     player->speed = 0;
     player->score = 0;
     Hitbox *hitbox = malloc(sizeof(Hitbox));
+    assert(hitbox != NULL);
     hitbox->position = player->position;
     hitbox->size = player->size;
     player->hitbox = hitbox;
+
+    return player;
 }
 
-void set_player_speed(int speed)
+void move_player_left(Player *player)
 {
-    player->speed = speed;
-}
-int get_player_speed()
-{
-    return player->speed;
-}
-
-Position *get_player_position()
-{
-    return player->position;
-}
-int get_player_position_x()
-{
-    return player->position->x;
-}
-void set_player_position_x(int x)
-{
-    player->position->x = x;
-}
-
-int get_player_position_y()
-{
-    return player->position->y;
-}
-void set_player_position_y(int y)
-{
-    player->position->y = y;
-}
-
-void set_player_health(int health)
-{
-    player->health = health;
-}
-
-int get_player_health()
-{
-    return player->health;
-}
-
-int get_player_score()
-{
-    return player->score;
-}
-void set_player_score(int score)
-{
-    player->score = score;
-}
-
-int get_player_size()
-{
-    return player->size;
-}
-void move_player_left()
-{
-    if (get_player_position_x() > 0)
+    if (player->position->x > 0)
     {
-        set_player_position_x(get_player_position_x() - player->speed);
+        player->position->x = player->position->x - player->speed;
     }
 }
 
-void move_player_right()
+void move_player_right(Player *player)
 {
-    if (get_player_position_x() < WIDTH_FRAME - get_player_size())
+    if (player->position->x < WIDTH_FRAME - player->size)
     {
-        set_player_position_x(get_player_position_x() + player->speed);
+        player->position->x = player->position->x + player->speed;
     }
 }
-void move_player_up()
+void move_player_up(Player *player)
 {
-    if (get_player_position_y() > 0)
+    if (player->position->y > 0)
     {
-        set_player_position_y(get_player_position_y() - player->speed);
+        player->position->y = player->position->y - player->speed;
     }
 }
-void move_player_down()
+void move_player_down(Player *player)
 {
-    if (get_player_position_y() < HEIGHT_FRAME - get_player_size())
+    if (player->position->y < HEIGHT_FRAME - player->size)
     {
-        set_player_position_y(get_player_position_y() + player->speed);
+        player->position->y = player->position->y + player->speed;
     }
 }

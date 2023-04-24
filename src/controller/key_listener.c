@@ -16,7 +16,9 @@ void init_tab_rocket(Rocket **tab_rocket)
     for (int i = 0; i < NUMBER_OF_ROCKET; i++)
     {
         Rocket *rocket = malloc(sizeof(Rocket));
+        assert(rocket != NULL);
         Position *position = malloc(sizeof(Position));
+        assert(position != NULL);
         position->x = 0;
         position->y = 0;
         rocket->position = position;
@@ -38,21 +40,28 @@ void init_tab_rocket(Rocket **tab_rocket)
 int number_rocket_key = 0;
 int last;
 
-void move_rocket(Rocket **tab_rocket)
+void move_rocket(Rocket **tab_rocket, Player *player)
 {
     for (int i = 0; i < number_rocket_key; i++)
     {
 
         if (tab_rocket[i]->is_player == 1)
         {
-            tab_rocket[i]->position->y -= tab_rocket[i]->speed;
+            tab_rocket[i]->position->x += tab_rocket[i]->speed;
         }
         // tete chercheuse
-         else if (tab_rocket[i]->is_special == 1 && tab_rocket[i]->position->y < get_player_position_y() +10)
-         {
+        else if (tab_rocket[i]->is_special == 1)
+        {
+            tab_rocket[i]->time -= 1;
 
-            float dx = (float)(get_player_position_x() - tab_rocket[i]->position->x);
-            float dy = (float)(get_player_position_y() - tab_rocket[i]->position->y);
+            if (!tab_rocket[i]->time)
+            {
+                draw_explosion(tab_rocket[i]->position->x, tab_rocket[i]->position->y);
+                tab_rocket[i]->is_alive = 0;
+            }
+
+            float dx = (float)(player->position->x - tab_rocket[i]->position->x);
+            float dy = (float)(player->position->y - tab_rocket[i]->position->y);
             float length = sqrt(dx * dx + dy * dy);
             float dirx = dx / length;
             float diry = dy / length;
@@ -63,23 +72,13 @@ void move_rocket(Rocket **tab_rocket)
             tab_rocket[i]->position->x += move_x;
             tab_rocket[i]->position->y += move_y;
         }
-        //pour shooter ne marche pas
-        // else if (tab_rocket[i]->is_special == 1)
-        // {
-        //     printf("je suis a");
-
-        //     int move_x = tab_rocket[i]->position_shoot->x * tab_rocket[i]->speed;
-        //     int move_y = tab_rocket[i]->position_shoot->y * tab_rocket[i]->speed;
-        //     tab_rocket[i]->position->x += move_x;
-        //     tab_rocket[i]->position->y += move_y;
-            
-        // }
 
         else
         {
-            tab_rocket[i]->position->y += tab_rocket[i]->speed;
+            tab_rocket[i]->position->x -= tab_rocket[i]->speed;
         }
         Hitbox *hitbox = malloc(sizeof(Hitbox));
+        assert(hitbox != NULL);
         hitbox->position = tab_rocket[i]->position;
         hitbox->size = tab_rocket[i]->size;
         tab_rocket[i]->hitbox = hitbox;
@@ -88,23 +87,24 @@ void move_rocket(Rocket **tab_rocket)
     }
 }
 
-int rocket_touch_player(Rocket *rocket)
+int rocket_touch_player(Rocket *rocket, Player *player)
 {
-    if (rocket->is_player == 0)
+    if (!rocket->is_player)
     {
-        if (rocket->hitbox->position->x + rocket->hitbox->size > get_player_position()->x && rocket->hitbox->position->x < get_player_position()->x + get_player_size() && rocket->hitbox->position->y + rocket->hitbox->size > get_player_position()->y && rocket->hitbox->position->y < get_player_position()->y + get_player_size())
+        if (rocket->hitbox->position->x + rocket->hitbox->size > player->position->x && rocket->hitbox->position->x < player->position->x + player->size && rocket->hitbox->position->y + rocket->hitbox->size > player->position->y && rocket->hitbox->position->y < player->position->y + player->size)
         {
+
             return 1;
         }
     }
     return 0;
 }
 
-void rocket_available(Rocket **tab_rocket)
+void rocket_available(Rocket **tab_rocket, Player *player)
 {
     for (int i = 0; i < number_rocket_key; i++)
     {
-        if (tab_rocket[i]->position->y + tab_rocket[i]->size < 0 || tab_rocket[i]->position->y > WIDTH_FRAME + 100)
+        if (tab_rocket[i]->position->x < 0 + tab_rocket[i]->size || tab_rocket[i]->position->x >WIDTH_FRAME + tab_rocket[i]->size)
         {
             for (int j = i + 1; j < number_rocket_key; j++)
             {
@@ -112,9 +112,9 @@ void rocket_available(Rocket **tab_rocket)
             }
             number_rocket_key--;
         }
-        if (rocket_touch_player(tab_rocket[i]))
+        if (rocket_touch_player(tab_rocket[i], player))
         {
-            set_player_health(get_player_health() - tab_rocket[i]->damage);
+            player->health -= tab_rocket[i]->damage;
             for (int j = i + 1; j < number_rocket_key; j++)
             {
                 tab_rocket[j - 1] = tab_rocket[j];
@@ -134,19 +134,23 @@ void set_number_rocket(int number)
     number_rocket_key = number;
 }
 
-void shoot(Rocket **tab_rocket)
+void shoot(Rocket **tab_rocket, Player *player)
 {
 
     Rocket *rocket = malloc(sizeof(Rocket));
+    assert(rocket != NULL);
 
     Position *position = malloc(sizeof(Position));
-    position->x = get_player_position()->x + get_player_size() / 2 - ROCKET_SIZE / 3;
-    position->y = get_player_position()->y - ROCKET_SIZE / 3;
+    assert(position != NULL);
+    position->x = player->position->x + player->size + ROCKET_SIZE;
+    position->y = player->position->y + player->size / 2 - ROCKET_SIZE / 3;
     rocket->position = position;
+    rocket->is_player = 1;
 
     rocket->size = ROCKET_SIZE;
 
     Hitbox *hitbox = malloc(sizeof(Hitbox));
+    assert(hitbox != NULL);
     hitbox->position = rocket->position;
     hitbox->size = rocket->size;
     rocket->hitbox = hitbox;
@@ -159,6 +163,7 @@ void shoot(Rocket **tab_rocket)
     rocket->is_special = 0;
 
     Position *position_shoot = malloc(sizeof(Position));
+    assert(position_shoot != NULL);
     position_shoot->x = 0;
     position_shoot->y = 0;
     rocket->position_shoot = position_shoot;
@@ -167,16 +172,16 @@ void shoot(Rocket **tab_rocket)
     number_rocket_key++;
 }
 
-void key_listener(Rocket **tab_rocket)
+void key_listener(Rocket **tab_rocket, Player *player)
 {
 
     int bool = 0;
-    move_rocket(tab_rocket);
+    move_rocket(tab_rocket, player);
 
-    if (get_player_speed() > 2)
+    if (player->speed > 2)
     {
 
-        set_player_speed(get_player_speed() - 2);
+        player->speed -= 2;
     }
     else
     {
@@ -185,37 +190,37 @@ void key_listener(Rocket **tab_rocket)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
-        set_player_speed(20);
-        move_player_left();
+        player->speed = 20;
+        move_player_left(player);
         last = 1;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
-        set_player_speed(20);
-        move_player_up();
+        player->speed = 20;
+        move_player_up(player);
         last = 2;
         bool = 1;
     }
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_RIGHT) == MLV_PRESSED)
     {
-        set_player_speed(20);
-        move_player_right();
+        player->speed = 20;
+        move_player_right(player);
         last = 3;
         bool = 1;
     }
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_DOWN) == MLV_PRESSED)
     {
-        set_player_speed(20);
-        move_player_down();
+        player->speed = 20;
+        move_player_down(player);
         last = 4;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
     {
-        shoot(tab_rocket);
+        shoot(tab_rocket, player);
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
     {
@@ -226,19 +231,19 @@ void key_listener(Rocket **tab_rocket)
         if (last == 1)
         {
 
-            move_player_left();
+            move_player_left(player);
         }
         if (last == 2)
         {
-            move_player_up();
+            move_player_up(player);
         }
         if (last == 3)
         {
-            move_player_right();
+            move_player_right(player);
         }
         if (last == 4)
         {
-            move_player_down();
+            move_player_down(player);
         }
     }
 

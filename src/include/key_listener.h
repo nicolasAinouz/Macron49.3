@@ -4,12 +4,12 @@
 
 
 void init_tab_rocket(Rocket **tab_rocket);
-void key_listener(Rocket **tab_rocket);
-void rocket_available(Rocket **tab_rocket);
+void key_listener(Rocket **tab_rocket, Player *player);
+void rocket_available(Rocket **tab_rocket, Player *player);
 int get_number_rocket();
 void get_tab_rocket(Rocket **tab_rocket, int size);
 void set_number_rocket(int number);
-void move_rocket(Rocket **tab_rocket);
+void move_rocket(Rocket **tab_rocket, Player *player);
 void set_tab_rocket(Rocket **tab_rocket, int size);
 void add_rocket(Rocket *rocket);
 

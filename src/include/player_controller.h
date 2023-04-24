@@ -3,33 +3,11 @@
 
 #include "struct_entity.h"
 
-void init_player();
+Player * init_player();
 
-int get_player_position_x();
-void set_player_position_x(int x);
-
-int get_player_position_y();
-void set_player_position_y(int y);
-
-Position *get_player_position();
-
-void set_player_health(int health);
-int get_player_health();
-
-
-void set_player_speed(int speed);
-int get_player_speed();
-
-int get_player_size();
-
-int get_player_score();
-void set_player_score(int score);
-
-void move_player_left();
-void move_player_right();
-void move_player_up();
-void move_player_down();
-
-void free_rocket(Rocket * l);
+void move_player_left(Player *player);
+void move_player_right(Player *player);
+void move_player_up(Player *player);
+void move_player_down(Player *player);
 
 #endif
