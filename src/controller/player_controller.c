@@ -25,7 +25,6 @@ Player *init_player()
     player->health = 5;
 
     
-
     player->speed = 0;
     player->score = 0;
     Hitbox *hitbox = malloc(sizeof(Hitbox));

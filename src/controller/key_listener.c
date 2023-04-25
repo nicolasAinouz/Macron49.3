@@ -37,7 +37,7 @@ void init_tab_rocket(Rocket **tab_rocket)
  * @param key
  */
 
-int number_rocket_key = 0;
+
 int last;
 
 void move_rocket(Rocket **tab_rocket, Player *player)
@@ -100,41 +100,33 @@ int rocket_touch_player(Rocket *rocket, Player *player)
     return 0;
 }
 
-void rocket_available(Rocket **tab_rocket, Player *player)
+void rocket_available(Game* game)
 {
-    for (int i = 0; i < number_rocket_key; i++)
+    for (int i = 0; i < game->number_rocket_key; i++)
     {
-        if (tab_rocket[i]->position->x < 0 + tab_rocket[i]->size || tab_rocket[i]->position->x >WIDTH_FRAME + tab_rocket[i]->size)
+        if (game->tab_rocket[i]->position->x < 0 + game->tab_rocket[i]->size || game->tab_rocket[i]->position->x >WIDTH_FRAME + game->tab_rocket[i]->size)
         {
-            for (int j = i + 1; j < number_rocket_key; j++)
+            for (int j = i + 1; j < game->number_rocket_key; j++)
             {
-                tab_rocket[j - 1] = tab_rocket[j];
+                game->tab_rocket[j - 1] = game->tab_rocket[j];
             }
-            number_rocket_key--;
+            game->number_rocket_key--;
         }
-        if (rocket_touch_player(tab_rocket[i], player))
+        if (rocket_touch_player(game->tab_rocket[i], player))
         {
-            player->health -= tab_rocket[i]->damage;
-            for (int j = i + 1; j < number_rocket_key; j++)
+            game->player->health -= game->tab_rocket[i]->damage;
+            for (int j = i + 1; j < game->number_rocket_key; j++)
             {
-                tab_rocket[j - 1] = tab_rocket[j];
+                game->tab_rocket[j - 1] = game->tab_rocket[j];
             }
-            number_rocket_key--;
+            game->number_rocket_key--;
         }
     }
 }
 
-int get_number_rocket()
-{
-    return number_rocket_key;
-}
 
-void set_number_rocket(int number)
-{
-    number_rocket_key = number;
-}
 
-void shoot(Rocket **tab_rocket, Player *player)
+void shoot(Game* game)
 {
 
     Rocket *rocket = malloc(sizeof(Rocket));
@@ -168,20 +160,20 @@ void shoot(Rocket **tab_rocket, Player *player)
     position_shoot->y = 0;
     rocket->position_shoot = position_shoot;
 
-    tab_rocket[number_rocket_key] = rocket;
-    number_rocket_key++;
+    game->tab_rocket[game->number_rocket_key] = rocket;
+    game->number_rocket_key++;
 }
 
-void key_listener(Rocket **tab_rocket, Player *player)
+void key_listener(Game* game)
 {
 
     int bool = 0;
-    move_rocket(tab_rocket, player);
+    move_rocket(game->tab_rocket, game->player);
 
-    if (player->speed > 2)
+    if (game->player->speed > 2)
     {
 
-        player->speed -= 2;
+        game->player->speed -= 2;
     }
     else
     {
@@ -190,14 +182,14 @@ void key_listener(Rocket **tab_rocket, Player *player)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
-        player->speed = 20;
+        game->player->speed = 20;
         move_player_left(player);
         last = 1;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
-        player->speed = 20;
+        game->player->speed = 20;
         move_player_up(player);
         last = 2;
         bool = 1;
@@ -205,7 +197,7 @@ void key_listener(Rocket **tab_rocket, Player *player)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_RIGHT) == MLV_PRESSED)
     {
-        player->speed = 20;
+        game->player->speed = 20;
         move_player_right(player);
         last = 3;
         bool = 1;
@@ -213,14 +205,14 @@ void key_listener(Rocket **tab_rocket, Player *player)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_DOWN) == MLV_PRESSED)
     {
-        player->speed = 20;
+        game->player->speed = 20;
         move_player_down(player);
         last = 4;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
     {
-        shoot(tab_rocket, player);
+        shoot(game);
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
     {

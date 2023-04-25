@@ -57,6 +57,11 @@ typedef struct game
     Enemy *tab_enemy[NUMBER_OF_ENEMY];
     Rocket *tab_rocket[NUMBER_OF_ROCKET];
     Player *player;
+    int scale;
+    int number_enemies_key;
+    int number_rocket_key;
+    int end_game;
+
 } Game;
 
 #endif
