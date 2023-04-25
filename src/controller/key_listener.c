@@ -40,50 +40,50 @@ void init_tab_rocket(Rocket **tab_rocket)
 
 int last;
 
-void move_rocket(Rocket **tab_rocket, Player *player)
+void move_rocket(Game* game)
 {
-    for (int i = 0; i < number_rocket_key; i++)
+    for (int i = 0; i < game->number_rocket_key; i++)
     {
 
-        if (tab_rocket[i]->is_player == 1)
+        if (game->tab_rocket[i]->is_player == 1)
         {
-            tab_rocket[i]->position->x += tab_rocket[i]->speed;
+            game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
         }
         // tete chercheuse
-        else if (tab_rocket[i]->is_special == 1)
+        else if (game->tab_rocket[i]->is_special == 1)
         {
-            tab_rocket[i]->time -= 1;
+            game->tab_rocket[i]->time -= 1;
 
-            if (!tab_rocket[i]->time)
+            if (!game->tab_rocket[i]->time)
             {
-                draw_explosion(tab_rocket[i]->position->x, tab_rocket[i]->position->y);
-                tab_rocket[i]->is_alive = 0;
+                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y);
+                game->tab_rocket[i]->is_alive = 0;
             }
 
-            float dx = (float)(player->position->x - tab_rocket[i]->position->x);
-            float dy = (float)(player->position->y - tab_rocket[i]->position->y);
+            float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
+            float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
             float length = sqrt(dx * dx + dy * dy);
             float dirx = dx / length;
             float diry = dy / length;
 
-            float move_x = dirx * tab_rocket[i]->speed;
-            float move_y = diry * tab_rocket[i]->speed;
+            float move_x = dirx * game->tab_rocket[i]->speed;
+            float move_y = diry * game->tab_rocket[i]->speed;
 
-            tab_rocket[i]->position->x += move_x;
-            tab_rocket[i]->position->y += move_y;
+            game->tab_rocket[i]->position->x += move_x;
+            game->tab_rocket[i]->position->y += move_y;
         }
 
         else
         {
-            tab_rocket[i]->position->x -= tab_rocket[i]->speed;
+            game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
         }
         Hitbox *hitbox = malloc(sizeof(Hitbox));
         assert(hitbox != NULL);
-        hitbox->position = tab_rocket[i]->position;
-        hitbox->size = tab_rocket[i]->size;
-        tab_rocket[i]->hitbox = hitbox;
-        if (tab_rocket[i]->is_alive == 1)
-            draw_rocket(tab_rocket[i]);
+        hitbox->position = game->tab_rocket[i]->position;
+        hitbox->size = game->tab_rocket[i]->size;
+        game->tab_rocket[i]->hitbox = hitbox;
+        if (game->tab_rocket[i]->is_alive == 1)
+            draw_rocket(game->tab_rocket[i]);
     }
 }
 
@@ -112,7 +112,7 @@ void rocket_available(Game* game)
             }
             game->number_rocket_key--;
         }
-        if (rocket_touch_player(game->tab_rocket[i], player))
+        if (rocket_touch_player(game->tab_rocket[i], game->player))
         {
             game->player->health -= game->tab_rocket[i]->damage;
             for (int j = i + 1; j < game->number_rocket_key; j++)
@@ -134,8 +134,8 @@ void shoot(Game* game)
 
     Position *position = malloc(sizeof(Position));
     assert(position != NULL);
-    position->x = player->position->x + player->size + ROCKET_SIZE;
-    position->y = player->position->y + player->size / 2 - ROCKET_SIZE / 3;
+    position->x = game->player->position->x + game->player->size + ROCKET_SIZE;
+    position->y = game->player->position->y + game->player->size / 2 - ROCKET_SIZE / 3;
     rocket->position = position;
     rocket->is_player = 1;
 
@@ -168,7 +168,7 @@ void key_listener(Game* game)
 {
 
     int bool = 0;
-    move_rocket(game->tab_rocket, game->player);
+    move_rocket(game);
 
     if (game->player->speed > 2)
     {
@@ -183,14 +183,14 @@ void key_listener(Game* game)
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
         game->player->speed = 20;
-        move_player_left(player);
+        move_player_left(game->player);
         last = 1;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
         game->player->speed = 20;
-        move_player_up(player);
+        move_player_up(game->player);
         last = 2;
         bool = 1;
     }
@@ -198,7 +198,7 @@ void key_listener(Game* game)
     if (MLV_get_keyboard_state(MLV_KEYBOARD_RIGHT) == MLV_PRESSED)
     {
         game->player->speed = 20;
-        move_player_right(player);
+        move_player_right(game->player);
         last = 3;
         bool = 1;
     }
@@ -206,7 +206,7 @@ void key_listener(Game* game)
     if (MLV_get_keyboard_state(MLV_KEYBOARD_DOWN) == MLV_PRESSED)
     {
         game->player->speed = 20;
-        move_player_down(player);
+        move_player_down(game->player);
         last = 4;
         bool = 1;
     }
@@ -223,19 +223,19 @@ void key_listener(Game* game)
         if (last == 1)
         {
 
-            move_player_left(player);
+            move_player_left(game->player);
         }
         if (last == 2)
         {
-            move_player_up(player);
+            move_player_up(game->player);
         }
         if (last == 3)
         {
-            move_player_right(player);
+            move_player_right(game->player);
         }
         if (last == 4)
         {
-            move_player_down(player);
+            move_player_down(game->player);
         }
     }
 

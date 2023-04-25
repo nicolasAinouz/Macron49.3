@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "include/const.h"
-#include "include/struct_entity.h"
+#include "../include/const.h"
+#include "../include/struct_entity.h"
 
 Game* create_game();

@@ -21,7 +21,7 @@ int end_game_signal()
 int main(int argc, char const *argv[])
 {
     int time_frame;
-    Game *game = init_game();
+    Game *game = create_game();
     assert(game != NULL);
 
     init_window();
