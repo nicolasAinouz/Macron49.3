@@ -37,10 +37,9 @@ void init_tab_rocket(Rocket **tab_rocket)
  * @param key
  */
 
-
 int last;
 
-void move_rocket(Game* game)
+void move_rocket(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
     {
@@ -53,24 +52,26 @@ void move_rocket(Game* game)
         else if (game->tab_rocket[i]->is_special == 1)
         {
             game->tab_rocket[i]->time -= 1;
-
-            if (!game->tab_rocket[i]->time)
+            if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
             {
-                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y);
-                game->tab_rocket[i]->is_alive = 0;
+                game->tab_rocket[i]->damage = 0;
+                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
+                game->tab_rocket[i]->time_explosion--;
             }
+            else
+            {
+                float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
+                float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
+                float length = sqrt(dx * dx + dy * dy);
+                float dirx = dx / length;
+                float diry = dy / length;
 
-            float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
-            float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
-            float length = sqrt(dx * dx + dy * dy);
-            float dirx = dx / length;
-            float diry = dy / length;
+                float move_x = dirx * game->tab_rocket[i]->speed;
+                float move_y = diry * game->tab_rocket[i]->speed;
 
-            float move_x = dirx * game->tab_rocket[i]->speed;
-            float move_y = diry * game->tab_rocket[i]->speed;
-
-            game->tab_rocket[i]->position->x += move_x;
-            game->tab_rocket[i]->position->y += move_y;
+                game->tab_rocket[i]->position->x += move_x;
+                game->tab_rocket[i]->position->y += move_y;
+            }
         }
 
         else
@@ -83,7 +84,12 @@ void move_rocket(Game* game)
         hitbox->size = game->tab_rocket[i]->size;
         game->tab_rocket[i]->hitbox = hitbox;
         if (game->tab_rocket[i]->is_alive == 1)
-            draw_rocket(game->tab_rocket[i]);
+        {
+            if (game->tab_rocket[i]->is_player)
+                draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);
+            else if (!(game->tab_rocket[i]->is_special && game->tab_rocket[i]->time_explosion < TIME_EXPLOSION_SPECIAL_ROCKET))
+                draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
+        }
     }
 }
 
@@ -100,14 +106,16 @@ int rocket_touch_player(Rocket *rocket, Player *player)
     return 0;
 }
 
-void rocket_available(Game* game)
+void rocket_available(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
     {
-        if (game->tab_rocket[i]->position->x < 0 + game->tab_rocket[i]->size || game->tab_rocket[i]->position->x >WIDTH_FRAME + game->tab_rocket[i]->size)
+        if (game->tab_rocket[i]->position->x < 0 + game->tab_rocket[i]->size || game->tab_rocket[i]->position->x > WIDTH_FRAME)
         {
             for (int j = i + 1; j < game->number_rocket_key; j++)
             {
+                game->tab_rocket[i]->damage = 0;
+
                 game->tab_rocket[j - 1] = game->tab_rocket[j];
             }
             game->number_rocket_key--;
@@ -124,9 +132,7 @@ void rocket_available(Game* game)
     }
 }
 
-
-
-void shoot(Game* game)
+void shoot(Game *game)
 {
 
     Rocket *rocket = malloc(sizeof(Rocket));
@@ -134,8 +140,8 @@ void shoot(Game* game)
 
     Position *position = malloc(sizeof(Position));
     assert(position != NULL);
-    position->x = game->player->position->x + game->player->size + ROCKET_SIZE;
-    position->y = game->player->position->y + game->player->size / 2 - ROCKET_SIZE / 3;
+    position->x = game->player->position->x + game->player->size;
+    position->y = game->player->position->y;
     rocket->position = position;
     rocket->is_player = 1;
 
@@ -148,7 +154,7 @@ void shoot(Game* game)
     rocket->hitbox = hitbox;
 
     rocket->speed = 30;
-    rocket->damage = 100;
+    rocket->damage = 5;
 
     rocket->is_alive = 1;
     rocket->is_player = 1;
@@ -164,7 +170,7 @@ void shoot(Game* game)
     game->number_rocket_key++;
 }
 
-void key_listener(Game* game)
+void key_listener(Game *game)
 {
 
     int bool = 0;

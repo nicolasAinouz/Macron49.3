@@ -1,4 +1,5 @@
 #include <MLV/MLV_all.h>
+#include <math.h>
 
 #include "../include/const.h"
 #include "../include/key_listener.h"
@@ -12,14 +13,9 @@
  * @return int
  */
 
-MLV_Image *img_rocket;
-MLV_Image *img_enemy;
-MLV_Image *img;
-MLV_Image *img_background;
-MLV_Image *img_explosion;
 // MLV_Sound *sound;
 
-void init_window()
+void init_window(Game *game)
 {
     MLV_create_window(NAME_FRAME, NULL, WIDTH_FRAME, HEIGHT_FRAME);
     MLV_clear_window(MLV_COLOR_WHITE);
@@ -31,11 +27,14 @@ void init_window()
 
     // sound = MLV_load_sound("src/assets/sound/explosion.ogg");
 
-    img = MLV_load_image("src/assets/vaisseau.png");
-    img_rocket = MLV_load_image("src/assets/rocket.png");
-    img_enemy = MLV_load_image("src/assets/rocket.png");
-    img_background = MLV_load_image("src/assets/background.jpg");
-    img_explosion = MLV_load_image("src/assets/boom_4.png");
+    game->image->img_player = MLV_load_image("src/assets/player.png");
+    game->image->img_rocket = MLV_load_image("src/assets/rocket.png");
+    game->image->img_enemy_tank = MLV_load_image("src/assets/tank.png");
+    game->image->img_enemy = MLV_load_image("src/assets/rocket.png");
+    game->image->img_bullet_tank = MLV_load_image("src/assets/ammo_tank.png");
+    game->image->img_background = MLV_load_image("src/assets/background.jpg");
+    game->image->img_explosion = MLV_load_image("src/assets/explosion.png");
+    game->image->img_bullet_player = MLV_load_image("src/assets/bullet_player.png");
 }
 
 /**
@@ -54,14 +53,23 @@ int clear_window()
  *
  * @param enemy
  */
-void draw_enemy(Enemy *enemy)
+void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)
 {
-
     MLV_resize_image_with_proportions(img_enemy, enemy->size, enemy->size);
     MLV_draw_image(img_enemy, enemy->position->x, enemy->position->y);
 }
 
-void draw_rocket(Rocket *rocket)
+void draw_enemy_health(Enemy *enemy)
+{
+
+    if (enemy->health > HEALTH_SPECIAL_ENEMY / 3)
+        MLV_draw_filled_rectangle(enemy->position->x, enemy->position->y - 10, enemy->health*3, 5, MLV_COLOR_GREEN);
+    else
+        MLV_draw_filled_rectangle(enemy->position->x, enemy->position->y - 10, enemy->health*3, 5, MLV_COLOR_RED);
+}
+
+void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
+
 {
     MLV_resize_image_with_proportions(img_rocket, rocket->size, rocket->size);
     MLV_draw_image(img_rocket, rocket->position->x, rocket->position->y);
@@ -74,36 +82,38 @@ void draw_rocket(Rocket *rocket)
  * @param player
  * @return int
  */
-int draw_window(Player *player, int scale)
+int draw_window(Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player)
 {
     // MLV_play_sound(sound, 1.0);
-    
+
     MLV_draw_image(img_background, scale + WIDTH_FRAME, 0);
     MLV_draw_image(img_background, scale, 0);
 
-    MLV_resize_image_with_proportions(img, player->size, player->size);
-    MLV_draw_image(img, player->position->x, player->position->y);
+    MLV_resize_image_with_proportions(img_player, player->size, player->size);
+    MLV_draw_image(img_player, player->position->x, player->position->y);
 
-    MLV_draw_text(10, 30, "Health : ", MLV_COLOR_RED);
-    for (int i = 0; i < player->health; i++)
-    {
-        MLV_draw_filled_rectangle(10 + (i * 20), 50, 10, 10, MLV_COLOR_RED);
-    }
+    MLV_draw_rectangle(10, 10, SIZE_PLAYER/2, 10, MLV_COLOR_BLACK);
+    if (player->health > HEALTH_PLAYER / 3)
+        MLV_draw_filled_rectangle(10, 10, player->health*SIZE_PLAYER/2, 10, MLV_COLOR_GREEN);
+    else
+    MLV_draw_filled_rectangle(10, 10, player->health*SIZE_PLAYER/2, 10, MLV_COLOR_RED);
 
-    MLV_draw_text(10, 70, "Score : ", MLV_COLOR_RED);
+    MLV_draw_text(10, 30, "Score : ", MLV_COLOR_RED);
 
     int entier = player->score;
 
     char chaine[100];
 
     sprintf(chaine, "%d", entier);
-    MLV_draw_text(10, 90, chaine, MLV_COLOR_RED);
+    MLV_draw_text(10, 40, chaine, MLV_COLOR_RED);
 
     return 0;
 }
 
-void draw_explosion(int x, int y){
+void draw_explosion(int x, int y, MLV_Image *img_explosion)
+{
 
+    MLV_draw_image(img_explosion, x, y);
 }
 
 /**
@@ -115,9 +125,9 @@ int free_window()
 {
     MLV_free_window();
 
-    free(img);
-    free(img_rocket);
-    free(img_enemy);
+    // free(img);
+    // free(img_rocket);
+    // free(img_enemy);
 
     return EXIT_SUCCESS;
 }

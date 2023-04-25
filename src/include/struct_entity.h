@@ -22,7 +22,7 @@ typedef struct player
     int health;
     int speed;
     int score;
-  
+
     Hitbox *hitbox;
 } Player;
 
@@ -34,9 +34,10 @@ typedef struct rocket
     int damage;
     int is_alive;
     Hitbox *hitbox;
-    int is_player; //1 si tiré par le joueur
-    int is_special; //1 si spécial
-    int time; //temps de vie (que pour special)
+    int is_player;      // 1 si tiré par le joueur
+    int is_special;     // 1 si spécial
+    int time;           // temps de vie (que pour special)
+    int time_explosion; // temps d'explosion (que pour special)
     Position *position_shoot;
 } Rocket;
 
@@ -47,10 +48,22 @@ typedef struct enemy
     int health;
     int speed;
     int damage;
-    int is_alive; //est en vie si = 1
-    int is_special; //est spécial si = 1
-    Hitbox *hitbox; 
+    int is_alive;   // est en vie si = 1
+    int is_special; // est spécial si = 1
+    Hitbox *hitbox;
 } Enemy;
+
+typedef struct image_game
+{
+    MLV_Image *img_rocket;
+    MLV_Image *img_enemy_tank;
+    MLV_Image *img_player;
+    MLV_Image *img_background;
+    MLV_Image *img_explosion;
+    MLV_Image *img_bullet_tank;
+    MLV_Image *img_enemy;
+    MLV_Image *img_bullet_player;
+} Image_Game;
 
 typedef struct game
 {
@@ -61,6 +74,7 @@ typedef struct game
     int number_enemies_key;
     int number_rocket_key;
     int end_game;
+    Image_Game *image;
 
 } Game;
 

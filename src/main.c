@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
     Game *game = create_game();
     assert(game != NULL);
 
-    init_window();
+    init_window(game);
 
     struct timespec start_time, end_time;
     while (game->end_game == 0)
@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
         clock_gettime(CLOCK_REALTIME, &start_time);
 
         clear_window();
-        draw_window(game->player, game->scale);
+        draw_window(game->player, game->scale, game->image->img_background, game->image->img_player);
 
         move_enemies(game);
 

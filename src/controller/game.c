@@ -25,7 +25,9 @@ Game *create_game()
     init_tab_enemy(game->tab_enemy);
     init_tab_rocket(game->tab_rocket);
 
+    Image_Game *image_game = malloc(sizeof(Image_Game));
    
+   game->image = image_game;
     game->player = player;
 
     game->scale = 0;
