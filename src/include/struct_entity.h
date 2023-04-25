@@ -14,6 +14,12 @@ typedef struct hitbox
     Position *position;
     int size;
 } Hitbox;
+typedef struct powerup
+{
+    int is_actif;
+    int type;
+    int animation;
+} Powerup;
 
 typedef struct player
 {
@@ -22,6 +28,7 @@ typedef struct player
     int health;
     int speed;
     int score;
+    Powerup *powerup;
 
     Hitbox *hitbox;
 } Player;
@@ -63,6 +70,9 @@ typedef struct image_game
     MLV_Image *img_bullet_tank;
     MLV_Image *img_enemy;
     MLV_Image *img_bullet_player;
+
+    MLV_Image *img_powerup_dbz;
+    MLV_Image *img_player_dbz;
 } Image_Game;
 
 typedef struct game
@@ -75,6 +85,8 @@ typedef struct game
     int number_rocket_key;
     int end_game;
     Image_Game *image;
+    Powerup *powerup;
+    Sound *sound;
 
 } Game;
 

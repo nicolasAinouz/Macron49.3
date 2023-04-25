@@ -7,6 +7,7 @@
 #include "../include/key_listener.h"
 #include "../include/player_controller.h"
 #include "../include/window.h"
+#include "../include/game.h"
 
 void init_tab_enemy(Enemy **tab_enemy)
 {
@@ -20,10 +21,7 @@ void init_tab_enemy(Enemy **tab_enemy)
         tab_enemy[i] = enemy;
     }
 }
-double normal_delay(double mean)
-{
-    return -mean * log(1 - ((double)rand() / RAND_MAX));
-}
+
 
 int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
 {
@@ -67,7 +65,7 @@ void enemy_shoot(Game *game)
             Rocket *rocket = malloc(sizeof(Rocket));
             Position *position = malloc(sizeof(Position));
             position->x = game->tab_enemy[i]->position->x;
-            position->y = game->tab_enemy[i]->position->y + SIZE_ENEMY_TANK/2.2;
+            position->y = game->tab_enemy[i]->position->y + SIZE_ENEMY_TANK / 2.2;
             rocket->position = position;
             rocket->size = ROCKET_ENNEMY_SIZE;
             rocket->speed = 5;
@@ -110,11 +108,10 @@ void touch_by_rocket(Game *game)
                 game->tab_rocket[j]->is_alive = 0;
 
                 game->tab_enemy[i]->health -= game->tab_rocket[j]->damage;
-                game->player->score += 10;
 
                 if (game->tab_enemy[i]->health <= 0)
                 {
-                    game->player->score += 100;
+
                     game->tab_enemy[i]->is_alive = 0;
                 }
             }
@@ -154,6 +151,12 @@ void create_enemy(Game *game)
 
     game->tab_enemy[game->number_enemies_key] = enemy;
     game->number_enemies_key++;
+
+    if(position->y < PADDING_TOP)
+    {
+        int x = PADDING_TOP - position->y;
+        position->y += x;
+    }
 }
 
 void create_special_enemy(Game *game)
@@ -207,7 +210,7 @@ void move_enemies(Game *game)
     if (normal_delay(15) < 0.0)
         create_enemy(game);
 
-    if (normal_delay(15) < 0.7)
+    if (normal_delay(15) < 0.0)
         create_special_enemy(game);
 
     enemies_available(game);

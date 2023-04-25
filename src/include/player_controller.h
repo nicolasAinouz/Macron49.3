@@ -9,5 +9,6 @@ void move_player_left(Player *player);
 void move_player_right(Player *player);
 void move_player_up(Player *player);
 void move_player_down(Player *player);
+void active_power_up(Game *game);
 
 #endif

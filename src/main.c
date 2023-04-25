@@ -12,6 +12,7 @@
 #include "include/player_controller.h"
 #include "include/enemies_controller.h"
 #include "include/game.h"
+#include "include/powerup.h"
 
 int end_game_signal()
 {
@@ -25,10 +26,14 @@ int main(int argc, char const *argv[])
     assert(game != NULL);
 
     init_window(game);
-
+    game->player->powerup->type = 1;
+    game->player->powerup->is_actif = 1;
     struct timespec start_time, end_time;
     while (game->end_game == 0)
     {
+        
+
+        game->player->score += 1;
         game->scale -= 1;
         if (game->scale <= -WIDTH_FRAME)
         {
@@ -43,6 +48,8 @@ int main(int argc, char const *argv[])
         move_enemies(game);
 
         key_listener(game);
+        if(normal_delay(1.0) < 100)
+            create_powerup(game);
         MLV_actualise_window();
 
         clock_gettime(CLOCK_REALTIME, &end_time);

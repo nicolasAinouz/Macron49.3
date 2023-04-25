@@ -5,7 +5,7 @@
 /** FRAME*/
 #define HEIGHT_FRAME 500
 #define WIDTH_FRAME 1100
-#define NAME_FRAME "shootem up"
+#define NAME_FRAME "Macron 49.3"
 
 /** GAME SETTING */
 #define SIZE_PLAYER 100
@@ -22,5 +22,8 @@
 #define HEALTH_SPECIAL_ENEMY 30
 #define HEALTH_ENEMY 10
 #define HEALTH_PLAYER 5
+
+#define PADDING_TOP 100
+#define NB_POWER_UP 1
 
 #endif

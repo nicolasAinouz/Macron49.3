@@ -6,6 +6,7 @@
 
 #include "../include/const.h"
 #include "../include/struct_entity.h"
+#include "../include/window.h"
 
 Player *init_player()
 {
@@ -33,6 +34,10 @@ Player *init_player()
     hitbox->size = player->size;
     player->hitbox = hitbox;
 
+    Powerup *powerup = malloc(sizeof(Powerup));
+    assert(powerup != NULL);
+    player->powerup = powerup;
+
     return player;
 }
 
@@ -53,15 +58,30 @@ void move_player_right(Player *player)
 }
 void move_player_up(Player *player)
 {
-    if (player->position->y > 0)
+    if (player->position->y > PADDING_TOP)
     {
         player->position->y = player->position->y - player->speed;
     }
 }
 void move_player_down(Player *player)
 {
-    if (player->position->y < HEIGHT_FRAME - player->size)
+    if (player->position->y < HEIGHT_FRAME - player->size/1.1)
     {
         player->position->y = player->position->y + player->speed;
     }
+}
+
+void active_power_up(Game* game){
+
+    switch (game->player->powerup->type)
+    {
+    case 1:
+        game->player->powerup->animation = 10000;
+        draw_power_up_dbz(game);
+
+        break;
+    default:
+        break;
+    }
+    
 }

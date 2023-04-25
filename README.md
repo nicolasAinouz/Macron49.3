@@ -17,3 +17,4 @@ TODO :
 -> ADD : faire gestion des sons.
 -> FIXME : if toto ==0 par !toto
 -> ADD : faire une big structure -> ajouter des structs plus facilement.
+-> FIXME : fermer frame avec echap

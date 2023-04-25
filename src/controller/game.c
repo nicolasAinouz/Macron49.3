@@ -4,12 +4,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
 
 #include "../include/const.h"
 #include "../include/struct_entity.h"
 #include "../include/enemies_controller.h"
 #include "../include/player_controller.h"
 #include "../include/key_listener.h"
+
+double normal_delay(double mean)
+{
+    return -mean * log(1 - ((double)rand() / RAND_MAX));
+}
 
 Game *create_game()
 {
@@ -22,10 +28,17 @@ Game *create_game()
 
     
     Player *player = init_player();
+
     init_tab_enemy(game->tab_enemy);
     init_tab_rocket(game->tab_rocket);
 
     Image_Game *image_game = malloc(sizeof(Image_Game));
+    assert(image_game != NULL);
+
+    Powerup * powerup = malloc(sizeof(Powerup));
+    assert(powerup != NULL);
+
+    game->powerup = powerup;
    
    game->image = image_game;
     game->player = player;
