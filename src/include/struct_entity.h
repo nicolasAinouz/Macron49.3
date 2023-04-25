@@ -86,7 +86,7 @@ typedef struct game
     int end_game;
     Image_Game *image;
     Powerup *powerup;
-    Sound *sound;
+    MLV_Sound *sounddbz;
 
 } Game;
 

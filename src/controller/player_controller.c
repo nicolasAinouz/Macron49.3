@@ -78,6 +78,7 @@ void active_power_up(Game* game){
     case 1:
         game->player->powerup->animation = 10000;
         draw_power_up_dbz(game);
+        
 
         break;
     default:

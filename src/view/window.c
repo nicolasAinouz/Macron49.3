@@ -25,7 +25,7 @@ void init_window(Game *game)
         exit(1);
     }
 
-    sound = MLV_load_sound("src/assets/sound/");
+    
 
     game->image->img_player = MLV_load_image("src/assets/player.png");
     game->image->img_rocket = MLV_load_image("src/assets/rocket.png");
@@ -41,6 +41,7 @@ void init_window(Game *game)
     MLV_resize_image_with_proportions(game->image->img_powerup_dbz, 90, 90);
 
     game->image->img_player_dbz = MLV_load_image("src/assets/player_power_up_dbz.png");
+    game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
 }
 
 /**
@@ -88,7 +89,7 @@ void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
  * @param player
  * @return int
  */
-int draw_window(Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player)
+int draw_window(Game* game, Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player)
 {
     // MLV_play_sound(sound, 1.0);
 
@@ -99,6 +100,9 @@ int draw_window(Player *player, int scale, MLV_Image *img_background, MLV_Image 
     {
         MLV_resize_image_with_proportions(img_player, player->size, player->size);
         MLV_draw_image(img_player, player->position->x, player->position->y);
+    }else{
+        MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
+    MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
     }
 
     MLV_draw_rectangle(9, 9, (HEALTH_PLAYER * SIZE_PLAYER / 2) + 2, 12, MLV_COLOR_BLANCHED_ALMOND);
@@ -131,20 +135,20 @@ void draw_powerup(Game *game)
     MLV_draw_image(game->image->img_powerup_dbz, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
 }
 
-void draw_power_up_dbz(Game *game){
-    if(game->player->powerup->animation == 10000){
-
+void draw_power_up_dbz(Game *game)
+{
+    if (game->player->powerup->animation == 10000)
+    {
+        MLV_play_sound(game->sounddbz, 1.0);
     }
-     MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size +100, game->player->size +100);
-    MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
+    
     game->player->powerup->animation--;
-    if(game->player->powerup->animation == 0){
+    if (game->player->powerup->animation == 0)
+    {
         game->player->powerup->type = 0;
         game->player->powerup->is_actif = 0;
     }
-
 }
-
 
 /**
  * @brief libère en mémoire la window

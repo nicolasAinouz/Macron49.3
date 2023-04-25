@@ -210,7 +210,7 @@ void move_enemies(Game *game)
     if (normal_delay(15) < 0.0)
         create_enemy(game);
 
-    if (normal_delay(15) < 0.0)
+    if (normal_delay(15) < 0.5)
         create_special_enemy(game);
 
     enemies_available(game);

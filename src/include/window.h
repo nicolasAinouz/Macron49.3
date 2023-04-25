@@ -8,7 +8,7 @@
 
 void shoot();
 void init_window(Game *game);
-int draw_window(Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player);
+int draw_window(Game* game, Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player);
 int clear_window();
 int free_window();
 void draw_enemy(Enemy *enemy, MLV_Image *img_enemy);

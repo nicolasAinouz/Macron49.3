@@ -31,7 +31,6 @@ int main(int argc, char const *argv[])
     struct timespec start_time, end_time;
     while (game->end_game == 0)
     {
-        
 
         game->player->score += 1;
         game->scale -= 1;
@@ -43,12 +42,12 @@ int main(int argc, char const *argv[])
         clock_gettime(CLOCK_REALTIME, &start_time);
 
         clear_window();
-        draw_window(game->player, game->scale, game->image->img_background, game->image->img_player);
+        draw_window(game, game->player, game->scale, game->image->img_background, game->image->img_player);
 
         move_enemies(game);
 
         key_listener(game);
-        if(normal_delay(1.0) < 100)
+        if (normal_delay(1.0) < 100)
             create_powerup(game);
         MLV_actualise_window();
 
