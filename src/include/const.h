@@ -25,6 +25,6 @@
 #define HEALTH_PLAYER 5
 
 #define PADDING_TOP 100
-#define NB_POWER_UP 1
+#define NB_POWER_UP 3
 
 #endif

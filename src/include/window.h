@@ -18,4 +18,7 @@ void draw_enemy_health(Enemy *enemy);
 void draw_powerup(Game *game);
 void draw_power_up_dbz(Game *game);
 
+void print_game_over(Game *game);
+
+
 #endif

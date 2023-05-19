@@ -79,6 +79,10 @@ typedef struct image_game
     MLV_Image *img_powerup_dbz;
     MLV_Image *img_player_dbz;
     MLV_Image *img_explosion_dbz;
+
+    MLV_Image *img_powerup_health;
+
+    MLV_Image *img_powerup_speed;
 } Image_Game;
 
 typedef struct game

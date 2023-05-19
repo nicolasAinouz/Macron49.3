@@ -44,6 +44,10 @@ void init_window(Game *game)
 
     game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
 
+    game->image->img_powerup_health = MLV_load_image("src/assets/img/coeur.png");
+
+    game->image->img_powerup_speed = MLV_load_image("src/assets/img/speed.png");
+
     game->font = MLV_load_font("src/assets/font/fontScore.ttf", 30);
 }
 
@@ -60,7 +64,8 @@ void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)
 
 void draw_powerup(Game *game)
 {
-    MLV_draw_rectangle(WIDTH_FRAME - PADDING_TOP * 1.1, 10, PADDING_TOP - 10, PADDING_TOP - 10, MLV_COLOR_BLACK);
+
+    MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 1.1, 10, PADDING_TOP - 10, PADDING_TOP - 10, MLV_rgba(0, 0, 0, 120));
     switch (game->player->powerup->type)
     {
     case 0:
@@ -69,7 +74,14 @@ void draw_powerup(Game *game)
         MLV_resize_image_with_proportions(game->image->img_powerup_dbz, PADDING_TOP - 10, PADDING_TOP - 10);
         MLV_draw_image(game->image->img_powerup_dbz, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
         break;
+    case 2:
+        MLV_resize_image_with_proportions(game->image->img_powerup_health, PADDING_TOP - 10, PADDING_TOP - 10);
+        MLV_draw_image(game->image->img_powerup_health, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
+        break;
     default:
+    case 3:
+        MLV_resize_image_with_proportions(game->image->img_powerup_speed, PADDING_TOP - 10, PADDING_TOP - 10);
+        MLV_draw_image(game->image->img_powerup_speed, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
         break;
     }
     if (game->powerup->in_the_game)
@@ -81,6 +93,16 @@ void draw_powerup(Game *game)
         case 1:
             MLV_resize_image_with_proportions(game->image->img_powerup_dbz, SIZE_POWER_UP, SIZE_POWER_UP);
             MLV_draw_image(game->image->img_powerup_dbz, game->powerup->position->x, game->powerup->position->y);
+
+            break;
+        case 2:
+            MLV_resize_image_with_proportions(game->image->img_powerup_health, SIZE_POWER_UP, SIZE_POWER_UP);
+            MLV_draw_image(game->image->img_powerup_health, game->powerup->position->x, game->powerup->position->y);
+
+            break;
+        case 3:
+            MLV_resize_image_with_proportions(game->image->img_powerup_speed, SIZE_POWER_UP, SIZE_POWER_UP);
+            MLV_draw_image(game->image->img_powerup_speed, game->powerup->position->x, game->powerup->position->y);
 
             break;
         default:
@@ -101,7 +123,6 @@ void draw_enemy_health(Enemy *enemy)
 void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
 
 {
-    MLV_draw_rectangle(rocket->position->x, rocket->position->y, rocket->size, rocket->size, MLV_COLOR_RED);
     MLV_resize_image_with_proportions(img_rocket, rocket->size, rocket->size);
     MLV_draw_image(img_rocket, rocket->position->x, rocket->position->y);
 }
@@ -120,7 +141,7 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
     MLV_draw_image(img_background, scale + WIDTH_FRAME, 0);
     MLV_draw_image(img_background, scale, 0);
 
-    if (player->powerup->is_actif)
+    if (player->powerup->is_actif && game->player->powerup->type == 1)
     {
 
         MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
@@ -128,8 +149,6 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
         if (game->player->powerup->animation < 70)
         {
             MLV_draw_image(game->image->img_explosion_dbz, game->player->position->x - 150, game->player->position->y - 300);
-
-            // MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
         }
     }
     else
@@ -137,9 +156,6 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
         MLV_resize_image_with_proportions(img_player, player->size, player->size);
         MLV_draw_image(img_player, player->position->x, player->position->y);
     }
-
-    // draw hitbox player
-    MLV_draw_rectangle(player->hitbox->position->x, player->hitbox->position->y, player->hitbox->size, player->hitbox->size, MLV_COLOR_RED);
 
     MLV_draw_rectangle(9, 9, (HEALTH_PLAYER * SIZE_PLAYER / 2) + 2, 12, MLV_COLOR_BLANCHED_ALMOND);
     if (player->health > HEALTH_PLAYER / 3)
@@ -188,4 +204,16 @@ int free_window()
     // free(img_enemy);
 
     return EXIT_SUCCESS;
+}
+
+void print_game_over(Game *game)
+{
+
+    MLV_draw_adapted_text_box_with_font(400, 150, "GAME OVER", game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
+    char chaine[100];
+    sprintf(chaine, "Score : %d", game->player->score);
+    MLV_draw_adapted_text_box_with_font(400, 250, chaine, game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
+
+    MLV_actualise_window();
+    MLV_wait_seconds(3);
 }
