@@ -29,14 +29,14 @@ void key_listener(Game *game)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
-        game->player->speed =  game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
+        game->player->speed = game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
         move_player_left(game->player);
         game->last_keyboard_push = 1;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
-        game->player->speed =  game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
+        game->player->speed = game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
         move_player_up(game->player);
         game->last_keyboard_push = 2;
         bool = 1;
@@ -44,7 +44,7 @@ void key_listener(Game *game)
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_RIGHT) == MLV_PRESSED)
     {
-        game->player->speed =  game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
+        game->player->speed = game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
         move_player_right(game->player);
         game->last_keyboard_push = 3;
         bool = 1;
@@ -74,23 +74,24 @@ void key_listener(Game *game)
     }
     if (bool == 0)
     {
-        if (game->last_keyboard_push == 1)
+        switch (game->last_keyboard_push)
         {
-
+        case 1:
             move_player_left(game->player);
-        }
-        if (game->last_keyboard_push == 2)
-        {
+            break;
+        case 2:
             move_player_up(game->player);
-        }
-        if (game->last_keyboard_push == 3)
-        {
+            break;
+        case 3:
+
             move_player_right(game->player);
-        }
-        if (game->last_keyboard_push == 4)
-        {
+            break;
+        case 4:
             move_player_down(game->player);
+            break;
         }
+
+       
     }
 
     bool = 1;
