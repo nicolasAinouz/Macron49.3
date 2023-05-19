@@ -31,6 +31,7 @@ typedef struct player
     int health;
     int speed;
     int score;
+    int has_powerup;
     Powerup *powerup;
 
     Hitbox *hitbox;
@@ -77,6 +78,7 @@ typedef struct image_game
 
     MLV_Image *img_powerup_dbz;
     MLV_Image *img_player_dbz;
+    MLV_Image *img_explosion_dbz;
 } Image_Game;
 
 typedef struct game

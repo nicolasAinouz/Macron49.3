@@ -235,32 +235,60 @@ int is_inside_player_hitbox(Enemy *enemy, Player *player)
     }
     return 0;
 }
+int is_inside_ulti_hitbox(Enemy *enemy, Player *player)
+{
+    fflush(stdout);
+    
+    if (enemy->hitbox->position->x < player->hitbox->position->x + player->hitbox->size + 900 && enemy->hitbox->position->x + enemy->hitbox->size > player->hitbox->position->x + 90&& enemy->hitbox->position->y < player->hitbox->position->y + player->hitbox->size + 100 && enemy->hitbox->position->y + enemy->hitbox->size > player->hitbox->position->y - 100)
+    {
+        
+        return 1;
+    }
+    return 0;
+}
 
 void enemy_touch_player(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (game->tab_enemy[i]->is_alive == 1 && is_inside_player_hitbox(game->tab_enemy[i], game->player))
+        if (game->tab_enemy[i]->is_alive == 1 && is_inside_player_hitbox(game->tab_enemy[i], game->player) )
+        {
+            if(game->player->powerup->is_actif == 0 && !(game->player->powerup->is_actif == 1 && game->player->powerup->type == 1)){
+                game->tab_enemy[i]->is_alive = 0;
+                game->player->health -= 1;
+            }
+            
+        }
+    }
+}
+
+void touch_by_ultime(Game *game)
+{
+    for (int i = 0; i < game->number_enemies_key; i++)
+    {
+      
+        if (game->tab_enemy[i]->is_alive == 1 && is_inside_ulti_hitbox(game->tab_enemy[i], game->player) && game->player->powerup->is_actif && game->player->powerup->type == 1 && game->player->powerup->animation  < 70)
         {
             game->tab_enemy[i]->is_alive = 0;
-            game->player->health -= 1;
         }
     }
 }
 
 void move_enemies(Game *game)
 {
-    // if (normal_delay(15) < 0.2)
-    //     create_enemy(game);
+    if (normal_delay(15) < 0.2)
+        create_enemy(game);
 
-    // if (normal_delay(15) < 0.1)
-    //     create_special_enemy(game);
+    if (normal_delay(15) < 0.1)
+        create_special_enemy(game);
 
     enemies_available(game);
     touch_by_rocket(game);
+    touch_by_ultime(game);
     move(game);
-    // enemy_shoot(game);
+    enemy_shoot(game);
     enemy_touch_player(game);
+
 
     for (int i = 0; i < game->number_enemies_key; i++)
     {

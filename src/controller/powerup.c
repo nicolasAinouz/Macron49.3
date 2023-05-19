@@ -38,6 +38,7 @@ void player_get_powerup(Game *game)
         game->powerup->position->y + SIZE_POWER_UP > game->player->position->y)
     {
         game->powerup->in_the_game = 0;
+        game->player->has_powerup = 1;
         free(game->powerup->position);
         game->powerup->position = NULL;
         game->player->powerup->type = game->powerup->type;

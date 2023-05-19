@@ -138,7 +138,7 @@ void rocket_available(Game *game)
             }
             game->number_rocket_key--;
         }
-        if (rocket_touch_player(game->tab_rocket[i], game->player))
+        if (rocket_touch_player(game->tab_rocket[i], game->player) && !(game->player->powerup->is_actif== 1 && game->player->powerup->type == 1))
         {
             game->player->health -= game->tab_rocket[i]->damage;
             game->tab_rocket[i]->damage = 0;

@@ -79,6 +79,8 @@ void active_power_up(Game* game){
     case 1:
         game->player->powerup->animation = 180;
         game->player->powerup->is_actif = 1;
+      
+        
         
         draw_power_up_dbz(game);
         break;
@@ -86,6 +88,6 @@ void active_power_up(Game* game){
         break;
     }
 
-    
+    game->player->has_powerup = 0;
     
 }

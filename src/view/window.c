@@ -40,6 +40,8 @@ void init_window(Game *game)
     MLV_resize_image_with_proportions(game->image->img_powerup_dbz, 90, 90);
 
     game->image->img_player_dbz = MLV_load_image("src/assets/img/player_power_up_dbz.png");
+    game->image->img_explosion_dbz = MLV_load_image("src/assets/img/kamehameha.png");
+
     game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
 
     game->font = MLV_load_font("src/assets/font/fontScore.ttf", 30);
@@ -76,10 +78,9 @@ void draw_powerup(Game *game)
         case 0:
             break;
         case 1:
-            // fflush(stdout);
-            // printf("draw powerup\n");
             MLV_resize_image_with_proportions(game->image->img_powerup_dbz,SIZE_POWER_UP, SIZE_POWER_UP);
             MLV_draw_image(game->image->img_powerup_dbz, game->powerup->position->x, game->powerup->position->y);
+            
             break;
         default:
             break;
@@ -123,6 +124,13 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
 
         MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
         MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
+        if(game->player->powerup->animation  < 70){
+            MLV_draw_image(game->image->img_explosion_dbz, game->player->position->x - 150, game->player->position->y - 300);
+              
+                        //MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
+
+            
+            }
     }
     else
     {
@@ -164,15 +172,9 @@ void draw_power_up_dbz(Game *game)
         MLV_play_sound(game->sounddbz, 1.0);
     }
     fflush(stdout);
-    printf("animation : %d\n", game->player->powerup->animation);
-
-    if (game->player->powerup->animation == 0)
-    {
-        fflush(stdout);
-        printf("fin du power up\n");
-        game->player->powerup->type = 0;
-        game->player->powerup->is_actif = 0;
-    }
+  
+    
+    
 }
 
 /**

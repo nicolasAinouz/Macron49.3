@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
         move_rocket(game);
 
         key_listener(game);
-        if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0)
+        if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
             create_powerup(game);
       
         if(game->powerup->in_the_game){
@@ -79,20 +79,21 @@ int main(int argc, char const *argv[])
             MLV_wait_milliseconds((int)(((1.0 / 30.0) - time_frame) * 1000));
         }
 
-        // if (game->player->powerup->is_actif)
-        // {
+        if (game->player->powerup->is_actif)
+        {
 
-        //     printf("power anim : %d\n", game->player->powerup->animation);
-        //     if (game->player->powerup->animation != 0)
-        //     {
-        //         game->player->powerup->animation -= 1;
-        //     }
-        //     else
-        //     {
-        //         game->player->powerup->type = 0;
-        //         game->player->powerup->is_actif = 0;
-        //     }
-        // }
+            printf("power anim : %d\n", game->player->powerup->animation);
+            if (game->player->powerup->animation != 0)
+            {
+                game->player->powerup->animation -= 1;
+            }
+            else
+            {
+                game->player->powerup->type = 0;
+                game->player->powerup->is_actif = 0;
+                game->player->powerup->animation = 0;
+            }
+        }
     }
 
     free_window();

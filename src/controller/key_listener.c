@@ -16,7 +16,6 @@ void key_listener(Game *game)
 {
 
     int bool = 0;
-    
 
     if (game->player->speed > 2)
     {
@@ -64,7 +63,10 @@ void key_listener(Game *game)
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LSHIFT) == MLV_PRESSED && game->player->powerup->type > 0)
     {
-        active_power_up(game);
+        if (game->player->has_powerup == 1)
+        {
+            active_power_up(game);
+        }
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
     {
