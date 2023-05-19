@@ -10,194 +10,36 @@
 #include "../include/window.h"
 #include "../include/struct_entity.h"
 #include "../include/player_controller.h"
-
-void init_tab_rocket(Rocket **tab_rocket)
-{
-    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
-    {
-        Rocket *rocket = malloc(sizeof(Rocket));
-        assert(rocket != NULL);
-        Position *position = malloc(sizeof(Position));
-        assert(position != NULL);
-        position->x = 0;
-        position->y = 0;
-        rocket->position = position;
-        rocket->size = 0;
-        rocket->speed = 0;
-        rocket->damage = 0;
-        rocket->is_alive = 0;
-        rocket->is_player = 0;
-
-        tab_rocket[i] = rocket;
-    }
-}
-/**
- * @brief Récupère les évènements clavier
- *
- * @param key
- */
-
-int last;
-
-void move_rocket(Game *game)
-{
-    for (int i = 0; i < game->number_rocket_key; i++)
-    {
-
-        if (game->tab_rocket[i]->is_player == 1)
-        {
-            game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
-        }
-        // tete chercheuse
-        else if (game->tab_rocket[i]->is_special == 1)
-        {
-            game->tab_rocket[i]->time -= 1;
-            if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
-            {
-                game->tab_rocket[i]->damage = 0;
-                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
-                game->tab_rocket[i]->time_explosion--;
-            }
-            else
-            {
-                float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
-                float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
-                float length = sqrt(dx * dx + dy * dy);
-                float dirx = dx / length;
-                float diry = dy / length;
-
-                float move_x = dirx * game->tab_rocket[i]->speed;
-                float move_y = diry * game->tab_rocket[i]->speed;
-
-                game->tab_rocket[i]->position->x += move_x;
-                game->tab_rocket[i]->position->y += move_y;
-            }
-        }
-
-        else
-        {
-            game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
-        }
-        Hitbox *hitbox = malloc(sizeof(Hitbox));
-        assert(hitbox != NULL);
-        hitbox->position = game->tab_rocket[i]->position;
-        hitbox->size = game->tab_rocket[i]->size;
-        game->tab_rocket[i]->hitbox = hitbox;
-        if (game->tab_rocket[i]->is_alive == 1)
-        {
-            if (game->tab_rocket[i]->is_player)
-                draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);
-            else if (!(game->tab_rocket[i]->is_special && game->tab_rocket[i]->time_explosion < TIME_EXPLOSION_SPECIAL_ROCKET))
-                draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
-        }
-    }
-}
-
-int rocket_touch_player(Rocket *rocket, Player *player)
-{
-    if (!rocket->is_player)
-    {
-        if (rocket->hitbox->position->x + rocket->hitbox->size > player->position->x && rocket->hitbox->position->x < player->position->x + player->size && rocket->hitbox->position->y + rocket->hitbox->size > player->position->y && rocket->hitbox->position->y < player->position->y + player->size)
-        {
-
-            return 1;
-        }
-    }
-    return 0;
-}
-
-void rocket_available(Game *game)
-{
-    for (int i = 0; i < game->number_rocket_key; i++)
-    {
-        if (game->tab_rocket[i]->position->x < 0 + game->tab_rocket[i]->size || game->tab_rocket[i]->position->x > WIDTH_FRAME)
-        {
-            for (int j = i + 1; j < game->number_rocket_key; j++)
-            {
-                game->tab_rocket[i]->damage = 0;
-
-                game->tab_rocket[j - 1] = game->tab_rocket[j];
-            }
-            game->number_rocket_key--;
-        }
-        if (rocket_touch_player(game->tab_rocket[i], game->player))
-        {
-            game->player->health -= game->tab_rocket[i]->damage;
-            for (int j = i + 1; j < game->number_rocket_key; j++)
-            {
-                game->tab_rocket[j - 1] = game->tab_rocket[j];
-            }
-            game->number_rocket_key--;
-        }
-    }
-}
-
-void shoot(Game *game)
-{
-
-    Rocket *rocket = malloc(sizeof(Rocket));
-    assert(rocket != NULL);
-
-    Position *position = malloc(sizeof(Position));
-    assert(position != NULL);
-    position->x = game->player->position->x + game->player->size;
-    position->y = game->player->position->y;
-    rocket->position = position;
-    rocket->is_player = 1;
-
-    rocket->size = ROCKET_SIZE;
-
-    Hitbox *hitbox = malloc(sizeof(Hitbox));
-    assert(hitbox != NULL);
-    hitbox->position = rocket->position;
-    hitbox->size = rocket->size;
-    rocket->hitbox = hitbox;
-
-    rocket->speed = 30;
-    rocket->damage = 5;
-
-    rocket->is_alive = 1;
-    rocket->is_player = 1;
-    rocket->is_special = 0;
-
-    Position *position_shoot = malloc(sizeof(Position));
-    assert(position_shoot != NULL);
-    position_shoot->x = 0;
-    position_shoot->y = 0;
-    rocket->position_shoot = position_shoot;
-
-    game->tab_rocket[game->number_rocket_key] = rocket;
-    game->number_rocket_key++;
-}
+#include "../include/rocket_controller.h"
 
 void key_listener(Game *game)
 {
 
     int bool = 0;
-    move_rocket(game);
+    
 
     if (game->player->speed > 2)
     {
 
-        game->player->speed -= 1;
+        game->player->speed -= 2;
     }
     else
     {
-        last = 0;
+        game->last_keyboard_push = 0;
     }
 
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LEFT) == MLV_PRESSED)
     {
         game->player->speed = 20;
         move_player_left(game->player);
-        last = 1;
+        game->last_keyboard_push = 1;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_UP) == MLV_PRESSED)
     {
         game->player->speed = 20;
         move_player_up(game->player);
-        last = 2;
+        game->last_keyboard_push = 2;
         bool = 1;
     }
 
@@ -205,7 +47,7 @@ void key_listener(Game *game)
     {
         game->player->speed = 20;
         move_player_right(game->player);
-        last = 3;
+        game->last_keyboard_push = 3;
         bool = 1;
     }
 
@@ -213,7 +55,7 @@ void key_listener(Game *game)
     {
         game->player->speed = 20;
         move_player_down(game->player);
-        last = 4;
+        game->last_keyboard_push = 4;
         bool = 1;
     }
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
@@ -230,20 +72,20 @@ void key_listener(Game *game)
     }
     if (bool == 0)
     {
-        if (last == 1)
+        if (game->last_keyboard_push == 1)
         {
 
             move_player_left(game->player);
         }
-        if (last == 2)
+        if (game->last_keyboard_push == 2)
         {
             move_player_up(game->player);
         }
-        if (last == 3)
+        if (game->last_keyboard_push == 3)
         {
             move_player_right(game->player);
         }
-        if (last == 4)
+        if (game->last_keyboard_push == 4)
         {
             move_player_down(game->player);
         }

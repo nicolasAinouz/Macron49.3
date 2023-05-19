@@ -7,4 +7,6 @@
 
 void create_powerup(Game *game);
 
+void move_powerup(Game *game);
+
 #endif

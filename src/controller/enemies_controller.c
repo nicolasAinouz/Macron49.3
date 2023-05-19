@@ -8,6 +8,16 @@
 #include "../include/player_controller.h"
 #include "../include/window.h"
 #include "../include/game.h"
+#include "../include/rocket_controller.h"
+
+void print_tab_rockey_key(Game *game)
+{
+    for (int i = 0; i < game->number_rocket_key; i++)
+    {
+        printf("rocket %d : %d\n", i, game->tab_rocket[i]->is_alive);
+        printf("rocket specifities : %d %d %d %d %d %d %d\n", game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->tab_rocket[i]->size, game->tab_rocket[i]->speed, game->tab_rocket[i]->damage, game->tab_rocket[i]->is_player, game->tab_rocket[i]->is_special);
+    }
+}
 
 void init_tab_enemy(Enemy **tab_enemy)
 {
@@ -22,7 +32,6 @@ void init_tab_enemy(Enemy **tab_enemy)
     }
 }
 
-
 int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
 {
     if (rocket->hitbox->position->x + rocket->hitbox->size > enemy->hitbox->position->x && rocket->hitbox->position->x < enemy->hitbox->position->x + enemy->hitbox->size && rocket->hitbox->position->y + rocket->hitbox->size > enemy->hitbox->position->y && rocket->hitbox->position->y < enemy->hitbox->position->y + enemy->hitbox->size)
@@ -34,34 +43,44 @@ int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
 
 void enemy_shoot(Game *game)
 {
+
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (normal_delay(1) < 0.02 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 0)
+        if (normal_delay(1) < 0.010 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 0)
         {
+            printf("enemy shoot number %d\n", i);
             Rocket *rocket = malloc(sizeof(Rocket));
+            assert(rocket != NULL);
             Position *position = malloc(sizeof(Position));
-            position->x = game->tab_enemy[i]->position->x - game->tab_enemy[i]->size;
-            position->y = game->tab_enemy[i]->position->y - game->tab_enemy[i]->size / 2;
+            assert(position != NULL);
+            position->x = game->tab_enemy[i]->position->x;
+            position->y = game->tab_enemy[i]->position->y + game->tab_enemy[i]->size / 2;
             rocket->position = position;
             rocket->size = ROCKET_ENNEMY_SIZE;
             rocket->speed = 15;
             rocket->damage = 1;
             rocket->is_alive = 1;
             rocket->is_player = 0;
+            rocket->is_special = 0;
             Hitbox *hitbox = malloc(sizeof(Hitbox));
+            assert(hitbox != NULL);
             hitbox->position = rocket->position;
             hitbox->size = rocket->size;
             rocket->hitbox = hitbox;
 
             Position *position_shoot = malloc(sizeof(Position));
+            assert(position_shoot != NULL);
 
             rocket->position_shoot = position_shoot;
             game->tab_rocket[game->number_rocket_key] = rocket;
 
             game->number_rocket_key++;
+            // print_tab_rockey_key(game);
         }
-        else if (normal_delay(1) < 0.015 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 1)
+        else if (normal_delay(1) < 0.01 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 1)
         {
+            fflush(stdout);
+            printf("enemy shoo bigt\n");
             Rocket *rocket = malloc(sizeof(Rocket));
             Position *position = malloc(sizeof(Position));
             position->x = game->tab_enemy[i]->position->x;
@@ -85,8 +104,6 @@ void enemy_shoot(Game *game)
             Position *position_shoot = malloc(sizeof(Position));
 
             rocket->position_shoot = position_shoot;
-            game->tab_rocket[game->number_rocket_key] = rocket;
-
             game->tab_rocket[game->number_rocket_key] = rocket;
 
             game->number_rocket_key++;
@@ -135,7 +152,13 @@ void create_enemy(Game *game)
     Enemy *enemy = malloc(sizeof(Enemy));
     Position *position = malloc(sizeof(Position));
     position->x = WIDTH_FRAME + SIZE_ENEMY;
-    position->y = rand() % (HEIGHT_FRAME - 50);
+    position->y = rand() % (HEIGHT_FRAME - (SIZE_ENEMY * 2));
+    if (position->y < PADDING_TOP)
+    {
+        int x = PADDING_TOP - position->y;
+        position->y += x;
+    }
+
     enemy->position = position;
 
     enemy->size = SIZE_ENEMY;
@@ -144,19 +167,13 @@ void create_enemy(Game *game)
     hitbox->size = enemy->size;
     enemy->hitbox = hitbox;
     enemy->health = HEALTH_ENEMY;
-    enemy->speed = 5;
+    enemy->speed = 3;
     enemy->damage = 10;
     enemy->is_alive = 1;
     enemy->is_special = 0;
 
     game->tab_enemy[game->number_enemies_key] = enemy;
     game->number_enemies_key++;
-
-    if(position->y < PADDING_TOP)
-    {
-        int x = PADDING_TOP - position->y;
-        position->y += x;
-    }
 }
 
 void create_special_enemy(Game *game)
@@ -196,27 +213,54 @@ void enemies_available(Game *game)
 
         if (game->tab_enemy[i]->position->x < 0 - game->tab_enemy[i]->size)
         {
+            if (game->tab_enemy[i]->is_alive == 1)
+            {
+                game->player->health -= 1;
+            }
             for (int j = i + 1; j < game->number_enemies_key; j++)
             {
                 game->tab_enemy[j - 1] = game->tab_enemy[j];
+                
             }
+            
             game->number_enemies_key--;
+        }
+    }
+}
+int is_inside_player_hitbox(Enemy *enemy, Player *player)
+{
+    if (enemy->hitbox->position->x < player->hitbox->position->x + player->hitbox->size && enemy->hitbox->position->x + enemy->hitbox->size > player->hitbox->position->x && enemy->hitbox->position->y < player->hitbox->position->y + player->hitbox->size && enemy->hitbox->position->y + enemy->hitbox->size > player->hitbox->position->y)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+void enemy_touch_player(Game *game)
+{
+    for (int i = 0; i < game->number_enemies_key; i++)
+    {
+        if (game->tab_enemy[i]->is_alive == 1 && is_inside_player_hitbox(game->tab_enemy[i], game->player))
+        {
+            game->tab_enemy[i]->is_alive = 0;
+            game->player->health -= 1;
         }
     }
 }
 
 void move_enemies(Game *game)
 {
-    if (normal_delay(15) < 0.0)
-        create_enemy(game);
+    // if (normal_delay(15) < 0.2)
+    //     create_enemy(game);
 
-    if (normal_delay(15) < 0.5)
-        create_special_enemy(game);
+    // if (normal_delay(15) < 0.1)
+    //     create_special_enemy(game);
 
     enemies_available(game);
     touch_by_rocket(game);
     move(game);
-    enemy_shoot(game);
+    // enemy_shoot(game);
+    enemy_touch_player(game);
 
     for (int i = 0; i < game->number_enemies_key; i++)
     {

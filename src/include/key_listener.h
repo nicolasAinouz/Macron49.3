@@ -3,14 +3,9 @@
 #include "struct_entity.h"
 
 
-void init_tab_rocket(Rocket **tab_rocket);
+
 void key_listener(Game *game);
-void rocket_available(Game *game);
-int get_number_rocket();
-void get_tab_rocket(Rocket **tab_rocket, int size);
-void set_number_rocket(int number);
-void move_rocket(Game *game);
-void set_tab_rocket(Rocket **tab_rocket, int size);
-void add_rocket(Rocket *rocket);
+
+
 
 #endif

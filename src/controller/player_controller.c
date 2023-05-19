@@ -28,10 +28,11 @@ Player *init_player()
     
     player->speed = 0;
     player->score = 0;
+
     Hitbox *hitbox = malloc(sizeof(Hitbox));
     assert(hitbox != NULL);
     hitbox->position = player->position;
-    hitbox->size = player->size;
+    hitbox->size = player->size /2;
     player->hitbox = hitbox;
 
     Powerup *powerup = malloc(sizeof(Powerup));
@@ -76,13 +77,15 @@ void active_power_up(Game* game){
     switch (game->player->powerup->type)
     {
     case 1:
-        game->player->powerup->animation = 10000;
-        draw_power_up_dbz(game);
+        game->player->powerup->animation = 180;
+        game->player->powerup->is_actif = 1;
         
-
+        draw_power_up_dbz(game);
         break;
     default:
         break;
     }
+
+    
     
 }

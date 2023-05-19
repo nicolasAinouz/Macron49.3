@@ -9,8 +9,9 @@
 
 /** GAME SETTING */
 #define SIZE_PLAYER 100
-#define SIZE_ENEMY 50
+#define SIZE_ENEMY 80
 #define SIZE_ENEMY_TANK 100
+#define SIZE_POWER_UP 50
 #define NUMBER_OF_ROCKET 100
 #define NUMBER_OF_ENEMY 100
 #define ROCKET_SIZE 20

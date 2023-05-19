@@ -13,6 +13,8 @@
 #include "include/enemies_controller.h"
 #include "include/game.h"
 #include "include/powerup.h"
+#include "include/rocket_controller.h"
+#include "include/home.h"
 
 int end_game_signal()
 {
@@ -25,9 +27,22 @@ int main(int argc, char const *argv[])
     Game *game = create_game();
     assert(game != NULL);
 
+    launch_home();
+
+    // int exit = 0;
+    // int mouse_x, mouse_y;
+    // while (!exit)
+    // {
+    //     MLV_wait_mouse(&mouse_x, &mouse_y);
+    //     exit = click_on_play(mouse_x, mouse_y);
+    // }
+    
+    
+    
+
     init_window(game);
-    game->player->powerup->type = 1;
-    game->player->powerup->is_actif = 1;
+    // game->player->powerup->type = 1;
+
     struct timespec start_time, end_time;
     while (game->end_game == 0)
     {
@@ -41,14 +56,19 @@ int main(int argc, char const *argv[])
 
         clock_gettime(CLOCK_REALTIME, &start_time);
 
-        clear_window();
+        MLV_clear_window(MLV_COLOR_BLACK);
         draw_window(game, game->player, game->scale, game->image->img_background, game->image->img_player);
 
         move_enemies(game);
+        move_rocket(game);
 
         key_listener(game);
-        if (normal_delay(1.0) < 100)
+        if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0)
             create_powerup(game);
+      
+        if(game->powerup->in_the_game){
+            move_powerup(game);
+        }
         MLV_actualise_window();
 
         clock_gettime(CLOCK_REALTIME, &end_time);
@@ -58,6 +78,21 @@ int main(int argc, char const *argv[])
         {
             MLV_wait_milliseconds((int)(((1.0 / 30.0) - time_frame) * 1000));
         }
+
+        // if (game->player->powerup->is_actif)
+        // {
+
+        //     printf("power anim : %d\n", game->player->powerup->animation);
+        //     if (game->player->powerup->animation != 0)
+        //     {
+        //         game->player->powerup->animation -= 1;
+        //     }
+        //     else
+        //     {
+        //         game->player->powerup->type = 0;
+        //         game->player->powerup->is_actif = 0;
+        //     }
+        // }
     }
 
     free_window();

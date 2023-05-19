@@ -19,6 +19,9 @@ typedef struct powerup
     int is_actif;
     int type;
     int animation;
+    int in_the_game;
+    int speed;
+    Position *position;
 } Powerup;
 
 typedef struct player
@@ -53,6 +56,7 @@ typedef struct enemy
     Position *position;
     int size;
     int health;
+    int time; //for special
     int speed;
     int damage;
     int is_alive;   // est en vie si = 1
@@ -84,9 +88,12 @@ typedef struct game
     int number_enemies_key;
     int number_rocket_key;
     int end_game;
+    int last_keyboard_push;
+    int has_powerup;
     Image_Game *image;
     Powerup *powerup;
     MLV_Sound *sounddbz;
+    MLV_Font *font;
 
 } Game;
 
