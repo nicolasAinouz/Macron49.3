@@ -72,15 +72,16 @@ void draw_powerup(Game *game)
     default:
         break;
     }
-    if(game->powerup->in_the_game){
+    if (game->powerup->in_the_game)
+    {
         switch (game->powerup->type)
         {
         case 0:
             break;
         case 1:
-            MLV_resize_image_with_proportions(game->image->img_powerup_dbz,SIZE_POWER_UP, SIZE_POWER_UP);
+            MLV_resize_image_with_proportions(game->image->img_powerup_dbz, SIZE_POWER_UP, SIZE_POWER_UP);
             MLV_draw_image(game->image->img_powerup_dbz, game->powerup->position->x, game->powerup->position->y);
-            
+
             break;
         default:
             break;
@@ -124,13 +125,12 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
 
         MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
         MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
-        if(game->player->powerup->animation  < 70){
+        if (game->player->powerup->animation < 70)
+        {
             MLV_draw_image(game->image->img_explosion_dbz, game->player->position->x - 150, game->player->position->y - 300);
-              
-                        //MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
 
-            
-            }
+            // MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
+        }
     }
     else
     {
@@ -172,9 +172,6 @@ void draw_power_up_dbz(Game *game)
         MLV_play_sound(game->sounddbz, 1.0);
     }
     fflush(stdout);
-  
-    
-    
 }
 
 /**

@@ -46,8 +46,9 @@ int main(int argc, char const *argv[])
     struct timespec start_time, end_time;
     while (game->end_game == 0)
     {
-
-        game->player->score += 1;
+        printf("index tab %d\n", game->number_enemies_key);
+        printf("index tab rocket %d\n", game->number_rocket_key);
+        //game->player->score += 1;
         game->scale -= 1;
         if (game->scale <= -WIDTH_FRAME)
         {

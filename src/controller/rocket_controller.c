@@ -45,67 +45,61 @@ void move_rocket(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
     {
-        if (game->tab_rocket[i]->is_alive == 1)
+
+        if (game->tab_rocket[i]->is_player == 1)
         {
-
-            if (game->tab_rocket[i]->is_player == 1)
+            game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
+        }
+        // tete chercheuse
+        else if (game->tab_rocket[i]->is_special == 1)
+        {
+            game->tab_rocket[i]->time -= 1;
+            if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
             {
-                game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
+                game->tab_rocket[i]->damage = 0;
+
+                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
+                game->tab_rocket[i]->time_explosion--;
             }
-            // tete chercheuse
-            else if (game->tab_rocket[i]->is_special == 1)
+            else if (game->tab_rocket[i]->time_explosion == 0)
             {
-                game->tab_rocket[i]->time -= 1;
-                if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
-                {
-                    game->tab_rocket[i]->damage = 0;
-                    
-                    draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
-                    game->tab_rocket[i]->time_explosion--;
-                }else if (game->tab_rocket[i]->time_explosion == 0)
-                {
-                    game->tab_rocket[i]->is_alive = 0;
-                }
-                else
-                {
-                    float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
-                    float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
-                    float length = sqrt(dx * dx + dy * dy);
-                    float dirx = dx / length;
-                    float diry = dy / length;
-
-                    float move_x = dirx * game->tab_rocket[i]->speed;
-                    float move_y = diry * game->tab_rocket[i]->speed;
-
-                    game->tab_rocket[i]->position->x += move_x;
-                    game->tab_rocket[i]->position->y += move_y;
-                }
-
+                game->tab_rocket[i]->is_alive = 0;
             }
-
             else
             {
-                game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
-            }
+                float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
+                float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
+                float length = sqrt(dx * dx + dy * dy);
+                float dirx = dx / length;
+                float diry = dy / length;
 
-            if (game->tab_rocket[i]->is_player)
-                draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);
-            else
+                float move_x = dirx * game->tab_rocket[i]->speed;
+                float move_y = diry * game->tab_rocket[i]->speed;
+
+                game->tab_rocket[i]->position->x += move_x;
+                game->tab_rocket[i]->position->y += move_y;
+            }
+        }
+
+        else
+        {
+            game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
+        }
+
+        if (game->tab_rocket[i]->is_player)
+            draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);
+        else
+        {
+            if (game->tab_rocket[i]->is_special == 1 && game->tab_rocket[i]->time > 0)
             {
-                if (game->tab_rocket[i]->is_special == 1 && game->tab_rocket[i]->time > 0)
-                {
-                    draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
-                }
-                else if (game->tab_rocket[i]->is_special == 0)
-                {
-                    draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
-                }
-               
+                draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
             }
-
+            else if (game->tab_rocket[i]->is_special == 0)
+            {
+                draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
+            }
         }
     }
-
 }
 
 int rocket_touch_player(Rocket *rocket, Player *player)
@@ -138,7 +132,7 @@ void rocket_available(Game *game)
             }
             game->number_rocket_key--;
         }
-        if (rocket_touch_player(game->tab_rocket[i], game->player) && !(game->player->powerup->is_actif== 1 && game->player->powerup->type == 1))
+        if (rocket_touch_player(game->tab_rocket[i], game->player) && !(game->player->powerup->is_actif == 1 && game->player->powerup->type == 1))
         {
             game->player->health -= game->tab_rocket[i]->damage;
             game->tab_rocket[i]->damage = 0;

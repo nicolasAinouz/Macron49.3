@@ -276,7 +276,7 @@ void touch_by_ultime(Game *game)
 
 void move_enemies(Game *game)
 {
-    if (normal_delay(15) < 0.2)
+    if (normal_delay(15) < 0.9)
         create_enemy(game);
 
     if (normal_delay(15) < 0.1)
@@ -286,7 +286,7 @@ void move_enemies(Game *game)
     touch_by_rocket(game);
     touch_by_ultime(game);
     move(game);
-    enemy_shoot(game);
+    //enemy_shoot(game);
     enemy_touch_player(game);
 
 
