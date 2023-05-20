@@ -122,7 +122,6 @@ void draw_powerup_square(Game *game)
 
 void draw_powerup(Game *game)
 {
-
     draw_powerup_square(game);
     draw_powerup_in_game(game);
 }
@@ -151,7 +150,7 @@ void draw_player(Game *game)
     if (game->player->powerup->is_actif && game->player->powerup->type == 1)
     {
 
-        MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
+        MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size * 2, game->player->size * 2);
         MLV_draw_image(game->image->img_player_dbz, game->player->position->x, game->player->position->y);
         if (game->player->powerup->animation < 70)
         {
@@ -193,14 +192,8 @@ void draw_score(Game *game)
  */
 void draw_window(Game *game, int scale)
 {
-    // MLV_play_sound(sound, 1.0);
-
     MLV_draw_image(game->image->img_background, game->scale + WIDTH_FRAME, 0);
     MLV_draw_image(game->image->img_background, game->scale, 0);
-
-   
-
-    
 }
 
 void draw_explosion(int x, int y, MLV_Image *img_explosion)
@@ -215,7 +208,6 @@ void draw_power_up_dbz(Game *game)
     {
         MLV_play_sound(game->sounddbz, 1.0);
     }
-    fflush(stdout);
 }
 
 /**
@@ -244,4 +236,20 @@ void print_game_over(Game *game)
 
     MLV_actualise_window();
     MLV_wait_seconds(3);
+}
+
+void draw_shoot_bar(Game *game)
+{
+    MLV_draw_rectangle(WIDTH_FRAME - PADDING_TOP * 2.5, PADDING_TOP / 3, 100, 10, MLV_COLOR_BLACK);
+    if (game->player->shoot > 0)
+    {
+        if (game->player->is_shooting_too_much)
+        {
+            MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 2.5, PADDING_TOP / 3, game->player->shoot, 10, MLV_COLOR_INDIANRED);
+        }
+        else
+        {
+            MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 2.5, PADDING_TOP / 3, game->player->shoot, 10, MLV_COLOR_ORANGE_RED);
+        }
+    }
 }

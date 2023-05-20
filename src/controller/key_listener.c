@@ -62,15 +62,13 @@ void move_player(Game *game)
         game->last_keyboard_push = 4;
         bool = 1;
     }
-    player_update(game);
+    
     if (bool == 0)
     {
         inertie(game);
         return;
     }
     game->player->speed = game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
-
-    
 }
 
 void apply_inertie(Game *game)
@@ -87,10 +85,12 @@ void apply_inertie(Game *game)
 
 void space(Game *game)
 {
-    if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
+    if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED && !game->player->is_shooting_too_much && !(game->player->powerup->type == 1 && game->player->powerup->is_actif))
     {
         shoot(game, NULL, 0, 1);
+        game->player->shoot += 10;
     }
+   
 }
 void shift(Game *game)
 {

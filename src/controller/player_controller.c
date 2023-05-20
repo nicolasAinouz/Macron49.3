@@ -23,9 +23,6 @@ Player *init_player()
 
     player->health = 5;
 
-    player->speed = 0;
-    player->score = 0;
-
     Hitbox *hitbox = malloc(sizeof(Hitbox));
     assert(hitbox != NULL);
     hitbox->position = player->position;
@@ -108,8 +105,24 @@ int player_is_dead(Game *game)
 {
     return game->player->health <= 0 ? 1 : 0;
 }
+void check_shooting_to_much(Game *game)
+{
+    if (game->player->is_shooting_too_much && game->player->shoot <= 0)
+    {
+        game->player->is_shooting_too_much = 0;
+    }
+    else if (game->player->shoot >= 100)
+    {
+        game->player->is_shooting_too_much = 1;
+    }
+    if(game->player->shoot > -1)
+        game->player->shoot -= 2;
+
+    draw_shoot_bar(game);
+}
 void player_update(Game *game)
 {
+    check_shooting_to_much(game);
     draw_player(game);
     draw_health(game);
     draw_score(game);

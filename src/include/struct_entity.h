@@ -33,6 +33,8 @@ typedef struct player
     int score;
     int has_powerup;
     Powerup *powerup;
+    int shoot;
+    int is_shooting_too_much;
 
     Hitbox *hitbox;
 } Player;

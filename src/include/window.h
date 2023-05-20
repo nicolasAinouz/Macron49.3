@@ -20,6 +20,7 @@ void draw_powerup(Game *game);
 void draw_player(Game *game);
 void draw_health(Game *game);
 void draw_score(Game *game);
+void draw_shoot_bar(Game *game);
 
 void print_game_over(Game *game);
 

@@ -39,5 +39,9 @@ home.o:
 run:
 	./$(MAIN)
 
+update:
+	make
+	make run
+
 clean:
 	rm -rf $(BIN)*.o $(MAIN)

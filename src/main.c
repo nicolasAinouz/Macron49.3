@@ -95,6 +95,7 @@ int main(int argc, char const *argv[])
 
         key_listener(game);
         update_powerup(game);
+        player_update(game);
 
         MLV_actualise_window();
 
