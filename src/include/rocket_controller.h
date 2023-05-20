@@ -10,5 +10,6 @@ void set_tab_rocket(Rocket **tab_rocket, int size);
 void add_rocket(Rocket *rocket);
 void init_tab_rocket(Rocket **tab_rocket);
 void rocket_available(Game *game);
+void create_rocket_enemy(Game *game, Enemy *enemy, int is_special);
 
 #endif

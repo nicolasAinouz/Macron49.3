@@ -24,6 +24,9 @@
 #define HEALTH_ENEMY 10
 #define HEALTH_PLAYER 5
 
+#define SPEED_ENEMY 3
+#define SPEED_SPECIAL_ENEMY 1
+
 #define PADDING_TOP 100
 #define NB_POWER_UP 3
 

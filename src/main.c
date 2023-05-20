@@ -16,8 +16,6 @@
 #include "include/rocket_controller.h"
 #include "include/home.h"
 
-
-
 int main(int argc, char const *argv[])
 {
     int time_frame;
@@ -33,21 +31,19 @@ int main(int argc, char const *argv[])
         MLV_wait_mouse(&mouse_x, &mouse_y);
         exit = click_on_play(mouse_x, mouse_y);
     }
-    
+
     init_window(game);
-  
-   
 
     struct timespec start_time, end_time;
-    
+
     while (game->end_game == 0)
     {
-        // printf("index tab %d\n", game->number_enemies_key);
-        // printf("index tab rocket %d\n", game->number_rocket_key);
+        printf("index tab %d\n", game->number_enemies_key);
+        printf("index tab rocket %d\n", game->number_rocket_key);
         game->player->score += 1;
-        if(player_is_dead(game)){
+        if (player_is_dead(game))
+        {
             game->end_game = 1;
-           
         }
         game->scale -= 1;
         if (game->scale <= -WIDTH_FRAME)
@@ -66,8 +62,9 @@ int main(int argc, char const *argv[])
         key_listener(game);
         if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
             create_powerup(game);
-      
-        if(game->powerup->in_the_game){
+
+        if (game->powerup->in_the_game)
+        {
             move_powerup(game);
         }
         MLV_actualise_window();
@@ -82,8 +79,6 @@ int main(int argc, char const *argv[])
 
         if (game->player->powerup->is_actif)
         {
-
-            printf("player speed : %d\n", game->player->speed);
             if (game->player->powerup->animation != 0)
             {
                 game->player->powerup->animation -= 1;
@@ -95,10 +90,10 @@ int main(int argc, char const *argv[])
                 game->player->powerup->animation = 0;
             }
         }
-
-        
+      
     }
-    if(player_is_dead(game)){
+    if (player_is_dead(game))
+    {
         print_game_over(game);
     }
 

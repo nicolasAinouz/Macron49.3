@@ -59,7 +59,6 @@ typedef struct enemy
     int health;
     int time; //for special
     int speed;
-    int damage;
     int is_alive;   // est en vie si = 1
     int is_special; // est spécial si = 1
     Hitbox *hitbox;

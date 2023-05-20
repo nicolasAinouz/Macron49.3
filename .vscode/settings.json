@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "mlv_all.h": "c"
+        "mlv_all.h": "c",
+        "game.h": "c"
     }
 }

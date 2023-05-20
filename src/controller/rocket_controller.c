@@ -35,11 +35,59 @@ void init_tab_rocket(Rocket **tab_rocket)
         tab_rocket[i] = rocket;
     }
 }
-/**
- * @brief Récupère les évènements clavier
- *
- * @param key
- */
+
+void special_rocket_explosing(Game *game, int i)
+{
+    game->tab_rocket[i]->damage = 0;
+    draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
+    game->tab_rocket[i]->time_explosion--;
+}
+
+void kill_special_rocket(Game *game, int i)
+{
+    game->tab_rocket[i]->is_alive = 0;
+}
+
+void move_special_rocket(Game *game, int i)
+{
+    float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
+    float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
+    float length = sqrt(dx * dx + dy * dy);
+    float dirx = dx / length;
+    float diry = dy / length;
+
+    float move_x = dirx * game->tab_rocket[i]->speed;
+    float move_y = diry * game->tab_rocket[i]->speed;
+
+    game->tab_rocket[i]->position->x += move_x;
+    game->tab_rocket[i]->position->y += move_y;
+}
+
+void update_special_rocket(Game *game, int i)
+{
+    game->tab_rocket[i]->time -= 1;
+    if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
+    {
+        special_rocket_explosing(game, i);
+    }
+    else if (game->tab_rocket[i]->time_explosion == 0)
+    {
+        kill_special_rocket(game, i);
+    }
+    else
+    {
+        move_special_rocket(game, i);
+    }
+}
+void move_rocket_player(Game *game, int i)
+{
+    game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
+}
+
+void move_rocket_enemy(Game *game, int i)
+{
+    game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
+}
 
 void move_rocket(Game *game)
 {
@@ -48,42 +96,16 @@ void move_rocket(Game *game)
 
         if (game->tab_rocket[i]->is_player == 1)
         {
-            game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
+            move_rocket_player(game, i);
         }
-        // tete chercheuse
         else if (game->tab_rocket[i]->is_special == 1)
         {
-            game->tab_rocket[i]->time -= 1;
-            if (game->tab_rocket[i]->time < 0 && game->tab_rocket[i]->time_explosion > 0)
-            {
-                game->tab_rocket[i]->damage = 0;
-
-                draw_explosion(game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->image->img_explosion);
-                game->tab_rocket[i]->time_explosion--;
-            }
-            else if (game->tab_rocket[i]->time_explosion == 0)
-            {
-                game->tab_rocket[i]->is_alive = 0;
-            }
-            else
-            {
-                float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
-                float dy = (float)(game->player->position->y - game->tab_rocket[i]->position->y);
-                float length = sqrt(dx * dx + dy * dy);
-                float dirx = dx / length;
-                float diry = dy / length;
-
-                float move_x = dirx * game->tab_rocket[i]->speed;
-                float move_y = diry * game->tab_rocket[i]->speed;
-
-                game->tab_rocket[i]->position->x += move_x;
-                game->tab_rocket[i]->position->y += move_y;
-            }
+            update_special_rocket(game, i);
         }
 
         else
         {
-            game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
+            move_rocket_enemy(game, i);
         }
 
         if (game->tab_rocket[i]->is_player)
@@ -110,46 +132,51 @@ int rocket_touch_player(Rocket *rocket, Player *player)
 
         if (rocket->hitbox->position->x + rocket->hitbox->size > player->position->x && rocket->hitbox->position->x < player->position->x + player->size && rocket->hitbox->position->y + rocket->hitbox->size > player->position->y && rocket->hitbox->position->y < player->position->y + player->size)
         {
-            printf("rocket touch player\n");
-
-            return 1;
+            if (!(player->powerup->is_actif == 1 && player->powerup->type == 1))
+                return 1;
         }
     }
     return 0;
+}
+
+int is_out_of_map(Rocket *rocket, Game *game)
+{
+    if (rocket->position->x < 0 + rocket->size || rocket->position->x > WIDTH_FRAME)
+    {
+        return 1;
+    }
+    return 0;
+}
+void update_tab_rocket(Game *game, int i)
+{
+    for (int j = i + 1; j < game->number_rocket_key; j++)
+    {
+
+        game->tab_rocket[j - 1] = game->tab_rocket[j];
+    }
+    game->number_rocket_key--;
 }
 
 void rocket_available(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
     {
-        if (game->tab_rocket[i]->position->x < 0 + game->tab_rocket[i]->size || game->tab_rocket[i]->position->x > WIDTH_FRAME)
+        if (is_out_of_map(game->tab_rocket[i], game))
         {
-            for (int j = i + 1; j < game->number_rocket_key; j++)
-            {
-                game->tab_rocket[i]->damage = 0;
-
-                game->tab_rocket[j - 1] = game->tab_rocket[j];
-            }
-            game->number_rocket_key--;
+            update_tab_rocket(game, i);
         }
-        if (rocket_touch_player(game->tab_rocket[i], game->player) && !(game->player->powerup->is_actif == 1 && game->player->powerup->type == 1))
+
+        if (rocket_touch_player(game->tab_rocket[i], game->player))
         {
             game->player->health -= game->tab_rocket[i]->damage;
-            game->tab_rocket[i]->damage = 0;
-            game->tab_rocket[i]->is_alive = 0;
 
-            for (int j = i + 1; j < game->number_rocket_key; j++)
-            {
-                game->tab_rocket[j - 1] = game->tab_rocket[j];
-            }
-            game->number_rocket_key--;
+            update_tab_rocket(game, i);
         }
     }
 }
 
 void shoot(Game *game)
 {
-
     Rocket *rocket = malloc(sizeof(Rocket));
     assert(rocket != NULL);
 
@@ -182,5 +209,48 @@ void shoot(Game *game)
     rocket->position_shoot = position_shoot;
 
     game->tab_rocket[game->number_rocket_key] = rocket;
+    game->number_rocket_key++;
+}
+
+void create_rocket_enemy(Game *game, Enemy *enemy, int is_special)
+{
+    Rocket *rocket = malloc(sizeof(Rocket));
+    assert(rocket != NULL);
+    Position *position = malloc(sizeof(Position));
+    assert(position != NULL);
+    Hitbox *hitbox = malloc(sizeof(Hitbox));
+    assert(hitbox != NULL);
+    Position *position_shoot = malloc(sizeof(Position));
+    assert(position_shoot != NULL);
+
+    switch (is_special)
+    {
+    case 0:
+        position->y = enemy->position->y + SIZE_ENEMY / 2;
+        rocket->speed = 15;
+        break;
+    case 1:
+        position->y = enemy->position->y + SIZE_ENEMY_TANK / 2.2;
+        rocket->speed = 5;
+        rocket->time = 200;
+        rocket->time_explosion = TIME_EXPLOSION_SPECIAL_ROCKET;
+
+        break;
+    default:
+        break;
+    }
+    position->x = enemy->position->x;
+    rocket->position = position;
+    rocket->size = ROCKET_ENNEMY_SIZE;
+    rocket->damage = 1;
+    rocket->is_alive = 1;
+    rocket->is_player = 0;
+    rocket->is_special = is_special;
+    hitbox->position = rocket->position;
+    hitbox->size = rocket->size;
+    rocket->hitbox = hitbox;
+    rocket->position_shoot = position_shoot;
+    game->tab_rocket[game->number_rocket_key] = rocket;
+
     game->number_rocket_key++;
 }

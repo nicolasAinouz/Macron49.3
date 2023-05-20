@@ -123,11 +123,11 @@ void draw_enemy_health(Enemy *enemy)
 void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
 
 {
-    if(rocket->is_alive){
-MLV_resize_image_with_proportions(img_rocket, rocket->size, rocket->size);
-    MLV_draw_image(img_rocket, rocket->position->x, rocket->position->y);
+    if (rocket->is_alive)
+    {
+        MLV_resize_image_with_proportions(img_rocket, rocket->size, rocket->size);
+        MLV_draw_image(img_rocket, rocket->position->x, rocket->position->y);
     }
-    
 }
 
 /**

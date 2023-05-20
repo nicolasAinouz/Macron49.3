@@ -18,3 +18,4 @@ TODO :
 -> FIXME : if toto ==0 par !toto
 -> ADD : faire une big structure -> ajouter des structs plus facilement.
 -> FIXME : fermer frame avec echap
+->faire reload pour nerf

@@ -8,9 +8,7 @@
 
 void create_powerup(Game *game)
 {
-    int x = rand() % NB_POWER_UP +1;
-//    fflush(stdout);
-//    printf("x = %d\n", x);
+    int x = rand() % NB_POWER_UP + 1;
 
     game->powerup->in_the_game = 1;
     game->powerup->type = x;
@@ -27,15 +25,21 @@ void create_powerup(Game *game)
     game->powerup->position = position;
     // game->powerup->position->x = WIDTH_FRAME;
     // game->powerup->position->y = rand() % (HEIGHT_FRAME - SIZE_POWER_UP);
-
-    
 }
-void player_get_powerup(Game *game)
+int touch_powerup(Game *game)
 {
     if (game->powerup->position->x < game->player->position->x + game->player->size &&
         game->powerup->position->x + SIZE_POWER_UP > game->player->position->x &&
         game->powerup->position->y < game->player->position->y + game->player->size &&
         game->powerup->position->y + SIZE_POWER_UP > game->player->position->y)
+    {
+        return 1;
+    }
+    return 0;
+}
+void player_get_powerup(Game *game)
+{
+    if (touch_powerup(game))
     {
         game->powerup->in_the_game = 0;
         game->player->has_powerup = 1;
@@ -57,5 +61,4 @@ void move_powerup(Game *game)
         game->powerup->position->x -= game->powerup->speed;
         player_get_powerup(game);
     }
-    
 }
