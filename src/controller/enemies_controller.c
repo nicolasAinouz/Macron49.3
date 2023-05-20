@@ -231,10 +231,10 @@ void call_view(Game *game)
 
 void move_enemies(Game *game)
 {
-    if (normal_delay(30) < 0.3)
+    if (normal_delay(30) < 0.5)
         create_enemy(game, 0);
 
-    if (normal_delay(30) < 0.1)
+    if (normal_delay(30) < 0.3)
         create_enemy(game, 1);
 
     enemies_available(game);

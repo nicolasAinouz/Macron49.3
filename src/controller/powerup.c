@@ -8,10 +8,10 @@
 
 void create_powerup(Game *game)
 {
-    //int x = rand() % NB_POWER_UP + 1;
+    int x = rand() % NB_POWER_UP + 1;
 
     game->powerup->in_the_game = 1;
-    game->powerup->type = 1;
+    game->powerup->type = x;
     game->powerup->speed = 5;
     Position *position = malloc(sizeof(Position));
     assert(position != NULL);

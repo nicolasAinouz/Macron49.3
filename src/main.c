@@ -39,7 +39,7 @@ void move_scale(Game *game)
 
 void update_powerup(Game *game)
 {
-    if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
+    if (game->powerup->in_the_game == 0 && normal_delay(30) < 0.1 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
         create_powerup(game);
 
     if (game->powerup->in_the_game)
