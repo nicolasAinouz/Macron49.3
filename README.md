@@ -15,6 +15,6 @@ TODO :
 -> enlever int dans window
 -> faire doc
 -> faire rapport
--> faire que jeu devienne de plus en plus dur
 -> faire plus de constante
 -> revoir nom de methode
+-> voir truc du makefile aussi 

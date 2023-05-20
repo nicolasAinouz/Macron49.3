@@ -62,6 +62,14 @@ void update_powerup(Game *game)
     draw_powerup(game);
 }
 
+void add_difficulty(Game *game)
+{
+    if (game->player->score % 1000 == 0)
+    {
+        game->difficulty += 0.1;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     int time_frame;
@@ -74,15 +82,13 @@ int main(int argc, char const *argv[])
 
     struct timespec start_time, end_time;
 
-    while (game->end_game == 0)
+    while (game->end_game == 0 && !player_is_dead(game))
     {
         // printf("index tab %d\n", game->number_enemies_key);
         // printf("index tab rocket %d\n", game->number_rocket_key);
         game->player->score += 1;
-        if (player_is_dead(game))
-        {
-            game->end_game = 1;
-        }
+
+        add_difficulty(game);
         move_scale(game);
 
         clock_gettime(CLOCK_REALTIME, &start_time);

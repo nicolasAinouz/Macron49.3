@@ -47,6 +47,7 @@ Game *create_game()
     game->number_enemies_key = 0;
     game->number_rocket_key = 0;
     game->end_game = 0;
+    game->difficulty = 1;
 
     return game;
 }

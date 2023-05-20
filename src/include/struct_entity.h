@@ -96,6 +96,7 @@ typedef struct game
     int end_game;
     int last_keyboard_push;
     int has_powerup;
+    double difficulty;
     Image_Game *image;
     Powerup *powerup;
     MLV_Sound *sounddbz;
