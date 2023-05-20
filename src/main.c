@@ -16,12 +16,8 @@
 #include "include/rocket_controller.h"
 #include "include/home.h"
 
-int main(int argc, char const *argv[])
+void home()
 {
-    int time_frame;
-    Game *game = create_game();
-    assert(game != NULL);
-
     launch_home();
 
     int exit = 0;
@@ -31,6 +27,47 @@ int main(int argc, char const *argv[])
         MLV_wait_mouse(&mouse_x, &mouse_y);
         exit = click_on_play(mouse_x, mouse_y);
     }
+}
+void move_scale(Game *game)
+{
+    game->scale -= 1;
+    if (game->scale <= -WIDTH_FRAME)
+    {
+        game->scale = 0;
+    }
+}
+
+void update_powerup(Game *game)
+{
+    if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
+        create_powerup(game);
+
+    if (game->powerup->in_the_game)
+    {
+        move_powerup(game);
+    }
+    if (game->player->powerup->is_actif)
+    {
+        if (game->player->powerup->animation != 0)
+        {
+            game->player->powerup->animation -= 1;
+        }
+        else
+        {
+            game->player->powerup->type = 0;
+            game->player->powerup->is_actif = 0;
+            game->player->powerup->animation = 0;
+        }
+    }
+}
+
+int main(int argc, char const *argv[])
+{
+    int time_frame;
+    Game *game = create_game();
+    assert(game != NULL);
+
+    home();
 
     init_window(game);
 
@@ -38,35 +75,26 @@ int main(int argc, char const *argv[])
 
     while (game->end_game == 0)
     {
-        printf("index tab %d\n", game->number_enemies_key);
-        printf("index tab rocket %d\n", game->number_rocket_key);
+        // printf("index tab %d\n", game->number_enemies_key);
+        // printf("index tab rocket %d\n", game->number_rocket_key);
         game->player->score += 1;
         if (player_is_dead(game))
         {
             game->end_game = 1;
         }
-        game->scale -= 1;
-        if (game->scale <= -WIDTH_FRAME)
-        {
-            game->scale = 0;
-        }
+        move_scale(game);
 
         clock_gettime(CLOCK_REALTIME, &start_time);
 
         MLV_clear_window(MLV_COLOR_BLACK);
-        draw_window(game, game->player, game->scale, game->image->img_background, game->image->img_player);
+        draw_window(game);
 
         move_enemies(game);
         move_rocket(game);
 
         key_listener(game);
-        if (game->powerup->in_the_game == 0 && normal_delay(15) < 5 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
-            create_powerup(game);
+        update_powerup(game);
 
-        if (game->powerup->in_the_game)
-        {
-            move_powerup(game);
-        }
         MLV_actualise_window();
 
         clock_gettime(CLOCK_REALTIME, &end_time);
@@ -76,21 +104,6 @@ int main(int argc, char const *argv[])
         {
             MLV_wait_milliseconds((int)(((1.0 / 30.0) - time_frame) * 1000));
         }
-
-        if (game->player->powerup->is_actif)
-        {
-            if (game->player->powerup->animation != 0)
-            {
-                game->player->powerup->animation -= 1;
-            }
-            else
-            {
-                game->player->powerup->type = 0;
-                game->player->powerup->is_actif = 0;
-                game->player->powerup->animation = 0;
-            }
-        }
-      
     }
     if (player_is_dead(game))
     {

@@ -86,7 +86,7 @@ void space(Game *game)
 {
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED)
     {
-        shoot(game);
+        shoot(game, NULL, 0, 1);
     }
 }
 void shift(Game *game)

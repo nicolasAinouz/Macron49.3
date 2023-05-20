@@ -28,10 +28,6 @@ void init_tab_rocket(Rocket **tab_rocket)
         rocket->is_alive = 0;
         rocket->is_player = 0;
 
-        Position *position_shoot = malloc(sizeof(Position));
-        assert(position != NULL);
-        rocket->position_shoot = position_shoot;
-
         tab_rocket[i] = rocket;
     }
 }
@@ -175,44 +171,7 @@ void rocket_available(Game *game)
     }
 }
 
-void shoot(Game *game)
-{
-    Rocket *rocket = malloc(sizeof(Rocket));
-    assert(rocket != NULL);
-
-    Position *position = malloc(sizeof(Position));
-    assert(position != NULL);
-    position->x = game->player->position->x + game->player->size;
-    position->y = game->player->position->y;
-    rocket->position = position;
-    rocket->is_player = 1;
-
-    rocket->size = ROCKET_SIZE;
-
-    Hitbox *hitbox = malloc(sizeof(Hitbox));
-    assert(hitbox != NULL);
-    hitbox->position = rocket->position;
-    hitbox->size = rocket->size;
-    rocket->hitbox = hitbox;
-
-    rocket->speed = 30;
-    rocket->damage = 5;
-
-    rocket->is_alive = 1;
-    rocket->is_player = 1;
-    rocket->is_special = 0;
-
-    Position *position_shoot = malloc(sizeof(Position));
-    assert(position_shoot != NULL);
-    position_shoot->x = 0;
-    position_shoot->y = 0;
-    rocket->position_shoot = position_shoot;
-
-    game->tab_rocket[game->number_rocket_key] = rocket;
-    game->number_rocket_key++;
-}
-
-void create_rocket_enemy(Game *game, Enemy *enemy, int is_special)
+void shoot(Game *game, Enemy *enemy, int is_special, int is_player)
 {
     Rocket *rocket = malloc(sizeof(Rocket));
     assert(rocket != NULL);
@@ -220,36 +179,63 @@ void create_rocket_enemy(Game *game, Enemy *enemy, int is_special)
     assert(position != NULL);
     Hitbox *hitbox = malloc(sizeof(Hitbox));
     assert(hitbox != NULL);
-    Position *position_shoot = malloc(sizeof(Position));
-    assert(position_shoot != NULL);
 
-    switch (is_special)
+    switch (is_player)
     {
-    case 0:
-        position->y = enemy->position->y + SIZE_ENEMY / 2;
-        rocket->speed = 15;
-        break;
     case 1:
-        position->y = enemy->position->y + SIZE_ENEMY_TANK / 2.2;
-        rocket->speed = 5;
-        rocket->time = 200;
-        rocket->time_explosion = TIME_EXPLOSION_SPECIAL_ROCKET;
+
+        position->x = game->player->position->x + game->player->size;
+        position->y = game->player->position->y;
+        rocket->position = position;
+        rocket->is_player = 1;
+
+        rocket->size = ROCKET_SIZE;
+
+        hitbox->position = rocket->position;
+        hitbox->size = rocket->size;
+        rocket->hitbox = hitbox;
+
+        rocket->speed = 30;
+        rocket->damage = 5;
+
+        rocket->is_alive = 1;
+        rocket->is_player = 1;
+        rocket->is_special = 0;
+
+        break;
+    case 0:
+        switch (is_special)
+        {
+        case 0:
+            position->y = enemy->position->y + SIZE_ENEMY / 2;
+            rocket->speed = 15;
+            break;
+        case 1:
+            position->y = enemy->position->y + SIZE_ENEMY_TANK / 2.2;
+            rocket->speed = 5;
+            rocket->time = 200;
+            rocket->time_explosion = TIME_EXPLOSION_SPECIAL_ROCKET;
+
+            break;
+        default:
+            break;
+        }
+        position->x = enemy->position->x;
+        rocket->position = position;
+        rocket->size = ROCKET_ENNEMY_SIZE;
+        rocket->damage = 1;
+        rocket->is_alive = 1;
+        rocket->is_player = 0;
+        rocket->is_special = is_special;
+        hitbox->position = rocket->position;
+        hitbox->size = rocket->size;
+        rocket->hitbox = hitbox;
 
         break;
     default:
         break;
     }
-    position->x = enemy->position->x;
-    rocket->position = position;
-    rocket->size = ROCKET_ENNEMY_SIZE;
-    rocket->damage = 1;
-    rocket->is_alive = 1;
-    rocket->is_player = 0;
-    rocket->is_special = is_special;
-    hitbox->position = rocket->position;
-    hitbox->size = rocket->size;
-    rocket->hitbox = hitbox;
-    rocket->position_shoot = position_shoot;
+
     game->tab_rocket[game->number_rocket_key] = rocket;
 
     game->number_rocket_key++;

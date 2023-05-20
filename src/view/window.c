@@ -13,8 +13,34 @@
  * @return int
  */
 
-// MLV_Sound *sound;
+void set_image(Game *game)
+{
+    game->image->img_player = MLV_load_image("src/assets/img/player.png");
+    game->image->img_rocket = MLV_load_image("src/assets/img/rocket.png");
+    game->image->img_enemy_tank = MLV_load_image("src/assets/img/tank.png");
+    game->image->img_enemy = MLV_load_image("src/assets/img/air_soldat.png");
+    game->image->img_bullet_tank = MLV_load_image("src/assets/img/ammo_tank.png");
+    game->image->img_background = MLV_load_image("src/assets/img/background.jpg");
+    game->image->img_explosion = MLV_load_image("src/assets/img/explosion.png");
+    game->image->img_bullet_player = MLV_load_image("src/assets/img/bullet_player.png");
 
+    game->image->img_powerup_dbz = MLV_load_image("src/assets/img/powerup_dbz_logo.png");
+    MLV_resize_image_with_proportions(game->image->img_powerup_dbz, 90, 90);
+
+    game->image->img_player_dbz = MLV_load_image("src/assets/img/player_power_up_dbz.png");
+    game->image->img_explosion_dbz = MLV_load_image("src/assets/img/kamehameha.png");
+    game->image->img_powerup_health = MLV_load_image("src/assets/img/coeur.png");
+
+    game->image->img_powerup_speed = MLV_load_image("src/assets/img/speed.png");
+}
+void set_sound(Game *game)
+{
+    game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
+}
+void set_font(Game *game)
+{
+    game->font = MLV_load_font("src/assets/font/fontScore.ttf", 30);
+}
 void init_window(Game *game)
 {
     MLV_change_window_size(WIDTH_FRAME, HEIGHT_FRAME);
@@ -25,30 +51,9 @@ void init_window(Game *game)
         fprintf(stderr, "L'infrasctructure audio de la librairie MLV ne s'est pas correctement initialisé.");
         exit(1);
     }
-
-    game->image->img_player = MLV_load_image("src/assets/img/player.png");
-    game->image->img_rocket = MLV_load_image("src/assets/img/rocket.png");
-    game->image->img_enemy_tank = MLV_load_image("src/assets/img/tank.png");
-    game->image->img_enemy = MLV_load_image("src/assets/img/air_soldat.png");
-    game->image->img_bullet_tank = MLV_load_image("src/assets/img/ammo_tank.png");
-    game->image->img_background = MLV_load_image("src/assets/img/background.jpg");
-    game->image->img_explosion = MLV_load_image("src/assets/img/explosion.png");
-    game->image->img_bullet_player = MLV_load_image("src/assets/img/bullet_player.png");
-
-    // temporaire
-    game->image->img_powerup_dbz = MLV_load_image("src/assets/img/powerup_dbz_logo.png");
-    MLV_resize_image_with_proportions(game->image->img_powerup_dbz, 90, 90);
-
-    game->image->img_player_dbz = MLV_load_image("src/assets/img/player_power_up_dbz.png");
-    game->image->img_explosion_dbz = MLV_load_image("src/assets/img/kamehameha.png");
-
-    game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
-
-    game->image->img_powerup_health = MLV_load_image("src/assets/img/coeur.png");
-
-    game->image->img_powerup_speed = MLV_load_image("src/assets/img/speed.png");
-
-    game->font = MLV_load_font("src/assets/font/fontScore.ttf", 30);
+    set_image(game);
+    set_sound(game);
+    set_font(game);
 }
 
 /**
@@ -62,28 +67,8 @@ void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)
     MLV_draw_image(img_enemy, enemy->position->x, enemy->position->y);
 }
 
-void draw_powerup(Game *game)
+void draw_powerup_in_game(Game *game)
 {
-
-    MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 1.1, 10, PADDING_TOP - 10, PADDING_TOP - 10, MLV_rgba(0, 0, 0, 120));
-    switch (game->player->powerup->type)
-    {
-    case 0:
-        break;
-    case 1:
-        MLV_resize_image_with_proportions(game->image->img_powerup_dbz, PADDING_TOP - 10, PADDING_TOP - 10);
-        MLV_draw_image(game->image->img_powerup_dbz, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
-        break;
-    case 2:
-        MLV_resize_image_with_proportions(game->image->img_powerup_health, PADDING_TOP - 10, PADDING_TOP - 10);
-        MLV_draw_image(game->image->img_powerup_health, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
-        break;
-    default:
-    case 3:
-        MLV_resize_image_with_proportions(game->image->img_powerup_speed, PADDING_TOP - 10, PADDING_TOP - 10);
-        MLV_draw_image(game->image->img_powerup_speed, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
-        break;
-    }
     if (game->powerup->in_the_game)
     {
         switch (game->powerup->type)
@@ -111,6 +96,37 @@ void draw_powerup(Game *game)
     }
 }
 
+void draw_powerup_square(Game *game)
+{
+    MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 1.1, 10, PADDING_TOP - 10, PADDING_TOP - 10, MLV_rgba(0, 0, 0, 120));
+
+    switch (game->player->powerup->type)
+    {
+    case 0:
+        break;
+    case 1:
+        MLV_resize_image_with_proportions(game->image->img_powerup_dbz, PADDING_TOP - 10, PADDING_TOP - 10);
+        MLV_draw_image(game->image->img_powerup_dbz, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
+        break;
+    case 2:
+        MLV_resize_image_with_proportions(game->image->img_powerup_health, PADDING_TOP - 10, PADDING_TOP - 10);
+        MLV_draw_image(game->image->img_powerup_health, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
+        break;
+    default:
+    case 3:
+        MLV_resize_image_with_proportions(game->image->img_powerup_speed, PADDING_TOP - 10, PADDING_TOP - 10);
+        MLV_draw_image(game->image->img_powerup_speed, WIDTH_FRAME - PADDING_TOP * 1.1, 10);
+        break;
+    }
+}
+
+void draw_powerup(Game *game)
+{
+
+    draw_powerup_square(game);
+    draw_powerup_in_game(game);
+}
+
 void draw_enemy_health(Enemy *enemy)
 {
 
@@ -130,21 +146,9 @@ void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
     }
 }
 
-/**
- *
- * @brief redessine la window
- *
- * @param player
- * @return int
- */
-int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background, MLV_Image *img_player)
+void draw_player(Game *game)
 {
-    // MLV_play_sound(sound, 1.0);
-
-    MLV_draw_image(img_background, scale + WIDTH_FRAME, 0);
-    MLV_draw_image(img_background, scale, 0);
-
-    if (player->powerup->is_actif && game->player->powerup->type == 1)
+    if (game->player->powerup->is_actif && game->player->powerup->type == 1)
     {
 
         MLV_resize_image_with_proportions(game->image->img_player_dbz, game->player->size + 100, game->player->size + 100);
@@ -156,26 +160,49 @@ int draw_window(Game *game, Player *player, int scale, MLV_Image *img_background
     }
     else
     {
-        MLV_resize_image_with_proportions(img_player, player->size, player->size);
-        MLV_draw_image(img_player, player->position->x, player->position->y);
+        MLV_resize_image_with_proportions(game->image->img_player, game->player->size, game->player->size);
+        MLV_draw_image(game->image->img_player, game->player->position->x, game->player->position->y);
     }
+}
 
+void draw_health(Game *game)
+{
     MLV_draw_rectangle(9, 9, (HEALTH_PLAYER * SIZE_PLAYER / 2) + 2, 12, MLV_COLOR_BLANCHED_ALMOND);
-    if (player->health > HEALTH_PLAYER / 3)
-        MLV_draw_filled_rectangle(10, 10, player->health * SIZE_PLAYER / 2, 10, MLV_COLOR_GREEN);
+    if (game->player->health > HEALTH_PLAYER / 3)
+        MLV_draw_filled_rectangle(10, 10, game->player->health * SIZE_PLAYER / 2, 10, MLV_COLOR_GREEN);
     else
-        MLV_draw_filled_rectangle(10, 10, player->health * SIZE_PLAYER / 2, 10, MLV_COLOR_RED);
+        MLV_draw_filled_rectangle(10, 10, game->player->health * SIZE_PLAYER / 2, 10, MLV_COLOR_RED);
+}
 
-    int value = player->score;
+void draw_score(Game *game)
+{
+    int value = game->player->score;
 
     char chaine[100];
 
     sprintf(chaine, "%d", value);
     MLV_draw_text_with_font(10, 30, chaine, game->font, MLV_COLOR_BLACK);
+}
+
+/**
+ *
+ * @brief redessine la window
+ *
+ * @param player
+ * @return int
+ */
+void draw_window(Game *game, int scale)
+{
+    // MLV_play_sound(sound, 1.0);
+
+    MLV_draw_image(game->image->img_background, game->scale + WIDTH_FRAME, 0);
+    MLV_draw_image(game->image->img_background, game->scale, 0);
+
+    draw_player(game);
+    draw_health(game);
+    draw_score(game);
 
     draw_powerup(game);
-
-    return 0;
 }
 
 void draw_explosion(int x, int y, MLV_Image *img_explosion)

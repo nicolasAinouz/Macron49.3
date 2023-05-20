@@ -49,7 +49,6 @@ typedef struct rocket
     int is_special;     // 1 si spécial
     int time;           // temps de vie (que pour special)
     int time_explosion; // temps d'explosion (que pour special)
-    Position *position_shoot;
 } Rocket;
 
 typedef struct enemy

@@ -50,11 +50,11 @@ void enemy_shoot(Game *game)
     {
         if (normal_delay(1) < 0.010 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 0)
         {
-            create_rocket_enemy(game, game->tab_enemy[i], 0);
+            shoot(game, game->tab_enemy[i], 0, 0);
         }
         else if (normal_delay(1) < 0.01 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 1)
         {
-            create_rocket_enemy(game, game->tab_enemy[i], 1);
+            shoot(game, game->tab_enemy[i], 1, 0);
         }
     }
 }
@@ -241,7 +241,7 @@ void call_view(Game *game)
 
 void move_enemies(Game *game)
 {
-    if (normal_delay(15) < 0)
+    if (normal_delay(15) < 1)
         create_enemy(game, 0);
 
     if (normal_delay(15) < 2)
