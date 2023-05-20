@@ -190,7 +190,7 @@ void draw_score(Game *game)
  * @param player
  * @return int
  */
-void draw_window(Game *game, int scale)
+void draw_window(Game *game)
 {
     MLV_draw_image(game->image->img_background, game->scale + WIDTH_FRAME, 0);
     MLV_draw_image(game->image->img_background, game->scale, 0);

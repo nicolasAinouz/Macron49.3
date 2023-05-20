@@ -11,8 +11,10 @@ Controle shift i -> formatter sous vsc
 
 
 TODO : 
--> score
+-> score a la fin
 -> enlever int dans window
 -> faire doc
 -> faire rapport
 -> faire que jeu devienne de plus en plus dur
+-> faire plus de constante
+-> revoir nom de methode

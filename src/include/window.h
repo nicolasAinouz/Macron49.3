@@ -5,7 +5,6 @@
 #include "const.h"
 #include "struct_entity.h"
 
-void shoot();
 void init_window(Game *game);
 void draw_window(Game *game);
 int clear_window();
