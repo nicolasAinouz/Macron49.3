@@ -37,16 +37,11 @@ Game *create_game()
 
     Powerup *powerup = malloc(sizeof(Powerup));
     assert(powerup != NULL);
-    powerup->in_the_game = 0;
     game->powerup = powerup;
 
     game->image = image_game;
     game->player = player;
 
-    game->scale = 0;
-    game->number_enemies_key = 0;
-    game->number_rocket_key = 0;
-    game->end_game = 0;
     game->difficulty = 1;
 
     return game;

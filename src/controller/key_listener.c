@@ -63,7 +63,7 @@ void move_player(Game *game)
         bool = 1;
     }
     
-    if (bool == 0)
+    if (!bool)
     {
         inertie(game);
         return;
@@ -96,7 +96,7 @@ void shift(Game *game)
 {
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LSHIFT) == MLV_PRESSED && game->player->powerup->type > 0)
     {
-        if (game->player->has_powerup == 1)
+        if (game->player->has_powerup)
         {
             active_power_up(game);
         }

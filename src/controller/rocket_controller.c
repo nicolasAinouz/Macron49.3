@@ -66,7 +66,7 @@ void update_special_rocket(Game *game, int i)
     {
         special_rocket_explosing(game, i);
     }
-    else if (game->tab_rocket[i]->time_explosion == 0)
+    else if (!game->tab_rocket[i]->time_explosion)
     {
         kill_special_rocket(game, i);
     }
@@ -96,11 +96,11 @@ void move_rocket(Game *game)
             draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);
         else
         {
-            if (game->tab_rocket[i]->is_special == 1 && game->tab_rocket[i]->time > 0)
+            if (game->tab_rocket[i]->is_special && game->tab_rocket[i]->time > 0)
             {
                 draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
             }
-            else if (game->tab_rocket[i]->is_special == 0)
+            else if (!game->tab_rocket[i]->is_special)
             {
                 draw_rocket(game->tab_rocket[i], game->image->img_bullet_tank);
             }
@@ -116,7 +116,7 @@ int rocket_touch_player(Rocket *rocket, Player *player)
 
         if (rocket->hitbox->position->x + rocket->hitbox->size > player->position->x && rocket->hitbox->position->x < player->position->x + player->size && rocket->hitbox->position->y + rocket->hitbox->size > player->position->y && rocket->hitbox->position->y < player->position->y + player->size)
         {
-            if (!(player->powerup->is_actif == 1 && player->powerup->type == 1))
+            if (!(player->powerup->is_actif && player->powerup->type == 1))
                 return 1;
         }
     }
@@ -188,7 +188,6 @@ void shoot(Game *game, Enemy *enemy, int is_special, int is_player)
 
         rocket->is_alive = 1;
         rocket->is_player = 1;
-        rocket->is_special = 0;
 
         break;
     case 0:

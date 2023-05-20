@@ -115,7 +115,7 @@ void check_shooting_to_much(Game *game)
     {
         game->player->is_shooting_too_much = 1;
     }
-    if(game->player->shoot > -1)
+    if (game->player->shoot > -1)
         game->player->shoot -= 2;
 
     draw_shoot_bar(game);

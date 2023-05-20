@@ -48,11 +48,11 @@ void enemy_shoot(Game *game)
 
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (normal_delay(1) < 0.010 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 0)
+        if (normal_delay(1) < 0.010 && game->tab_enemy[i]->is_alive && !game->tab_enemy[i]->is_special)
         {
             shoot(game, game->tab_enemy[i], 0, 0);
         }
-        else if (normal_delay(1) < 0.01 && game->tab_enemy[i]->is_alive == 1 && game->tab_enemy[i]->is_special == 1)
+        else if (normal_delay(1) < 0.01 && game->tab_enemy[i]->is_alive && game->tab_enemy[i]->is_special)
         {
             shoot(game, game->tab_enemy[i], 1, 0);
         }
@@ -67,7 +67,7 @@ void touch_by_rocket(Game *game)
         for (int j = 0; j < NUMBER_OF_ROCKET; j++)
         {
 
-            if (game->tab_rocket[j]->is_alive == 1 && game->tab_enemy[i]->is_alive == 1 && is_inside_hitbox(game->tab_rocket[j], game->tab_enemy[i]) && game->tab_rocket[j]->is_player == 1)
+            if (game->tab_rocket[j]->is_alive && game->tab_enemy[i]->is_alive && is_inside_hitbox(game->tab_rocket[j], game->tab_enemy[i]) && game->tab_rocket[j]->is_player)
             {
                 game->tab_rocket[j]->is_alive = 0;
 
@@ -97,7 +97,7 @@ int check_distance_enemy(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (game->tab_enemy[i]->is_special == 1 && game->tab_enemy[i]->hitbox->position->x < WIDTH_FRAME + SIZE_ENEMY && game->tab_enemy[i]->hitbox->position->x > WIDTH_FRAME - SIZE_ENEMY * 3)
+        if (game->tab_enemy[i]->is_special && game->tab_enemy[i]->hitbox->position->x < WIDTH_FRAME + SIZE_ENEMY && game->tab_enemy[i]->hitbox->position->x > WIDTH_FRAME - SIZE_ENEMY * 3)
         {
             return 0;
         }
@@ -130,7 +130,6 @@ void create_enemy(Game *game, int is_special)
         }
         enemy->health = HEALTH_ENEMY;
         enemy->speed = SPEED_ENEMY;
-        enemy->is_special = 0;
         break;
     case 1:
         enemy->size = SIZE_ENEMY_TANK;
@@ -160,7 +159,7 @@ void enemies_available(Game *game)
 
         if (game->tab_enemy[i]->position->x < 0 - game->tab_enemy[i]->size)
         {
-            if (game->tab_enemy[i]->is_alive == 1)
+            if (game->tab_enemy[i]->is_alive)
             {
                 game->player->health -= 1;
             }
@@ -195,9 +194,9 @@ void enemy_touch_player(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (game->tab_enemy[i]->is_alive == 1 && is_inside_player_hitbox(game->tab_enemy[i], game->player))
+        if (game->tab_enemy[i]->is_alive && is_inside_player_hitbox(game->tab_enemy[i], game->player))
         {
-            if (!(game->player->powerup->is_actif == 1 && game->player->powerup->type == 1))
+            if (!(game->player->powerup->is_actif && game->player->powerup->type == 1))
             {
                 game->tab_enemy[i]->is_alive = 0;
                 game->player->health -= 1;
@@ -210,7 +209,7 @@ void touch_by_ultime(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
     {
-        if (game->tab_enemy[i]->is_alive == 1 && is_inside_ulti_hitbox(game->tab_enemy[i], game->player) && game->player->powerup->is_actif && game->player->powerup->type == 1 && game->player->powerup->animation < 70)
+        if (game->tab_enemy[i]->is_alive && is_inside_ulti_hitbox(game->tab_enemy[i], game->player) && game->player->powerup->is_actif && game->player->powerup->type == 1 && game->player->powerup->animation < 70)
         {
             game->tab_enemy[i]->is_alive = 0;
         }
