@@ -198,11 +198,9 @@ void draw_window(Game *game, int scale)
     MLV_draw_image(game->image->img_background, game->scale + WIDTH_FRAME, 0);
     MLV_draw_image(game->image->img_background, game->scale, 0);
 
-    draw_player(game);
-    draw_health(game);
-    draw_score(game);
+   
 
-    draw_powerup(game);
+    
 }
 
 void draw_explosion(int x, int y, MLV_Image *img_explosion)

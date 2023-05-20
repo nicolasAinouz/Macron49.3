@@ -85,11 +85,11 @@ void active_power_up(Game *game)
         game->player->powerup->is_actif = 0;
         game->player->powerup->type = 0;
 
-        if(game->player->health < 5)
+        if (game->player->health < 5)
         {
             game->player->health += 1;
         }
-        
+
         break;
     case 3:
         game->player->powerup->animation = 180;
@@ -106,12 +106,11 @@ void active_power_up(Game *game)
 
 int player_is_dead(Game *game)
 {
-    if (game->player->health <= 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    return game->player->health <= 0 ? 1 : 0;
+}
+void player_update(Game *game)
+{
+    draw_player(game);
+    draw_health(game);
+    draw_score(game);
 }

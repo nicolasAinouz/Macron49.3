@@ -224,27 +224,17 @@ void call_view(Game *game)
 
         if (game->tab_enemy[i]->is_alive)
         {
-
-            if (game->tab_enemy[i]->is_special)
-            {
-                draw_enemy_health(game->tab_enemy[i]);
-
-                draw_enemy(game->tab_enemy[i], game->image->img_enemy_tank);
-            }
-            else
-            {
-                draw_enemy(game->tab_enemy[i], game->image->img_enemy);
-            }
+            game->tab_enemy[i]->is_special ? draw_enemy(game->tab_enemy[i], game->image->img_enemy_tank), draw_enemy_health(game->tab_enemy[i]) : draw_enemy(game->tab_enemy[i], game->image->img_enemy);
         }
     }
 }
 
 void move_enemies(Game *game)
 {
-    if (normal_delay(15) < 1)
+    if (normal_delay(30) < 0.3)
         create_enemy(game, 0);
 
-    if (normal_delay(15) < 2)
+    if (normal_delay(30) < 0.1)
         create_enemy(game, 1);
 
     enemies_available(game);

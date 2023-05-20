@@ -12,5 +12,6 @@ void move_player_down(Player *player);
 void active_power_up(Game *game);
 
 int player_is_dead(Game *game);
+void player_update(Game* game);
 
 #endif

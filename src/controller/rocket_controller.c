@@ -89,20 +89,8 @@ void move_rocket(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
     {
-
-        if (game->tab_rocket[i]->is_player == 1)
-        {
-            move_rocket_player(game, i);
-        }
-        else if (game->tab_rocket[i]->is_special == 1)
-        {
-            update_special_rocket(game, i);
-        }
-
-        else
-        {
-            move_rocket_enemy(game, i);
-        }
+        game->tab_rocket[i]->is_player ? move_rocket_player(game, i) : game->tab_rocket[i]->is_special ? update_special_rocket(game, i)
+                                                                                                       : move_rocket_enemy(game, i);
 
         if (game->tab_rocket[i]->is_player)
             draw_rocket(game->tab_rocket[i], game->image->img_bullet_player);

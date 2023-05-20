@@ -61,4 +61,5 @@ void move_powerup(Game *game)
         game->powerup->position->x -= game->powerup->speed;
         player_get_powerup(game);
     }
+    
 }

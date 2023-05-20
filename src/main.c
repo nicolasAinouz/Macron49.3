@@ -59,6 +59,7 @@ void update_powerup(Game *game)
             game->player->powerup->animation = 0;
         }
     }
+    draw_powerup(game);
 }
 
 int main(int argc, char const *argv[])
