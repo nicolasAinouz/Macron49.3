@@ -1,3 +1,12 @@
+/**
+ * @file rocket_controller.c
+ * @brief It's the controller of the rocket
+ * @details This file contains all the functions that manage the rocket of the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
 #include <MLV/MLV_all.h>
 #include <time.h>
 #include <stdio.h>
@@ -10,6 +19,11 @@
 #include "../include/struct_entity.h"
 #include "../include/player_controller.h"
 
+/**
+ * @brief Function who init all the rocket of the game
+ * 
+ * @param tab_rocket 
+ */
 void init_tab_rocket(Rocket **tab_rocket)
 {
     for (int i = 0; i < NUMBER_OF_ROCKET; i++)
@@ -31,6 +45,12 @@ void init_tab_rocket(Rocket **tab_rocket)
     }
 }
 
+/**
+ * @brief Function that manage the explosion animation
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void special_rocket_explosing(Game *game, int i)
 {
     game->tab_rocket[i]->damage = 0;
@@ -38,11 +58,23 @@ void special_rocket_explosing(Game *game, int i)
     game->tab_rocket[i]->time_explosion--;
 }
 
+/**
+ * @brief Function that kill the special rocket after the explosion
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void kill_special_rocket(Game *game, int i)
 {
     game->tab_rocket[i]->is_alive = 0;
 }
 
+/**
+ * @brief Function that move the special rocket for they follow the player
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void move_special_rocket(Game *game, int i)
 {
     float dx = (float)(game->player->position->x - game->tab_rocket[i]->position->x);
@@ -58,6 +90,12 @@ void move_special_rocket(Game *game, int i)
     game->tab_rocket[i]->position->y += move_y;
 }
 
+/**
+ * @brief Function that update the special rocket : manage the explosion, the movement and the death
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void update_special_rocket(Game *game, int i)
 {
     game->tab_rocket[i]->time -= 1;
@@ -74,16 +112,34 @@ void update_special_rocket(Game *game, int i)
         move_special_rocket(game, i);
     }
 }
+
+/**
+ * @brief Function that move the rocket of the player
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void move_rocket_player(Game *game, int i)
 {
     game->tab_rocket[i]->position->x += game->tab_rocket[i]->speed;
 }
 
+/**
+ * @brief Function that move the rocket of the enemy
+ * 
+ * @param game the game structure
+ * @param i the index of the rocket
+ */
 void move_rocket_enemy(Game *game, int i)
 {
     game->tab_rocket[i]->position->x -= game->tab_rocket[i]->speed;
 }
 
+/**
+ * @brief Function that manage the movement of the rocket and draw it
+ * 
+ * @param game the game structure
+ */
 void move_rocket(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
@@ -106,7 +162,13 @@ void move_rocket(Game *game)
         }
     }
 }
-
+/**
+ * @brief Function that check if the rocket touch the player
+ * 
+ * @param rocket the rocket
+ * @param player the player
+ * @return int boolean if the rocket touch the player
+ */
 int rocket_touch_player(Rocket *rocket, Player *player)
 {
 
@@ -122,6 +184,13 @@ int rocket_touch_player(Rocket *rocket, Player *player)
     return 0;
 }
 
+/**
+ * @brief Function that check if the rocket is out of the map
+ * 
+ * @param rocket the rocket
+ * @param game the game structure
+ * @return int the boolean if the rocket is out of the map
+ */
 int is_out_of_map(Rocket *rocket, Game *game)
 {
     if (rocket->position->x < 0 + rocket->size || rocket->position->x > WIDTH_FRAME)
@@ -130,6 +199,13 @@ int is_out_of_map(Rocket *rocket, Game *game)
     }
     return 0;
 }
+
+/**
+ * @brief Function that update the tab of rocket -> delete the rocket
+ * 
+ * @param game game structure
+ * @param i the index of the rocket
+ */
 void update_tab_rocket(Game *game, int i)
 {
     for (int j = i + 1; j < game->number_rocket_key; j++)
@@ -140,6 +216,11 @@ void update_tab_rocket(Game *game, int i)
     game->number_rocket_key--;
 }
 
+/**
+ * @brief Function that check if the rocket respect all the condition
+ * 
+ * @param game the game structure
+ */
 void rocket_available(Game *game)
 {
     for (int i = 0; i < game->number_rocket_key; i++)
@@ -158,6 +239,14 @@ void rocket_available(Game *game)
     }
 }
 
+/**
+ * @brief Function for shoot a rocket for player and enemy
+ * 
+ * @param game the game structure
+ * @param enemy the enemy who shoot
+ * @param is_special boolean if the ennemy is special
+ * @param is_player boolean if the rocket is shoot by the player
+ */
 void shoot(Game *game, Enemy *enemy, int is_special, int is_player)
 {
     Rocket *rocket = malloc(sizeof(Rocket));

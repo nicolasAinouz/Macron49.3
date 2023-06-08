@@ -1,3 +1,12 @@
+/**
+ * @file window.c
+ * @brief It's the view of the game
+ * @details This file contains all the functions that display the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
 #include <MLV/MLV_all.h>
 #include <math.h>
 
@@ -8,11 +17,9 @@
 #include "../include/enemies_controller.h"
 
 /**
- * @brief initialisation de la window
- *
- * @return int
+ * @brief inisialize all the image of the game
+ * @param game The game structure
  */
-
 void set_image(Game *game)
 {
     game->image->img_player = MLV_load_image("src/assets/img/player.png");
@@ -33,15 +40,30 @@ void set_image(Game *game)
 
     game->image->img_powerup_speed = MLV_load_image("src/assets/img/speed.png");
 }
+
+/**
+ * @brief inisialize all the sound of the game
+ * @param game The game structure
+ */
 void set_sound(Game *game)
 {
     game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
     game->music = MLV_load_music("src/assets/sound/background_music.mp3");
 }
+
+/**
+ * @brief inisialize all the font of the game
+ * @param game The game structure
+ */
 void set_font(Game *game)
 {
     game->font = MLV_load_font("src/assets/font/fontScore.ttf", 30);
 }
+
+/**
+ * @brief inisialize all the window of the game
+ * @param game The game structure
+ */
 void init_window(Game *game)
 {
     MLV_change_window_size(WIDTH_FRAME, HEIGHT_FRAME);
@@ -58,9 +80,10 @@ void init_window(Game *game)
 }
 
 /**
- * @brief
+ * @brief draw the enemy
  *
- * @param enemy
+ * @param enemy The enemy structure
+ * @param img_enemy The image of the enemy
  */
 void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)
 {
@@ -68,6 +91,11 @@ void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)
     MLV_draw_image(img_enemy, enemy->position->x, enemy->position->y);
 }
 
+/**
+ * @brief draw the powerup
+ *
+ * @param game The game structure
+ */
 void draw_powerup_in_game(Game *game)
 {
     if (game->powerup->in_the_game)
@@ -97,6 +125,11 @@ void draw_powerup_in_game(Game *game)
     }
 }
 
+/**
+ * @brief draw the powerup on the top right of the screen to show the inventory
+ *
+ * @param game The game structure
+ */
 void draw_powerup_square(Game *game)
 {
     MLV_draw_filled_rectangle(WIDTH_FRAME - PADDING_TOP * 1.1, 10, PADDING_TOP - 10, PADDING_TOP - 10, MLV_rgba(0, 0, 0, 120));
@@ -121,12 +154,23 @@ void draw_powerup_square(Game *game)
     }
 }
 
+/**
+ * @brief coordinate the draw of the powerup
+ *
+ * @param game The game structure
+ */
+ 
 void draw_powerup(Game *game)
 {
     draw_powerup_square(game);
     draw_powerup_in_game(game);
 }
 
+/**
+ * @brief draw the health of special enemy
+ * 
+ * @param enemy The enemy structure
+ */
 void draw_enemy_health(Enemy *enemy)
 {
 
@@ -136,6 +180,13 @@ void draw_enemy_health(Enemy *enemy)
         MLV_draw_filled_rectangle(enemy->position->x, enemy->position->y - 10, enemy->health * 3, 5, MLV_COLOR_RED);
 }
 
+
+/**
+ * @brief draw the rocket in the game
+ * 
+ * @param rocket the rocket which is draw
+ * @param img_rocket the image of the rocket
+ */
 void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
 
 {
@@ -146,6 +197,11 @@ void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)
     }
 }
 
+/**
+ * @brief draw the player
+ * 
+ * @param game the game structure
+ */
 void draw_player(Game *game)
 {
     if (game->player->powerup->is_actif && game->player->powerup->type == 1)
@@ -165,6 +221,11 @@ void draw_player(Game *game)
     }
 }
 
+/**
+ * @brief draw the player health
+ * 
+ * @param game the game structure
+ */
 void draw_health(Game *game)
 {
     MLV_draw_rectangle(9, 9, (HEALTH_PLAYER * SIZE_PLAYER / 2) + 2, 12, MLV_COLOR_BLANCHED_ALMOND);
@@ -174,6 +235,11 @@ void draw_health(Game *game)
         MLV_draw_filled_rectangle(10, 10, game->player->health * SIZE_PLAYER / 2, 10, MLV_COLOR_RED);
 }
 
+/**
+ * @brief draw the score
+ * 
+ * @param game the game structure
+ */
 void draw_score(Game *game)
 {
     int value = game->player->score;
@@ -186,23 +252,33 @@ void draw_score(Game *game)
 
 /**
  *
- * @brief redessine la window
+ * @brief draw the background
  *
- * @param player
- * @return int
+ * @param game The game structure
  */
 void draw_window(Game *game)
 {
     MLV_draw_image(game->image->img_background, game->scale + WIDTH_FRAME, 0);
     MLV_draw_image(game->image->img_background, game->scale, 0);
 }
-
+/**
+ * @brief draw the explosion of special rocket
+ * 
+ * @param x the x coordinate of the explosion
+ * @param y the y coordinate of the explosion
+ * @param img_explosion the image of the explosion
+ */
 void draw_explosion(int x, int y, MLV_Image *img_explosion)
 {
 
     MLV_draw_image(img_explosion, x, y);
 }
 
+/**
+ * @brief draw the explosion of powerup dbz
+ * 
+ * @param game  the game structure
+ */
 void draw_power_up_dbz(Game *game)
 {
     if (game->player->powerup->animation == 180)
@@ -211,6 +287,12 @@ void draw_power_up_dbz(Game *game)
     }
 }
 
+/**
+ * @brief draw the input rectangle to enter the name
+ * 
+ * @param game the game structure
+ * @return int 
+ */
 int draw_input_name(Game *game)
 {
     // char *player_name;
@@ -220,6 +302,12 @@ int draw_input_name(Game *game)
 
     return EXIT_SUCCESS;
 }
+
+/**
+ * @brief draw the game over screen
+ * 
+ * @param game the game structure
+ */
 void print_game_over(Game *game)
 {
     MLV_draw_adapted_text_box_with_font(400, 150, "GAME OVER", game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
@@ -230,6 +318,11 @@ void print_game_over(Game *game)
     MLV_wait_input_box_with_font(400, 350, 300, 50, MLV_COLOR_INDIAN_RED, MLV_COLOR_INDIAN_RED, MLV_rgba(0, 0, 0, 10), "", &game->pseudo, game->font);
 }
 
+/**
+ * @brief draw the shoot bar if player shooting too much
+ * 
+ * @param game the game structure
+ */
 void draw_shoot_bar(Game *game)
 {
     MLV_draw_rectangle(WIDTH_FRAME - PADDING_TOP * 2.5, PADDING_TOP / 3, 100, 10, MLV_COLOR_BLACK);

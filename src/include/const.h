@@ -1,3 +1,10 @@
+/**
+ * @file const.h
+ * @brief it's contain all the constant of the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
 #ifndef __CONST__
 #define __CONST__
 #define BILLION 1000000000

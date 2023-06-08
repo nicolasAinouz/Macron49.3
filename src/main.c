@@ -1,3 +1,13 @@
+/**
+ * @file main.c
+ * @brief Main file of the project
+ * @details This file contains the game loop and the main function
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
+
 #include <MLV/MLV_all.h>
 #include <MLV/MLV_time.h>
 #include <time.h>
@@ -16,6 +26,10 @@
 #include "include/rocket_controller.h"
 #include "include/home.h"
 
+/**
+ * @brief Function that launch the home screen
+ * 
+ */
 void home()
 {
     launch_home();
@@ -28,6 +42,12 @@ void home()
         exit = click_on_play(mouse_x, mouse_y);
     }
 }
+
+/**
+ * @brief Function that move the background
+ * @param game The game structure
+ * 
+ */
 void move_scale(Game *game)
 {
     game->scale -= 1;
@@ -37,6 +57,11 @@ void move_scale(Game *game)
     }
 }
 
+/**
+ * @brief Function that do the actions on the powerup like move it, draw it
+ * 
+ * @param game The game structure
+ */
 void update_powerup(Game *game)
 {
     if (game->powerup->in_the_game == 0 && normal_delay(30) < 0.1 && game->player->powerup->type == 0 && !game->player->powerup->is_actif)
@@ -61,7 +86,11 @@ void update_powerup(Game *game)
     }
     draw_powerup(game);
 }
-
+/**
+ * @brief Function that add difficulty to the game
+ * 
+ * @param game The game structure
+ */
 void add_difficulty(Game *game)
 {
     if (game->player->score % 1000 == 0)
@@ -70,6 +99,11 @@ void add_difficulty(Game *game)
     }
 }
 
+/**
+ * @brief Function that free the image structure
+ * 
+ * @return Image_Game* The image structure
+ */
 void free_image(Image_Game *imgs)
 {
     MLV_free_image(imgs->img_background);
@@ -88,6 +122,12 @@ void free_image(Image_Game *imgs)
 
     free(imgs);
 }
+
+/**
+ * @brief Function that free the player structure
+ * 
+ * @param player player structure
+ */
 void free_player(Player *player)
 {
     if (player->powerup != NULL)
@@ -99,6 +139,11 @@ void free_player(Player *player)
     free(player);
 }
 
+/**
+ * @brief Function that free the rockets structure
+ * 
+ * @param tab_rocket tab of rockets
+ */
 void free_rockets(Rocket **tab_rocket)
 {
     for (int i = 0; i < NUMBER_OF_ROCKET; i++)
@@ -115,6 +160,11 @@ void free_rockets(Rocket **tab_rocket)
         free(*tab_rocket);
 }
 
+/**
+ * @brief Function that free the ennemies structure
+ * 
+ * @param tab_enemy tab of ennemies
+ */
 void free_ennemies(Enemy **tab_enemy)
 {
     for (int i = 0; i < NUMBER_OF_ENEMY; i++)
@@ -131,6 +181,11 @@ void free_ennemies(Enemy **tab_enemy)
     free(*tab_enemy);
 }
 
+/**
+ * @brief Function that coordinate the free of all the structure
+ * 
+ * @param game the game structure
+ */
 void free_all(Game *game)
 {
     free_image(game->image);
@@ -162,6 +217,11 @@ void free_all(Game *game)
     MLV_free_window();
 }
 
+/**
+ * @brief Function that write the score of the player in a file
+ * 
+ * @param game the game structure
+ */
 void write_score(Game *game)
 {
     FILE *file = fopen("src/assets/score.txt", "a");
@@ -171,6 +231,13 @@ void write_score(Game *game)
     fclose(file);
 }
 
+/**
+ * @brief Main function of the project contain the game loop
+ * 
+ * @param argc number of arguments
+ * @param argv arguments
+ * @return int 
+ */
 int main(int argc, char const *argv[])
 {
     int time_frame;

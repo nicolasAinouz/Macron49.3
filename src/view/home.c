@@ -1,6 +1,18 @@
+/**
+ * @file home.c
+ * @brief It's the view of the home screen
+ * @details This file contains all the functions that display the home screen
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
 #include <MLV/MLV_all.h>
 #include "../include/const.h"
 
+/**
+ * @brief Function that create window and launch the home screen
+ * 
+ */
 void launch_home()
 {
     MLV_create_window(NAME_FRAME, NULL, 600, 700);
@@ -16,7 +28,13 @@ void launch_home()
     MLV_free_image(img_background);
     MLV_free_font(font);
 }
-
+/**
+ * @brief Function that check if the user click on the play button
+ * 
+ * @param x the x position of the mouse
+ * @param y the y position of the mouse
+ * @return int the boolean if the user click on the play button
+ */
 int click_on_play(int x, int y)
 {
     if (x >= 220 && x <= 355 && y >= 550 && y <= 605)

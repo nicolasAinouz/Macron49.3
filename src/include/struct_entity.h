@@ -1,3 +1,13 @@
+/**
+ * @file struct_entity.h
+ * @author Nicolas Ainouz
+ * @brief contains all the structure of the game
+ * @version 0.1
+ * @date 2023-06-08
+ * 
+ * 
+ */
+
 #ifndef __STRUCTENTITY__
 #define __STRUCTENTITY__
 

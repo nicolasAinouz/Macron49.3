@@ -1,3 +1,13 @@
+/**
+ * @file enemies_controller.c
+ * @brief It's the controller of the enemies
+ * @details This file contains all the functions that manage the enemies of the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
+
 #include <MLV/MLV_all.h>
 #include <math.h>
 #include <stdlib.h>
@@ -10,15 +20,11 @@
 #include "../include/game.h"
 #include "../include/rocket_controller.h"
 
-void print_tab_rockey_key(Game *game)
-{
-    for (int i = 0; i < game->number_rocket_key; i++)
-    {
-        printf("rocket %d : %d\n", i, game->tab_rocket[i]->is_alive);
-        printf("rocket specifities : %d %d %d %d %d %d %d\n", game->tab_rocket[i]->position->x, game->tab_rocket[i]->position->y, game->tab_rocket[i]->size, game->tab_rocket[i]->speed, game->tab_rocket[i]->damage, game->tab_rocket[i]->is_player, game->tab_rocket[i]->is_special);
-    }
-}
-
+/**
+ * @brief Function who init all the enemies of the game
+ * 
+ * @param tab_enemy the tab of the enemies
+ */
 void init_tab_enemy(Enemy **tab_enemy)
 {
     for (int i = 0; i < NUMBER_OF_ENEMY; i++)
@@ -34,6 +40,13 @@ void init_tab_enemy(Enemy **tab_enemy)
     }
 }
 
+/**
+ * @brief Function that check if the rocket touch the enemy
+ * 
+ * @param rocket rocket structure
+ * @param enemy enemy structure
+ * @return int boolean if the rocket touch the enemy
+ */
 int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
 {
     if (rocket->hitbox->position->x + rocket->hitbox->size > enemy->hitbox->position->x && rocket->hitbox->position->x < enemy->hitbox->position->x + enemy->hitbox->size && rocket->hitbox->position->y + rocket->hitbox->size > enemy->hitbox->position->y && rocket->hitbox->position->y < enemy->hitbox->position->y + enemy->hitbox->size)
@@ -43,6 +56,11 @@ int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
     return 0;
 }
 
+/**
+ * @brief Function that manage the shoot of the enemies
+ * 
+ * @param game the game structure
+ */
 void enemy_shoot(Game *game)
 {
 
@@ -59,6 +77,11 @@ void enemy_shoot(Game *game)
     }
 }
 
+/**
+ * @brief Function that check if the rocket touch the enemy
+ * 
+ * @param game the game structure
+ */
 void touch_by_rocket(Game *game)
 {
     rocket_available(game);
@@ -82,6 +105,12 @@ void touch_by_rocket(Game *game)
         }
     }
 }
+
+/**
+ * @brief Function that move the enemies
+ * 
+ * @param game the game structure
+ */
 void move(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -93,6 +122,13 @@ void move(Game *game)
         game->tab_enemy[i]->hitbox = hitbox;
     }
 }
+
+/**
+ * @brief Function that check if the special enemy is too close to another special enemy
+ * 
+ * @param game the game structure
+ * @return int boolean if the special enemy is too close to another special enemy
+ */
 int check_distance_enemy(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -105,6 +141,12 @@ int check_distance_enemy(Game *game)
     return 1;
 }
 
+/**
+ * @brief Create a enemy object
+ * 
+ * @param game the game structure
+ * @param is_special the boolean if the enemy is special
+ */
 void create_enemy(Game *game, int is_special)
 {
     if (is_special && !check_distance_enemy(game))
@@ -152,6 +194,11 @@ void create_enemy(Game *game, int is_special)
     game->number_enemies_key++;
 }
 
+/**
+ * @brief Function that check if the enemy is available (if he is out of the screen, if he is dead)
+ * 
+ * @param game the game structure
+ */
 void enemies_available(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -172,6 +219,14 @@ void enemies_available(Game *game)
         }
     }
 }
+
+/**
+ * @brief Function that check if the enemy touch the player
+ * 
+ * @param enemy the enemy structure
+ * @param player the player structure
+ * @return int boolean if the enemy touch the player
+ */
 int is_inside_player_hitbox(Enemy *enemy, Player *player)
 {
     if (enemy->hitbox->position->x < player->hitbox->position->x + player->hitbox->size && enemy->hitbox->position->x + enemy->hitbox->size > player->hitbox->position->x && enemy->hitbox->position->y < player->hitbox->position->y + player->hitbox->size && enemy->hitbox->position->y + enemy->hitbox->size > player->hitbox->position->y)
@@ -180,6 +235,14 @@ int is_inside_player_hitbox(Enemy *enemy, Player *player)
     }
     return 0;
 }
+
+/**
+ * @brief Function that check if the enemy is inside the ulti hitbox
+ * 
+ * @param enemy the enemy structure
+ * @param player the player structure
+ * @return int boolean if the enemy is inside the ulti hitbox
+ */
 int is_inside_ulti_hitbox(Enemy *enemy, Player *player)
 {
     if (enemy->hitbox->position->x < player->hitbox->position->x + player->hitbox->size + 900 && enemy->hitbox->position->x + enemy->hitbox->size > player->hitbox->position->x + 90 && enemy->hitbox->position->y < player->hitbox->position->y + player->hitbox->size + 100 && enemy->hitbox->position->y + enemy->hitbox->size > player->hitbox->position->y - 100)
@@ -190,6 +253,11 @@ int is_inside_ulti_hitbox(Enemy *enemy, Player *player)
     return 0;
 }
 
+/**
+ * @brief Function that check if the enemy touch the player and kill him
+ * 
+ * @param game the game structure
+ */
 void enemy_touch_player(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -205,6 +273,11 @@ void enemy_touch_player(Game *game)
     }
 }
 
+/**
+ * @brief Function that check if the enemy is inside the ulti hitbox and kill him
+ * 
+ * @param game the game structure
+ */
 void touch_by_ultime(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -216,6 +289,11 @@ void touch_by_ultime(Game *game)
     }
 }
 
+/**
+ * @brief Function that draw the enemy
+ * 
+ * @param game the game structure
+ */
 void call_view(Game *game)
 {
     for (int i = 0; i < game->number_enemies_key; i++)
@@ -228,6 +306,11 @@ void call_view(Game *game)
     }
 }
 
+/**
+ * @brief Function that manage the enemies
+ * 
+ * @param game 
+ */
 void move_enemies(Game *game)
 {
     if (normal_delay(30) < 0.5 * game->difficulty)

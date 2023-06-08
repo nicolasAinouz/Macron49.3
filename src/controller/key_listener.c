@@ -1,3 +1,12 @@
+/**
+ * @file key_listener.c
+ * @brief It's the keyboard listener of the game
+ * @details This file contains all the functions that manage all the keyboard action of the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
 #include <MLV/MLV_all.h>
 #include <time.h>
 #include <stdio.h>
@@ -11,6 +20,12 @@
 #include "../include/player_controller.h"
 #include "../include/rocket_controller.h"
 
+/**
+ * @brief Function that make inertie to the player
+ * 
+ * @param game the game structure
+ *
+ */
 void inertie(Game *game)
 {
     switch (game->last_keyboard_push)
@@ -31,6 +46,11 @@ void inertie(Game *game)
     }
 }
 
+/**
+ * @brief Function that move the player
+ * 
+ * @param game the game structure
+ */
 void move_player(Game *game)
 {
     int bool = 0;
@@ -70,6 +90,11 @@ void move_player(Game *game)
     game->player->speed = game->player->powerup->is_actif && game->player->powerup->type == 3 ? 40 : 20;
 }
 
+/**
+ * @brief Function that apply the inertie to the player
+ * 
+ * @param game the game structure
+ */
 void apply_inertie(Game *game)
 {
     if (game->player->speed > 2)
@@ -82,6 +107,11 @@ void apply_inertie(Game *game)
     }
 }
 
+/**
+ * @brief Function that make the player shoot is space is pressed
+ * 
+ * @param game the game structure
+ */
 void space(Game *game)
 {
     if (MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED && !game->player->is_shooting_too_much && !(game->player->powerup->type == 1 && game->player->powerup->is_actif))
@@ -90,6 +120,12 @@ void space(Game *game)
         game->player->shoot += 10;
     }
 }
+
+/**
+ * @brief Function that make the player use his powerup if shift is pressed
+ * 
+ * @param game the game structure
+ */
 void shift(Game *game)
 {
     if (MLV_get_keyboard_state(MLV_KEYBOARD_LSHIFT) == MLV_PRESSED && game->player->powerup->type > 0)
@@ -100,6 +136,12 @@ void shift(Game *game)
         }
     }
 }
+
+/**
+ * @brief Function that make the player quit the game if escape is pressed
+ * 
+ * @param game the game structure
+ */
 void escape(Game *game)
 {
     if (MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED)
@@ -107,6 +149,12 @@ void escape(Game *game)
         game->end_game = 1;
     }
 }
+
+/**
+ * @brief Function that listen the keyboard
+ * 
+ * @param game the game structure
+ */
 void key_listener(Game *game)
 {
     move_player(game);

@@ -1,3 +1,12 @@
+/**
+ * @file powerup.c
+ * @brief It's the controller of the powerup
+ * @details This file contains all the functions that manage the powerup of the game
+ * @author Nicolas Ainouz
+ * @version 1.0
+ * @date 08/06/2022
+ */
+
 #include <MLV/MLV_all.h>
 #include <math.h>
 #include <assert.h>
@@ -6,6 +15,11 @@
 #include "../include/struct_entity.h"
 #include "../include/window.h"
 
+/**
+ * @brief Create a powerup object
+ * 
+ * @param game 
+ */
 void create_powerup(Game *game)
 {
     int x = rand() % NB_POWER_UP + 1;
@@ -23,9 +37,14 @@ void create_powerup(Game *game)
         position->y += x;
     }
     game->powerup->position = position;
-    // game->powerup->position->x = WIDTH_FRAME;
-    // game->powerup->position->y = rand() % (HEIGHT_FRAME - SIZE_POWER_UP);
 }
+
+/**
+ * @brief Function that check if the player touch the powerup
+ * 
+ * @param game the game structure
+ * @return int the boolean if the player touch the powerup
+ */
 int touch_powerup(Game *game)
 {
     if (game->powerup->position->x < game->player->position->x + game->player->size &&
@@ -37,6 +56,12 @@ int touch_powerup(Game *game)
     }
     return 0;
 }
+
+/**
+ * @brief Function that give the powerup to the player
+ * 
+ * @param game the game structure
+ */
 void player_get_powerup(Game *game)
 {
     if (touch_powerup(game))
@@ -49,6 +74,12 @@ void player_get_powerup(Game *game)
         game->player->powerup->animation = 10000;
     }
 }
+
+/**
+ * @brief Function that move the powerup
+ * 
+ * @param game is the game structure
+ */
 void move_powerup(Game *game)
 {
     if (game->powerup->position->x < 0 - SIZE_POWER_UP)
