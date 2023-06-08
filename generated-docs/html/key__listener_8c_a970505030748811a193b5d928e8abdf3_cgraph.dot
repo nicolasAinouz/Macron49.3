@@ -1,0 +1,16 @@
+digraph "inertie"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="inertie",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that make inertie to the player."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="move_player_down",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#a2b2c40c3536d5891e3407efbd72b0772",tooltip="Function that move the player to the bottom."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="move_player_left",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#aa263a1cf3651d448f2ca86aec9604459",tooltip="Function that move the player to the left."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="move_player_right",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#a18bcc4dac04fe247ff08506d51facaab",tooltip="Function that move the player to the right."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="move_player_up",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#aa21a690be5aff36ed3a4a98bea0213b2",tooltip="Function that move the player to the top."];
+}

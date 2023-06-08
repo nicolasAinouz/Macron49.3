@@ -1,0 +1,12 @@
+digraph "draw_powerup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="draw_powerup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="coordinate the draw of the powerup"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="draw_powerup_in_game",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8c.html#acbf2a3c3c4cd673d07921ba02d190e83",tooltip="draw the powerup"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="draw_powerup_square",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8c.html#a19669196900d6f9123d3996bb61fb48a",tooltip="draw the powerup on the top right of the screen to show the inventory"];
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Macron 49.3:  Fichier source de src/include/window.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Macron 49.3
+   </div>
+   <div id="projectbrief">Projet de prog. C pour l&#39;ESIPE</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b0856f6b0d80ccb263b2f415c91f9e17.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">window.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="window_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __WINDOW__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __WINDOW__</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;MLV/MLV_all.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="const_8h.html">const.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="struct__entity_8h.html">struct_entity.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a612045ba17c465613f7c86ac8ce009d3">init_window</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#ae670f0831844436876c163d67321e48b">draw_window</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">int</span> <a class="code" href="window_8h.html#acbe31e601d12b8d249df340ae912fd66">clear_window</a>();</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">int</span> <a class="code" href="window_8h.html#a987146d5f78326f51a94da0b4e3e8f48">free_window</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a2bf8e35f30ec73da8fc96f1a5d7204f3">draw_enemy</a>(<a class="code" href="structenemy.html">Enemy</a> *<a class="code" href="structenemy.html">enemy</a>, MLV_Image *img_enemy);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#ac91739c09698faa44415abaabf2bdd89">draw_rocket</a>(<a class="code" href="structrocket.html">Rocket</a> *<a class="code" href="structrocket.html">rocket</a>, MLV_Image *img_rocket);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a9a9aad364660af00c3e95d8a4d852fed">draw_explosion</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, MLV_Image *img_explosion);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a6a0f4c435d245ab1bc0371cbf4af2969">draw_enemy_health</a>(<a class="code" href="structenemy.html">Enemy</a> *<a class="code" href="structenemy.html">enemy</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#ac4e313d79acdbf890386fe1b60d88ace">draw_powerup</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a0095dead6f24ff59e0fb077c3f53fa02">draw_power_up_dbz</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#ac4e313d79acdbf890386fe1b60d88ace">draw_powerup</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a83f32927a3f69547a411c268117189d2">draw_player</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#ad848a2f5317abc95acfaf9f305cabc7b">draw_health</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a99ddc35b5a5fed9329669d02cd0c04cd">draw_score</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a9629912b354b0b6e8dffe24525dd9b50">draw_shoot_bar</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="window_8h.html#a2619451c3f6a3bdb22fa04981258a4c9">print_game_over</a>(<a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="awindow_8h_html_a2619451c3f6a3bdb22fa04981258a4c9"><div class="ttname"><a href="window_8h.html#a2619451c3f6a3bdb22fa04981258a4c9">print_game_over</a></div><div class="ttdeci">void print_game_over(Game *game)</div><div class="ttdoc">draw the game over screen</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00311">window.c:311</a></div></div>
+<div class="ttc" id="awindow_8h_html_a9a9aad364660af00c3e95d8a4d852fed"><div class="ttname"><a href="window_8h.html#a9a9aad364660af00c3e95d8a4d852fed">draw_explosion</a></div><div class="ttdeci">void draw_explosion(int x, int y, MLV_Image *img_explosion)</div><div class="ttdoc">draw the explosion of special rocket</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00271">window.c:271</a></div></div>
+<div class="ttc" id="awindow_8h_html_ad848a2f5317abc95acfaf9f305cabc7b"><div class="ttname"><a href="window_8h.html#ad848a2f5317abc95acfaf9f305cabc7b">draw_health</a></div><div class="ttdeci">void draw_health(Game *game)</div><div class="ttdoc">draw the player health</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00229">window.c:229</a></div></div>
+<div class="ttc" id="awindow_8h_html_ac4e313d79acdbf890386fe1b60d88ace"><div class="ttname"><a href="window_8h.html#ac4e313d79acdbf890386fe1b60d88ace">draw_powerup</a></div><div class="ttdeci">void draw_powerup(Game *game)</div><div class="ttdoc">coordinate the draw of the powerup</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00163">window.c:163</a></div></div>
+<div class="ttc" id="awindow_8h_html_a987146d5f78326f51a94da0b4e3e8f48"><div class="ttname"><a href="window_8h.html#a987146d5f78326f51a94da0b4e3e8f48">free_window</a></div><div class="ttdeci">int free_window()</div></div>
+<div class="ttc" id="awindow_8h_html_a83f32927a3f69547a411c268117189d2"><div class="ttname"><a href="window_8h.html#a83f32927a3f69547a411c268117189d2">draw_player</a></div><div class="ttdeci">void draw_player(Game *game)</div><div class="ttdoc">draw the player</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00205">window.c:205</a></div></div>
+<div class="ttc" id="awindow_8h_html_a6a0f4c435d245ab1bc0371cbf4af2969"><div class="ttname"><a href="window_8h.html#a6a0f4c435d245ab1bc0371cbf4af2969">draw_enemy_health</a></div><div class="ttdeci">void draw_enemy_health(Enemy *enemy)</div><div class="ttdoc">draw the health of special enemy</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00174">window.c:174</a></div></div>
+<div class="ttc" id="awindow_8h_html_a99ddc35b5a5fed9329669d02cd0c04cd"><div class="ttname"><a href="window_8h.html#a99ddc35b5a5fed9329669d02cd0c04cd">draw_score</a></div><div class="ttdeci">void draw_score(Game *game)</div><div class="ttdoc">draw the score</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00243">window.c:243</a></div></div>
+<div class="ttc" id="astruct__entity_8h_html"><div class="ttname"><a href="struct__entity_8h.html">struct_entity.h</a></div><div class="ttdoc">contains all the structure of the game</div></div>
+<div class="ttc" id="awindow_8h_html_a612045ba17c465613f7c86ac8ce009d3"><div class="ttname"><a href="window_8h.html#a612045ba17c465613f7c86ac8ce009d3">init_window</a></div><div class="ttdeci">void init_window(Game *game)</div><div class="ttdoc">inisialize all the window of the game</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00067">window.c:67</a></div></div>
+<div class="ttc" id="awindow_8h_html_ac91739c09698faa44415abaabf2bdd89"><div class="ttname"><a href="window_8h.html#ac91739c09698faa44415abaabf2bdd89">draw_rocket</a></div><div class="ttdeci">void draw_rocket(Rocket *rocket, MLV_Image *img_rocket)</div><div class="ttdoc">draw the rocket in the game</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00190">window.c:190</a></div></div>
+<div class="ttc" id="awindow_8h_html_a0095dead6f24ff59e0fb077c3f53fa02"><div class="ttname"><a href="window_8h.html#a0095dead6f24ff59e0fb077c3f53fa02">draw_power_up_dbz</a></div><div class="ttdeci">void draw_power_up_dbz(Game *game)</div><div class="ttdoc">draw the explosion of powerup dbz</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00282">window.c:282</a></div></div>
+<div class="ttc" id="awindow_8h_html_a2bf8e35f30ec73da8fc96f1a5d7204f3"><div class="ttname"><a href="window_8h.html#a2bf8e35f30ec73da8fc96f1a5d7204f3">draw_enemy</a></div><div class="ttdeci">void draw_enemy(Enemy *enemy, MLV_Image *img_enemy)</div><div class="ttdoc">draw the enemy</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00088">window.c:88</a></div></div>
+<div class="ttc" id="aconst_8h_html"><div class="ttname"><a href="const_8h.html">const.h</a></div><div class="ttdoc">it's contain all the constant of the game</div></div>
+<div class="ttc" id="astructrocket_html"><div class="ttname"><a href="structrocket.html">rocket</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00052">struct_entity.h:52</a></div></div>
+<div class="ttc" id="astructgame_html"><div class="ttname"><a href="structgame.html">game</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00098">struct_entity.h:98</a></div></div>
+<div class="ttc" id="awindow_8h_html_ae670f0831844436876c163d67321e48b"><div class="ttname"><a href="window_8h.html#ae670f0831844436876c163d67321e48b">draw_window</a></div><div class="ttdeci">void draw_window(Game *game)</div><div class="ttdoc">draw the background</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00259">window.c:259</a></div></div>
+<div class="ttc" id="awindow_8h_html_a9629912b354b0b6e8dffe24525dd9b50"><div class="ttname"><a href="window_8h.html#a9629912b354b0b6e8dffe24525dd9b50">draw_shoot_bar</a></div><div class="ttdeci">void draw_shoot_bar(Game *game)</div><div class="ttdoc">draw the shoot bar if player shooting too much</div><div class="ttdef"><b>Definition:</b> <a href="window_8c_source.html#l00326">window.c:326</a></div></div>
+<div class="ttc" id="awindow_8h_html_acbe31e601d12b8d249df340ae912fd66"><div class="ttname"><a href="window_8h.html#acbe31e601d12b8d249df340ae912fd66">clear_window</a></div><div class="ttdeci">int clear_window()</div></div>
+<div class="ttc" id="astructenemy_html"><div class="ttname"><a href="structenemy.html">enemy</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00066">struct_entity.h:66</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -11,6 +11,4 @@ Controle shift i -> formatter sous vsc
 
 
 TODO : 
--> faire doc
 -> faire rapport
--> draw input name en void

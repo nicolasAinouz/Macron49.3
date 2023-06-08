@@ -1,0 +1,18 @@
+digraph "player_update"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="player_update",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that manage the player and draw it."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="check_shooting_to_much",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#aeebc6bb4f4ffef292cf1702cc5fe4650",tooltip="Function that check if the player is shooting too much."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="draw_shoot_bar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8h.html#a9629912b354b0b6e8dffe24525dd9b50",tooltip="draw the shoot bar if player shooting too much"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="draw_health",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8h.html#ad848a2f5317abc95acfaf9f305cabc7b",tooltip="draw the player health"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="draw_player",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8h.html#a83f32927a3f69547a411c268117189d2",tooltip="draw the player"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="draw_score",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8h.html#a99ddc35b5a5fed9329669d02cd0c04cd",tooltip="draw the score"];
+}

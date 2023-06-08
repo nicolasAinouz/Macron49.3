@@ -1,0 +1,19 @@
+digraph "shoot"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="shoot",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function for shoot a rocket for player and enemy."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="enemy_shoot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enemies__controller_8c.html#a9908f4e396f6ef312894469c5ea384fc",tooltip="Function that manage the shoot of the enemies."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="move_enemies",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enemies__controller_8h.html#ad6d942feaf487fc2a0fdba53584d00be",tooltip="Function that manage the enemies."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089",tooltip="Main function of the project contain the game loop."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="space",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$key__listener_8c.html#ab8b07ab9cdd615dd65c62a0eb61652c3",tooltip="Function that make the player shoot is space is pressed."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="key_listener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$key__listener_8h.html#a6661073e728eb5818d0faf3dfd8dfe98",tooltip="Function that listen the keyboard."];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

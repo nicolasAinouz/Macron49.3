@@ -1,0 +1,12 @@
+digraph "home"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="home",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that launch the home screen."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="click_on_play",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$home_8h.html#aefa0163ae52b5b33d6e394567d27161a",tooltip="Function that check if the user click on the play button."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="launch_home",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$home_8h.html#a04c4f719bbf663e66a0eaa2add05d816",tooltip="Function that create window and launch the home screen."];
+}

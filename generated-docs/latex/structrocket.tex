@@ -1,0 +1,188 @@
+\hypertarget{structrocket}{}\doxysection{Référence de la structure rocket}
+\label{structrocket}\index{rocket@{rocket}}
+
+
+{\ttfamily \#include $<$struct\+\_\+entity.\+h$>$}
+
+
+
+Graphe de collaboration de rocket\+:
+% FIG 0
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}} $\ast$ \mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}
+\item 
+int \mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}}
+\item 
+int \mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}}
+\item 
+int \mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}}
+\item 
+int \mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\+\_\+alive}}
+\item 
+\mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}} $\ast$ \mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}
+\item 
+int \mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\+\_\+player}}
+\item 
+int \mbox{\hyperlink{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}{is\+\_\+special}}
+\item 
+int \mbox{\hyperlink{structrocket_a96ebe6019fc6c197296e4f002e3b1909}{time}}
+\item 
+int \mbox{\hyperlink{structrocket_af6503f7000142645fdc1a278f5b50b92}{time\+\_\+explosion}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+
+
+Définition à la ligne 52 du fichier struct\+\_\+entity.\+h.
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{structrocket_a75258b1053bb0537a4a168b0553adce9}\label{structrocket_a75258b1053bb0537a4a168b0553adce9}} 
+\index{rocket@{rocket}!damage@{damage}}
+\index{damage@{damage}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{damage}{damage}}
+{\footnotesize\ttfamily int rocket\+::damage}
+
+
+
+Définition à la ligne 57 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par init\+\_\+tab\+\_\+rocket(), rocket\+\_\+available(), shoot(), special\+\_\+rocket\+\_\+explosing(), et touch\+\_\+by\+\_\+rocket().
+
+\mbox{\Hypertarget{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}\label{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}} 
+\index{rocket@{rocket}!hitbox@{hitbox}}
+\index{hitbox@{hitbox}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{hitbox}{hitbox}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}}$\ast$ rocket\+::hitbox}
+
+
+
+Définition à la ligne 59 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par is\+\_\+inside\+\_\+hitbox(), rocket\+\_\+touch\+\_\+player(), et shoot().
+
+\mbox{\Hypertarget{structrocket_ae4d14749035325bbee86d73775af5339}\label{structrocket_ae4d14749035325bbee86d73775af5339}} 
+\index{rocket@{rocket}!is\_alive@{is\_alive}}
+\index{is\_alive@{is\_alive}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{is\_alive}{is\_alive}}
+{\footnotesize\ttfamily int rocket\+::is\+\_\+alive}
+
+
+
+Définition à la ligne 58 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par draw\+\_\+rocket(), init\+\_\+tab\+\_\+rocket(), kill\+\_\+special\+\_\+rocket(), shoot(), et touch\+\_\+by\+\_\+rocket().
+
+\mbox{\Hypertarget{structrocket_a06e2258a74158c246c3e68e937f90cf0}\label{structrocket_a06e2258a74158c246c3e68e937f90cf0}} 
+\index{rocket@{rocket}!is\_player@{is\_player}}
+\index{is\_player@{is\_player}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{is\_player}{is\_player}}
+{\footnotesize\ttfamily int rocket\+::is\+\_\+player}
+
+
+
+Définition à la ligne 60 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par init\+\_\+tab\+\_\+rocket(), move\+\_\+rocket(), rocket\+\_\+touch\+\_\+player(), shoot(), et touch\+\_\+by\+\_\+rocket().
+
+\mbox{\Hypertarget{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}\label{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}} 
+\index{rocket@{rocket}!is\_special@{is\_special}}
+\index{is\_special@{is\_special}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{is\_special}{is\_special}}
+{\footnotesize\ttfamily int rocket\+::is\+\_\+special}
+
+
+
+Définition à la ligne 61 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par move\+\_\+rocket(), et shoot().
+
+\mbox{\Hypertarget{structrocket_afabe6ee32da516d8e78975ec4688e42f}\label{structrocket_afabe6ee32da516d8e78975ec4688e42f}} 
+\index{rocket@{rocket}!position@{position}}
+\index{position@{position}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}}$\ast$ rocket\+::position}
+
+
+
+Définition à la ligne 54 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par draw\+\_\+rocket(), init\+\_\+tab\+\_\+rocket(), is\+\_\+out\+\_\+of\+\_\+map(), move\+\_\+rocket\+\_\+enemy(), move\+\_\+rocket\+\_\+player(), move\+\_\+special\+\_\+rocket(), shoot(), et special\+\_\+rocket\+\_\+explosing().
+
+\mbox{\Hypertarget{structrocket_a2570866927e75ec614a63dbb65977823}\label{structrocket_a2570866927e75ec614a63dbb65977823}} 
+\index{rocket@{rocket}!size@{size}}
+\index{size@{size}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int rocket\+::size}
+
+
+
+Définition à la ligne 55 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par draw\+\_\+rocket(), init\+\_\+tab\+\_\+rocket(), is\+\_\+out\+\_\+of\+\_\+map(), et shoot().
+
+\mbox{\Hypertarget{structrocket_af863f7fa4b181ef401c8ccae7f55f516}\label{structrocket_af863f7fa4b181ef401c8ccae7f55f516}} 
+\index{rocket@{rocket}!speed@{speed}}
+\index{speed@{speed}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int rocket\+::speed}
+
+
+
+Définition à la ligne 56 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par init\+\_\+tab\+\_\+rocket(), move\+\_\+rocket\+\_\+enemy(), move\+\_\+rocket\+\_\+player(), move\+\_\+special\+\_\+rocket(), et shoot().
+
+\mbox{\Hypertarget{structrocket_a96ebe6019fc6c197296e4f002e3b1909}\label{structrocket_a96ebe6019fc6c197296e4f002e3b1909}} 
+\index{rocket@{rocket}!time@{time}}
+\index{time@{time}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily int rocket\+::time}
+
+
+
+Définition à la ligne 62 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par move\+\_\+rocket(), shoot(), et update\+\_\+special\+\_\+rocket().
+
+\mbox{\Hypertarget{structrocket_af6503f7000142645fdc1a278f5b50b92}\label{structrocket_af6503f7000142645fdc1a278f5b50b92}} 
+\index{rocket@{rocket}!time\_explosion@{time\_explosion}}
+\index{time\_explosion@{time\_explosion}!rocket@{rocket}}
+\doxysubsubsection{\texorpdfstring{time\_explosion}{time\_explosion}}
+{\footnotesize\ttfamily int rocket\+::time\+\_\+explosion}
+
+
+
+Définition à la ligne 63 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par shoot(), special\+\_\+rocket\+\_\+explosing(), et update\+\_\+special\+\_\+rocket().
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{struct__entity_8h}{struct\+\_\+entity.\+h}}\end{DoxyCompactItemize}

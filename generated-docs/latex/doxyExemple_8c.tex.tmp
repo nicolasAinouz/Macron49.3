@@ -1,0 +1,64 @@
+\hypertarget{doxyExemple_8c}{}\doxysection{Référence du fichier doxy\+Exemple.\+c}
+\label{doxyExemple_8c}\index{doxyExemple.c@{doxyExemple.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Graphe des dépendances par inclusion de doxy\+Exemple.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{doxyExemple_8c_a96ef02dfc17a66a9a1863bc21404d971}{addition}} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Cette fonction effectue une addition de deux nombres entiers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{doxyExemple_8c_abf9e6b7e6f15df4b525a2e7705ba3089}{main}} (int argc, char const $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{doxyExemple_8c_a96ef02dfc17a66a9a1863bc21404d971}\label{doxyExemple_8c_a96ef02dfc17a66a9a1863bc21404d971}} 
+\index{doxyExemple.c@{doxyExemple.c}!addition@{addition}}
+\index{addition@{addition}!doxyExemple.c@{doxyExemple.c}}
+\doxysubsubsection{\texorpdfstring{addition()}{addition()}}
+{\footnotesize\ttfamily int addition (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+
+
+Cette fonction effectue une addition de deux nombres entiers. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\texttt{ in}}  & {\em a} & Le premier entier. \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & Le deuxième entier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La somme des deux entiers. 
+\end{DoxyReturn}
+
+
+Définition à la ligne 10 du fichier doxy\+Exemple.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{10                            \{}
+\DoxyCodeLine{11     \textcolor{keywordflow}{return} a + b;}
+\DoxyCodeLine{12 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{doxyExemple_8c_abf9e6b7e6f15df4b525a2e7705ba3089}\label{doxyExemple_8c_abf9e6b7e6f15df4b525a2e7705ba3089}} 
+\index{doxyExemple.c@{doxyExemple.c}!main@{main}}
+\index{main@{main}!doxyExemple.c@{doxyExemple.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char const $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne 14 du fichier doxy\+Exemple.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{comment}{/* code */}}
+\DoxyCodeLine{17     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{18 \}}
+
+\end{DoxyCode}

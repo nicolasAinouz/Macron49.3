@@ -1,0 +1,892 @@
+\hypertarget{window_8c}{}\doxysection{Référence du fichier src/view/window.c}
+\label{window_8c}\index{src/view/window.c@{src/view/window.c}}
+
+
+It\textquotesingle{}s the view of the game.  
+
+
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../include/const.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/key\+\_\+listener.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/player\+\_\+controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/struct\+\_\+entity.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/enemies\+\_\+controller.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de window.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{window_8c_a7150de216a22d61cf217c5259c262b4e}{set\+\_\+image}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em inisialize all the image of the game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a9b42f90078687caae7df5580464dfaf5}{set\+\_\+sound}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em inisialize all the sound of the game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a1b2f22266e3db25b76708141d6ba8da3}{set\+\_\+font}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em inisialize all the font of the game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a612045ba17c465613f7c86ac8ce009d3}{init\+\_\+window}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em inisialize all the window of the game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a2bf8e35f30ec73da8fc96f1a5d7204f3}{draw\+\_\+enemy}} (\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$\mbox{\hyperlink{structenemy}{enemy}}, M\+L\+V\+\_\+\+Image $\ast$img\+\_\+enemy)
+\begin{DoxyCompactList}\small\item\em draw the enemy \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_acbf2a3c3c4cd673d07921ba02d190e83}{draw\+\_\+powerup\+\_\+in\+\_\+game}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the powerup \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a19669196900d6f9123d3996bb61fb48a}{draw\+\_\+powerup\+\_\+square}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the powerup on the top right of the screen to show the inventory \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_ac4e313d79acdbf890386fe1b60d88ace}{draw\+\_\+powerup}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em coordinate the draw of the powerup \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a6a0f4c435d245ab1bc0371cbf4af2969}{draw\+\_\+enemy\+\_\+health}} (\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$\mbox{\hyperlink{structenemy}{enemy}})
+\begin{DoxyCompactList}\small\item\em draw the health of special enemy \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_ac91739c09698faa44415abaabf2bdd89}{draw\+\_\+rocket}} (\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$\mbox{\hyperlink{structrocket}{rocket}}, M\+L\+V\+\_\+\+Image $\ast$img\+\_\+rocket)
+\begin{DoxyCompactList}\small\item\em draw the rocket in the game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a83f32927a3f69547a411c268117189d2}{draw\+\_\+player}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the player \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_ad848a2f5317abc95acfaf9f305cabc7b}{draw\+\_\+health}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the player health \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a99ddc35b5a5fed9329669d02cd0c04cd}{draw\+\_\+score}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the score \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_ae670f0831844436876c163d67321e48b}{draw\+\_\+window}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the background \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a9a9aad364660af00c3e95d8a4d852fed}{draw\+\_\+explosion}} (int x, int y, M\+L\+V\+\_\+\+Image $\ast$img\+\_\+explosion)
+\begin{DoxyCompactList}\small\item\em draw the explosion of special rocket \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a0095dead6f24ff59e0fb077c3f53fa02}{draw\+\_\+power\+\_\+up\+\_\+dbz}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the explosion of powerup dbz \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{window_8c_a2af2cae85c76d116122ccc6339ebf323}{draw\+\_\+input\+\_\+name}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the input rectangle to enter the name \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a2619451c3f6a3bdb22fa04981258a4c9}{print\+\_\+game\+\_\+over}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the game over screen \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{window_8c_a9629912b354b0b6e8dffe24525dd9b50}{draw\+\_\+shoot\+\_\+bar}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em draw the shoot bar if player shooting too much \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+It\textquotesingle{}s the view of the game. 
+
+This file contains all the functions that display the game \begin{DoxyAuthor}{Auteur}
+Nicolas Ainouz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+08/06/2022 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{window_8c_a2bf8e35f30ec73da8fc96f1a5d7204f3}\label{window_8c_a2bf8e35f30ec73da8fc96f1a5d7204f3}} 
+\index{window.c@{window.c}!draw\_enemy@{draw\_enemy}}
+\index{draw\_enemy@{draw\_enemy}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_enemy()}{draw\_enemy()}}
+{\footnotesize\ttfamily void draw\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$}]{enemy,  }\item[{M\+L\+V\+\_\+\+Image $\ast$}]{img\+\_\+enemy }\end{DoxyParamCaption})}
+
+
+
+draw the enemy 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em enemy} & The enemy structure \\
+\hline
+{\em img\+\_\+enemy} & The image of the enemy \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 88 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{89 \{}
+\DoxyCodeLine{90     MLV\_resize\_image\_with\_proportions(img\_enemy, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a05c59ef6945467625d57a3025ade6bf7}{size}}, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a05c59ef6945467625d57a3025ade6bf7}{size}});}
+\DoxyCodeLine{91     MLV\_draw\_image(img\_enemy, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{92 \}}
+
+\end{DoxyCode}
+
+
+Références enemy\+::position, enemy\+::size, position\+::x, et position\+::y.
+
+
+
+Référencé par call\+\_\+view().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 1
+\mbox{\Hypertarget{window_8c_a6a0f4c435d245ab1bc0371cbf4af2969}\label{window_8c_a6a0f4c435d245ab1bc0371cbf4af2969}} 
+\index{window.c@{window.c}!draw\_enemy\_health@{draw\_enemy\_health}}
+\index{draw\_enemy\_health@{draw\_enemy\_health}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_enemy\_health()}{draw\_enemy\_health()}}
+{\footnotesize\ttfamily void draw\+\_\+enemy\+\_\+health (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$}]{enemy }\end{DoxyParamCaption})}
+
+
+
+draw the health of special enemy 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em enemy} & The enemy structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 174 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{175 \{}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}{health}} > \mbox{\hyperlink{const_8h_a3194de39ce88211a535f5e093df703eb}{HEALTH\_SPECIAL\_ENEMY}} / 3)}
+\DoxyCodeLine{178         MLV\_draw\_filled\_rectangle(\mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} -\/ 10, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}{health}} * 3, 5, MLV\_COLOR\_GREEN);}
+\DoxyCodeLine{179     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{180         MLV\_draw\_filled\_rectangle(\mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} -\/ 10, \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}{health}} * 3, 5, MLV\_COLOR\_RED);}
+\DoxyCodeLine{181 \}}
+
+\end{DoxyCode}
+
+
+Références enemy\+::health, H\+E\+A\+L\+T\+H\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+E\+N\+E\+MY, enemy\+::position, position\+::x, et position\+::y.
+
+
+
+Référencé par call\+\_\+view().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\mbox{\Hypertarget{window_8c_a9a9aad364660af00c3e95d8a4d852fed}\label{window_8c_a9a9aad364660af00c3e95d8a4d852fed}} 
+\index{window.c@{window.c}!draw\_explosion@{draw\_explosion}}
+\index{draw\_explosion@{draw\_explosion}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_explosion()}{draw\_explosion()}}
+{\footnotesize\ttfamily void draw\+\_\+explosion (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{M\+L\+V\+\_\+\+Image $\ast$}]{img\+\_\+explosion }\end{DoxyParamCaption})}
+
+
+
+draw the explosion of special rocket 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & the x coordinate of the explosion \\
+\hline
+{\em y} & the y coordinate of the explosion \\
+\hline
+{\em img\+\_\+explosion} & the image of the explosion \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 271 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{272 \{}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     MLV\_draw\_image(img\_explosion, x, y);}
+\DoxyCodeLine{275 \}}
+
+\end{DoxyCode}
+
+
+Référencé par special\+\_\+rocket\+\_\+explosing().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 3
+\mbox{\Hypertarget{window_8c_ad848a2f5317abc95acfaf9f305cabc7b}\label{window_8c_ad848a2f5317abc95acfaf9f305cabc7b}} 
+\index{window.c@{window.c}!draw\_health@{draw\_health}}
+\index{draw\_health@{draw\_health}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_health()}{draw\_health()}}
+{\footnotesize\ttfamily void draw\+\_\+health (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the player health 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 229 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{230 \{}
+\DoxyCodeLine{231     MLV\_draw\_rectangle(9, 9, (\mbox{\hyperlink{const_8h_a1e7b9dc23509ac72b184ae469fe19cb5}{HEALTH\_PLAYER}} * \mbox{\hyperlink{const_8h_a6c01420a031847055fb0cca685f513bd}{SIZE\_PLAYER}} / 2) + 2, 12, MLV\_COLOR\_BLANCHED\_ALMOND);}
+\DoxyCodeLine{232     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} > \mbox{\hyperlink{const_8h_a1e7b9dc23509ac72b184ae469fe19cb5}{HEALTH\_PLAYER}} / 3)}
+\DoxyCodeLine{233         MLV\_draw\_filled\_rectangle(10, 10, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} * \mbox{\hyperlink{const_8h_a6c01420a031847055fb0cca685f513bd}{SIZE\_PLAYER}} / 2, 10, MLV\_COLOR\_GREEN);}
+\DoxyCodeLine{234     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{235         MLV\_draw\_filled\_rectangle(10, 10, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} * \mbox{\hyperlink{const_8h_a6c01420a031847055fb0cca685f513bd}{SIZE\_PLAYER}} / 2, 10, MLV\_COLOR\_RED);}
+\DoxyCodeLine{236 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::health, H\+E\+A\+L\+T\+H\+\_\+\+P\+L\+A\+Y\+ER, game\+::player, et S\+I\+Z\+E\+\_\+\+P\+L\+A\+Y\+ER.
+
+
+
+Référencé par player\+\_\+update().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4
+\mbox{\Hypertarget{window_8c_a2af2cae85c76d116122ccc6339ebf323}\label{window_8c_a2af2cae85c76d116122ccc6339ebf323}} 
+\index{window.c@{window.c}!draw\_input\_name@{draw\_input\_name}}
+\index{draw\_input\_name@{draw\_input\_name}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_input\_name()}{draw\_input\_name()}}
+{\footnotesize\ttfamily int draw\+\_\+input\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the input rectangle to enter the name 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+
+
+Définition à la ligne 296 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{297 \{}
+\DoxyCodeLine{298     \textcolor{comment}{// char *player\_name;}}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300     MLV\_draw\_adapted\_text\_box\_with\_font(400, 150, \textcolor{stringliteral}{"GAME OVER"}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}}, 30, MLV\_COLOR\_BLACK, MLV\_COLOR\_WHITE, MLV\_rgba(0, 0, 0, 100), MLV\_TEXT\_CENTER);}
+\DoxyCodeLine{301     \textcolor{comment}{// party-\/>player-\/>name = player\_name;}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303     \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{304 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::font.
+
+\mbox{\Hypertarget{window_8c_a83f32927a3f69547a411c268117189d2}\label{window_8c_a83f32927a3f69547a411c268117189d2}} 
+\index{window.c@{window.c}!draw\_player@{draw\_player}}
+\index{draw\_player@{draw\_player}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_player()}{draw\_player()}}
+{\footnotesize\ttfamily void draw\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the player 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 205 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{206 \{}
+\DoxyCodeLine{207     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a65ba5bf19668808bbdf8c4e918149cb5}{is\_actif}} \&\& \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}} == 1)}
+\DoxyCodeLine{208     \{}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210         MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aab7df6b4a807878a2f1680711e86b2e6}{img\_player\_dbz}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} * 2, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} * 2);}
+\DoxyCodeLine{211         MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aab7df6b4a807878a2f1680711e86b2e6}{img\_player\_dbz}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{212         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a2067a25a56fdb3c55c72e93c13afdaee}{animation}} < 70)}
+\DoxyCodeLine{213         \{}
+\DoxyCodeLine{214             MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7d33400aca97d7992242199b390c6310}{img\_explosion\_dbz}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} -\/ 150, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} -\/ 300);}
+\DoxyCodeLine{215         \}}
+\DoxyCodeLine{216     \}}
+\DoxyCodeLine{217     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{218     \{}
+\DoxyCodeLine{219         MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7a6587a1ed655bb37713f0ea46f88018}{img\_player}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}});}
+\DoxyCodeLine{220         MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7a6587a1ed655bb37713f0ea46f88018}{img\_player}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222 \}}
+
+\end{DoxyCode}
+
+
+Références powerup\+::animation, game\+::image, image\+\_\+game\+::img\+\_\+explosion\+\_\+dbz, image\+\_\+game\+::img\+\_\+player, image\+\_\+game\+::img\+\_\+player\+\_\+dbz, powerup\+::is\+\_\+actif, game\+::player, player\+::position, player\+::powerup, player\+::size, powerup\+::type, position\+::x, et position\+::y.
+
+
+
+Référencé par player\+\_\+update().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 5
+\mbox{\Hypertarget{window_8c_a0095dead6f24ff59e0fb077c3f53fa02}\label{window_8c_a0095dead6f24ff59e0fb077c3f53fa02}} 
+\index{window.c@{window.c}!draw\_power\_up\_dbz@{draw\_power\_up\_dbz}}
+\index{draw\_power\_up\_dbz@{draw\_power\_up\_dbz}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_power\_up\_dbz()}{draw\_power\_up\_dbz()}}
+{\footnotesize\ttfamily void draw\+\_\+power\+\_\+up\+\_\+dbz (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the explosion of powerup dbz 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 282 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{283 \{}
+\DoxyCodeLine{284     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a2067a25a56fdb3c55c72e93c13afdaee}{animation}} == 180)}
+\DoxyCodeLine{285     \{}
+\DoxyCodeLine{286         MLV\_play\_sound(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a26ccdfc73772ac5afb9bd10de0cb1fe1}{sounddbz}}, 1.0);}
+\DoxyCodeLine{287     \}}
+\DoxyCodeLine{288 \}}
+
+\end{DoxyCode}
+
+
+Références powerup\+::animation, game\+::player, player\+::powerup, et game\+::sounddbz.
+
+
+
+Référencé par active\+\_\+power\+\_\+up().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 6
+\mbox{\Hypertarget{window_8c_ac4e313d79acdbf890386fe1b60d88ace}\label{window_8c_ac4e313d79acdbf890386fe1b60d88ace}} 
+\index{window.c@{window.c}!draw\_powerup@{draw\_powerup}}
+\index{draw\_powerup@{draw\_powerup}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_powerup()}{draw\_powerup()}}
+{\footnotesize\ttfamily void draw\+\_\+powerup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+coordinate the draw of the powerup 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 163 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164 \{}
+\DoxyCodeLine{165     \mbox{\hyperlink{window_8c_a19669196900d6f9123d3996bb61fb48a}{draw\_powerup\_square}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{166     \mbox{\hyperlink{window_8c_acbf2a3c3c4cd673d07921ba02d190e83}{draw\_powerup\_in\_game}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{167 \}}
+
+\end{DoxyCode}
+
+
+Références draw\+\_\+powerup\+\_\+in\+\_\+game(), et draw\+\_\+powerup\+\_\+square().
+
+
+
+Référencé par update\+\_\+powerup().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 7
+Voici le graphe des appelants de cette fonction \+:
+% FIG 8
+\mbox{\Hypertarget{window_8c_acbf2a3c3c4cd673d07921ba02d190e83}\label{window_8c_acbf2a3c3c4cd673d07921ba02d190e83}} 
+\index{window.c@{window.c}!draw\_powerup\_in\_game@{draw\_powerup\_in\_game}}
+\index{draw\_powerup\_in\_game@{draw\_powerup\_in\_game}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_powerup\_in\_game()}{draw\_powerup\_in\_game()}}
+{\footnotesize\ttfamily void draw\+\_\+powerup\+\_\+in\+\_\+game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the powerup 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 99 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100 \{}
+\DoxyCodeLine{101     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a1cd74ecce136eefa06fafeef08639581}{in\_the\_game}})}
+\DoxyCodeLine{102     \{}
+\DoxyCodeLine{103         \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}})}
+\DoxyCodeLine{104         \{}
+\DoxyCodeLine{105         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{106             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{107         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{108             MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}});}
+\DoxyCodeLine{109             MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{112         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{113             MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}});}
+\DoxyCodeLine{114             MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{117         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{118             MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}}, \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}});}
+\DoxyCodeLine{119             MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{122         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{123             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{124         \}}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::image, image\+\_\+game\+::img\+\_\+powerup\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+health, image\+\_\+game\+::img\+\_\+powerup\+\_\+speed, powerup\+::in\+\_\+the\+\_\+game, powerup\+::position, game\+::powerup, S\+I\+Z\+E\+\_\+\+P\+O\+W\+E\+R\+\_\+\+UP, powerup\+::type, position\+::x, et position\+::y.
+
+
+
+Référencé par draw\+\_\+powerup().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 9
+\mbox{\Hypertarget{window_8c_a19669196900d6f9123d3996bb61fb48a}\label{window_8c_a19669196900d6f9123d3996bb61fb48a}} 
+\index{window.c@{window.c}!draw\_powerup\_square@{draw\_powerup\_square}}
+\index{draw\_powerup\_square@{draw\_powerup\_square}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_powerup\_square()}{draw\_powerup\_square()}}
+{\footnotesize\ttfamily void draw\+\_\+powerup\+\_\+square (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the powerup on the top right of the screen to show the inventory 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 133 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135     MLV\_draw\_filled\_rectangle(\mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 1.1, 10, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10, MLV\_rgba(0, 0, 0, 120));}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}})}
+\DoxyCodeLine{138     \{}
+\DoxyCodeLine{139     \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{140         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{141     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{142         MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}}, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10);}
+\DoxyCodeLine{143         MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}}, \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 1.1, 10);}
+\DoxyCodeLine{144         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{145     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{146         MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}}, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10);}
+\DoxyCodeLine{147         MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}}, \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 1.1, 10);}
+\DoxyCodeLine{148         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{149     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{150     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{151         MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}}, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ 10);}
+\DoxyCodeLine{152         MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}}, \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 1.1, 10);}
+\DoxyCodeLine{153         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{154     \}}
+\DoxyCodeLine{155 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::image, image\+\_\+game\+::img\+\_\+powerup\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+health, image\+\_\+game\+::img\+\_\+powerup\+\_\+speed, P\+A\+D\+D\+I\+N\+G\+\_\+\+T\+OP, game\+::player, player\+::powerup, powerup\+::type, et W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME.
+
+
+
+Référencé par draw\+\_\+powerup().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 10
+\mbox{\Hypertarget{window_8c_ac91739c09698faa44415abaabf2bdd89}\label{window_8c_ac91739c09698faa44415abaabf2bdd89}} 
+\index{window.c@{window.c}!draw\_rocket@{draw\_rocket}}
+\index{draw\_rocket@{draw\_rocket}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_rocket()}{draw\_rocket()}}
+{\footnotesize\ttfamily void draw\+\_\+rocket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$}]{rocket,  }\item[{M\+L\+V\+\_\+\+Image $\ast$}]{img\+\_\+rocket }\end{DoxyParamCaption})}
+
+
+
+draw the rocket in the game 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em rocket} & the rocket which is draw \\
+\hline
+{\em img\+\_\+rocket} & the image of the rocket \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 190 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{192 \{}
+\DoxyCodeLine{193     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}})}
+\DoxyCodeLine{194     \{}
+\DoxyCodeLine{195         MLV\_resize\_image\_with\_proportions(img\_rocket, \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}}, \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}});}
+\DoxyCodeLine{196         MLV\_draw\_image(img\_rocket, \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}}, \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}});}
+\DoxyCodeLine{197     \}}
+\DoxyCodeLine{198 \}}
+
+\end{DoxyCode}
+
+
+Références rocket\+::is\+\_\+alive, rocket\+::position, rocket\+::size, position\+::x, et position\+::y.
+
+
+
+Référencé par move\+\_\+rocket().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 11
+\mbox{\Hypertarget{window_8c_a99ddc35b5a5fed9329669d02cd0c04cd}\label{window_8c_a99ddc35b5a5fed9329669d02cd0c04cd}} 
+\index{window.c@{window.c}!draw\_score@{draw\_score}}
+\index{draw\_score@{draw\_score}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_score()}{draw\_score()}}
+{\footnotesize\ttfamily void draw\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the score 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 243 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{244 \{}
+\DoxyCodeLine{245     \textcolor{keywordtype}{int} value = \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}};}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keywordtype}{char} chaine[100];}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     sprintf(chaine, \textcolor{stringliteral}{"\%d"}, value);}
+\DoxyCodeLine{250     MLV\_draw\_text\_with\_font(10, 30, chaine, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}}, MLV\_COLOR\_BLACK);}
+\DoxyCodeLine{251 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::font, game\+::player, et player\+::score.
+
+
+
+Référencé par player\+\_\+update().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 12
+\mbox{\Hypertarget{window_8c_a9629912b354b0b6e8dffe24525dd9b50}\label{window_8c_a9629912b354b0b6e8dffe24525dd9b50}} 
+\index{window.c@{window.c}!draw\_shoot\_bar@{draw\_shoot\_bar}}
+\index{draw\_shoot\_bar@{draw\_shoot\_bar}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_shoot\_bar()}{draw\_shoot\_bar()}}
+{\footnotesize\ttfamily void draw\+\_\+shoot\+\_\+bar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the shoot bar if player shooting too much 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 326 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{327 \{}
+\DoxyCodeLine{328     MLV\_draw\_rectangle(\mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 2.5, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} / 3, 100, 10, MLV\_COLOR\_BLACK);}
+\DoxyCodeLine{329     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}} > 0)}
+\DoxyCodeLine{330     \{}
+\DoxyCodeLine{331         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}{is\_shooting\_too\_much}})}
+\DoxyCodeLine{332         \{}
+\DoxyCodeLine{333             MLV\_draw\_filled\_rectangle(\mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 2.5, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} / 3, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}}, 10, MLV\_COLOR\_INDIANRED);}
+\DoxyCodeLine{334         \}}
+\DoxyCodeLine{335         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{336         \{}
+\DoxyCodeLine{337             MLV\_draw\_filled\_rectangle(\mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} * 2.5, \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} / 3, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}}, 10, MLV\_COLOR\_ORANGE\_RED);}
+\DoxyCodeLine{338         \}}
+\DoxyCodeLine{339     \}}
+\DoxyCodeLine{340 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::is\+\_\+shooting\+\_\+too\+\_\+much, P\+A\+D\+D\+I\+N\+G\+\_\+\+T\+OP, game\+::player, player\+::shoot, et W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME.
+
+
+
+Référencé par check\+\_\+shooting\+\_\+to\+\_\+much().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 13
+\mbox{\Hypertarget{window_8c_ae670f0831844436876c163d67321e48b}\label{window_8c_ae670f0831844436876c163d67321e48b}} 
+\index{window.c@{window.c}!draw\_window@{draw\_window}}
+\index{draw\_window@{draw\_window}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{draw\_window()}{draw\_window()}}
+{\footnotesize\ttfamily void draw\+\_\+window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the background 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 259 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{260 \{}
+\DoxyCodeLine{261     MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a064a8cf2c487b3e355c4af0e993216ca}{img\_background}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a2037bf374aaa748728dffebaa09be4ce}{scale}} + \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}}, 0);}
+\DoxyCodeLine{262     MLV\_draw\_image(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a064a8cf2c487b3e355c4af0e993216ca}{img\_background}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a2037bf374aaa748728dffebaa09be4ce}{scale}}, 0);}
+\DoxyCodeLine{263 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::image, image\+\_\+game\+::img\+\_\+background, game\+::scale, et W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME.
+
+
+
+Référencé par main().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 14
+\mbox{\Hypertarget{window_8c_a612045ba17c465613f7c86ac8ce009d3}\label{window_8c_a612045ba17c465613f7c86ac8ce009d3}} 
+\index{window.c@{window.c}!init\_window@{init\_window}}
+\index{init\_window@{init\_window}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{init\_window()}{init\_window()}}
+{\footnotesize\ttfamily void init\+\_\+window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+inisialize all the window of the game 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 67 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{68 \{}
+\DoxyCodeLine{69     MLV\_change\_window\_size(\mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}}, \mbox{\hyperlink{const_8h_a487d92c6233ad2c0e39f79093ddec0a5}{HEIGHT\_FRAME}});}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     MLV\_clear\_window(MLV\_COLOR\_WHITE);}
+\DoxyCodeLine{72     \textcolor{keywordflow}{if} (MLV\_init\_audio())}
+\DoxyCodeLine{73     \{}
+\DoxyCodeLine{74         fprintf(stderr, \textcolor{stringliteral}{"L'infrasctructure audio de la librairie MLV ne s'est pas correctement initialisé."});}
+\DoxyCodeLine{75         exit(1);}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77     \mbox{\hyperlink{window_8c_a7150de216a22d61cf217c5259c262b4e}{set\_image}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{78     \mbox{\hyperlink{window_8c_a9b42f90078687caae7df5580464dfaf5}{set\_sound}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{79     \mbox{\hyperlink{window_8c_a1b2f22266e3db25b76708141d6ba8da3}{set\_font}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{80 \}}
+
+\end{DoxyCode}
+
+
+Références H\+E\+I\+G\+H\+T\+\_\+\+F\+R\+A\+ME, set\+\_\+font(), set\+\_\+image(), set\+\_\+sound(), et W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME.
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 15
+Voici le graphe des appelants de cette fonction \+:
+% FIG 16
+\mbox{\Hypertarget{window_8c_a2619451c3f6a3bdb22fa04981258a4c9}\label{window_8c_a2619451c3f6a3bdb22fa04981258a4c9}} 
+\index{window.c@{window.c}!print\_game\_over@{print\_game\_over}}
+\index{print\_game\_over@{print\_game\_over}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{print\_game\_over()}{print\_game\_over()}}
+{\footnotesize\ttfamily void print\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+draw the game over screen 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 311 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{312 \{}
+\DoxyCodeLine{313     MLV\_draw\_adapted\_text\_box\_with\_font(400, 150, \textcolor{stringliteral}{"GAME OVER"}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}}, 30, MLV\_COLOR\_BLACK, MLV\_COLOR\_WHITE, MLV\_rgba(0, 0, 0, 100), MLV\_TEXT\_CENTER);}
+\DoxyCodeLine{314     \textcolor{keywordtype}{char} chaine[100];}
+\DoxyCodeLine{315     sprintf(chaine, \textcolor{stringliteral}{"Score : \%d"}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}});}
+\DoxyCodeLine{316     MLV\_draw\_adapted\_text\_box\_with\_font(400, 250, chaine, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}}, 30, MLV\_COLOR\_BLACK, MLV\_COLOR\_WHITE, MLV\_rgba(0, 0, 0, 100), MLV\_TEXT\_CENTER);}
+\DoxyCodeLine{317     MLV\_draw\_text\_with\_font(200, 360, \textcolor{stringliteral}{"Pseudo :"}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}}, MLV\_COLOR\_WHITE);}
+\DoxyCodeLine{318     MLV\_wait\_input\_box\_with\_font(400, 350, 300, 50, MLV\_COLOR\_INDIAN\_RED, MLV\_COLOR\_INDIAN\_RED, MLV\_rgba(0, 0, 0, 10), \textcolor{stringliteral}{""}, \&\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a0c66f325bf2bdd79f2fb9e7c1b87b21b}{pseudo}}, \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}});}
+\DoxyCodeLine{319 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::font, game\+::player, game\+::pseudo, et player\+::score.
+
+
+
+Référencé par main().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 17
+\mbox{\Hypertarget{window_8c_a1b2f22266e3db25b76708141d6ba8da3}\label{window_8c_a1b2f22266e3db25b76708141d6ba8da3}} 
+\index{window.c@{window.c}!set\_font@{set\_font}}
+\index{set\_font@{set\_font}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{set\_font()}{set\_font()}}
+{\footnotesize\ttfamily void set\+\_\+font (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+inisialize all the font of the game 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 58 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}} = MLV\_load\_font(\textcolor{stringliteral}{"src/assets/font/fontScore.ttf"}, 30);}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::font.
+
+
+
+Référencé par init\+\_\+window().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 18
+\mbox{\Hypertarget{window_8c_a7150de216a22d61cf217c5259c262b4e}\label{window_8c_a7150de216a22d61cf217c5259c262b4e}} 
+\index{window.c@{window.c}!set\_image@{set\_image}}
+\index{set\_image@{set\_image}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{set\_image()}{set\_image()}}
+{\footnotesize\ttfamily void set\+\_\+image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+inisialize all the image of the game 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 23 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7a6587a1ed655bb37713f0ea46f88018}{img\_player}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/player.png"});}
+\DoxyCodeLine{26     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aa7f1ff21af5b6c3085b9d26bd12a3b47}{img\_rocket}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/rocket.png"});}
+\DoxyCodeLine{27     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a178c460270ffb41734bea1257fd6becd}{img\_enemy\_tank}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/tank.png"});}
+\DoxyCodeLine{28     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7e9b4f35c26a27c1569a84d23edcc910}{img\_enemy}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/air\_soldat.png"});}
+\DoxyCodeLine{29     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aa52956811db53ea5f1ee6bb19b021ebc}{img\_bullet\_tank}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/ammo\_tank.png"});}
+\DoxyCodeLine{30     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a064a8cf2c487b3e355c4af0e993216ca}{img\_background}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/background.jpg"});}
+\DoxyCodeLine{31     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_abf4a97db667ed44adf8610c4c70c6d7c}{img\_explosion}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/explosion.png"});}
+\DoxyCodeLine{32     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a73735a0e72e3f2d98fedd04854e8d02a}{img\_bullet\_player}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/bullet\_player.png"});}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/powerup\_dbz\_logo.png"});}
+\DoxyCodeLine{35     MLV\_resize\_image\_with\_proportions(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}}, 90, 90);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aab7df6b4a807878a2f1680711e86b2e6}{img\_player\_dbz}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/player\_power\_up\_dbz.png"});}
+\DoxyCodeLine{38     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a7d33400aca97d7992242199b390c6310}{img\_explosion\_dbz}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/kamehameha.png"});}
+\DoxyCodeLine{39     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/coeur.png"});}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}} = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/speed.png"});}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::image, image\+\_\+game\+::img\+\_\+background, image\+\_\+game\+::img\+\_\+bullet\+\_\+player, image\+\_\+game\+::img\+\_\+bullet\+\_\+tank, image\+\_\+game\+::img\+\_\+enemy, image\+\_\+game\+::img\+\_\+enemy\+\_\+tank, image\+\_\+game\+::img\+\_\+explosion, image\+\_\+game\+::img\+\_\+explosion\+\_\+dbz, image\+\_\+game\+::img\+\_\+player, image\+\_\+game\+::img\+\_\+player\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+health, image\+\_\+game\+::img\+\_\+powerup\+\_\+speed, et image\+\_\+game\+::img\+\_\+rocket.
+
+
+
+Référencé par init\+\_\+window().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 19
+\mbox{\Hypertarget{window_8c_a9b42f90078687caae7df5580464dfaf5}\label{window_8c_a9b42f90078687caae7df5580464dfaf5}} 
+\index{window.c@{window.c}!set\_sound@{set\_sound}}
+\index{set\_sound@{set\_sound}!window.c@{window.c}}
+\doxysubsubsection{\texorpdfstring{set\_sound()}{set\_sound()}}
+{\footnotesize\ttfamily void set\+\_\+sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+inisialize all the sound of the game 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & The game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 48 du fichier window.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49 \{}
+\DoxyCodeLine{50     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a26ccdfc73772ac5afb9bd10de0cb1fe1}{sounddbz}} = MLV\_load\_sound(\textcolor{stringliteral}{"src/assets/sound/Kamehameha\_Goku\_SOUND\_EFFECT.ogg"});}
+\DoxyCodeLine{51     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a4dd54b40b46dacc02cfeea883a6bccc5}{music}} = MLV\_load\_music(\textcolor{stringliteral}{"src/assets/sound/background\_music.mp3"});}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::music, et game\+::sounddbz.
+
+
+
+Référencé par init\+\_\+window().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 20

@@ -1,0 +1,12 @@
+digraph "move_rocket_player"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="move_rocket_player",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that move the rocket of the player."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="move_rocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rocket__controller_8h.html#af80d6005017c5a32c5416e2fa24eae32",tooltip="Function that manage the movement of the rocket and draw it."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089",tooltip="Main function of the project contain the game loop."];
+}

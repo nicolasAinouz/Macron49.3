@@ -1,0 +1,16 @@
+digraph "update_special_rocket"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="update_special_rocket",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that update the special rocket : manage the explosion, the movement and the death."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="kill_special_rocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rocket__controller_8c.html#af32dce05a7e8d0a021b0531afb7c692a",tooltip="Function that kill the special rocket after the explosion."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="move_special_rocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rocket__controller_8c.html#aa5ffaa798b39f678721de693178d716b",tooltip="Function that move the special rocket for they follow the player."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="special_rocket_explosing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rocket__controller_8c.html#ad7dcf09f27f78ac218ab1eda9afa8b82",tooltip="Function that manage the explosion animation."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="draw_explosion",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$window_8h.html#a9a9aad364660af00c3e95d8a4d852fed",tooltip="draw the explosion of special rocket"];
+}

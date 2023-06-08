@@ -1,0 +1,14 @@
+digraph "player_get_powerup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="player_get_powerup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Function that give the powerup to the player."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="move_powerup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$powerup_8h.html#a8c62355df7ae99d0d958ebada9994bd8",tooltip="Function that move the powerup."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="update_powerup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html#a85a8b9c08bab86b80e9584d5845b6a06",tooltip="Function that do the actions on the powerup like move it, draw it."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089",tooltip="Main function of the project contain the game loop."];
+}

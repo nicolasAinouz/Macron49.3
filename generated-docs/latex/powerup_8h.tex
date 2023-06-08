@@ -1,0 +1,117 @@
+\hypertarget{powerup_8h}{}\doxysection{Référence du fichier src/include/powerup.h}
+\label{powerup_8h}\index{src/include/powerup.h@{src/include/powerup.h}}
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}const.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}struct\+\_\+entity.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de powerup.\+h\+:
+% FIG 0
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+% FIG 1
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{powerup_8h_aff5d38dc1ecd8476e5a64801f89fcbb4}{create\+\_\+powerup}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Create a powerup object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{powerup_8h_a8c62355df7ae99d0d958ebada9994bd8}{move\+\_\+powerup}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that move the powerup. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{powerup_8h_aff5d38dc1ecd8476e5a64801f89fcbb4}\label{powerup_8h_aff5d38dc1ecd8476e5a64801f89fcbb4}} 
+\index{powerup.h@{powerup.h}!create\_powerup@{create\_powerup}}
+\index{create\_powerup@{create\_powerup}!powerup.h@{powerup.h}}
+\doxysubsubsection{\texorpdfstring{create\_powerup()}{create\_powerup()}}
+{\footnotesize\ttfamily void create\+\_\+powerup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Create a powerup object. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 23 du fichier powerup.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} x = rand() \% \mbox{\hyperlink{const_8h_acf32f172f1f3d9ec82ff0776d71a537a}{NB\_POWER\_UP}} + 1;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a1cd74ecce136eefa06fafeef08639581}{in\_the\_game}} = 1;}
+\DoxyCodeLine{28     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}} = x;}
+\DoxyCodeLine{29     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_aa0248d6d97a60927bdd5866db0411d64}{speed}} = 5;}
+\DoxyCodeLine{30     \mbox{\hyperlink{structposition}{Position}} *\mbox{\hyperlink{structposition}{position}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{31     assert(\mbox{\hyperlink{structposition}{position}} != NULL);}
+\DoxyCodeLine{32     \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}};}
+\DoxyCodeLine{33     \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = rand() \% (\mbox{\hyperlink{const_8h_a487d92c6233ad2c0e39f79093ddec0a5}{HEIGHT\_FRAME}} -\/ \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}});}
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} < \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}})}
+\DoxyCodeLine{35     \{}
+\DoxyCodeLine{36         \textcolor{keywordtype}{int} x = \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}} -\/ \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}};}
+\DoxyCodeLine{37         \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} += x;}
+\DoxyCodeLine{38     \}}
+\DoxyCodeLine{39     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}} = \mbox{\hyperlink{structposition}{position}};}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+Références H\+E\+I\+G\+H\+T\+\_\+\+F\+R\+A\+ME, powerup\+::in\+\_\+the\+\_\+game, N\+B\+\_\+\+P\+O\+W\+E\+R\+\_\+\+UP, P\+A\+D\+D\+I\+N\+G\+\_\+\+T\+OP, powerup\+::position, game\+::powerup, S\+I\+Z\+E\+\_\+\+P\+O\+W\+E\+R\+\_\+\+UP, powerup\+::speed, powerup\+::type, W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME, position\+::x, et position\+::y.
+
+
+
+Référencé par update\+\_\+powerup().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\mbox{\Hypertarget{powerup_8h_a8c62355df7ae99d0d958ebada9994bd8}\label{powerup_8h_a8c62355df7ae99d0d958ebada9994bd8}} 
+\index{powerup.h@{powerup.h}!move\_powerup@{move\_powerup}}
+\index{move\_powerup@{move\_powerup}!powerup.h@{powerup.h}}
+\doxysubsubsection{\texorpdfstring{move\_powerup()}{move\_powerup()}}
+{\footnotesize\ttfamily void move\+\_\+powerup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that move the powerup. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & is the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 83 du fichier powerup.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{84 \{}
+\DoxyCodeLine{85     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} < 0 -\/ \mbox{\hyperlink{const_8h_a119140265fe603cd3b98361a5da9f6c8}{SIZE\_POWER\_UP}})}
+\DoxyCodeLine{86     \{}
+\DoxyCodeLine{87         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a1cd74ecce136eefa06fafeef08639581}{in\_the\_game}} = 0;}
+\DoxyCodeLine{88         free(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}});}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{91     \{}
+\DoxyCodeLine{92         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} -\/= \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_aa0248d6d97a60927bdd5866db0411d64}{speed}};}
+\DoxyCodeLine{93         \mbox{\hyperlink{powerup_8c_a405b6071b84041277b57ad06b69ef529}{player\_get\_powerup}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95     }
+\DoxyCodeLine{96 \}}
+
+\end{DoxyCode}
+
+
+Références powerup\+::in\+\_\+the\+\_\+game, player\+\_\+get\+\_\+powerup(), powerup\+::position, game\+::powerup, S\+I\+Z\+E\+\_\+\+P\+O\+W\+E\+R\+\_\+\+UP, powerup\+::speed, et position\+::x.
+
+
+
+Référencé par update\+\_\+powerup().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 3
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4

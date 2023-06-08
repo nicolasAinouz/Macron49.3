@@ -1,0 +1,14 @@
+digraph "create_game"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="create_game",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialise the structure of the game who contains all the structure of the game."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="init_player",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$player__controller_8c.html#a37d647b0fb55370a43a05b0e450cc371",tooltip="Function that init the player."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="init_tab_enemy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enemies__controller_8c.html#a099030bf9ae5919f1183e3034868f7f2",tooltip="Function who init all the enemies of the game."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="init_tab_rocket",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rocket__controller_8c.html#a15a52cf3cb4adbcd3da3a0ce711a9f9e",tooltip="Function who init all the rocket of the game."];
+}

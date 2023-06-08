@@ -1,0 +1,188 @@
+\hypertarget{structplayer}{}\doxysection{Référence de la structure player}
+\label{structplayer}\index{player@{player}}
+
+
+{\ttfamily \#include $<$struct\+\_\+entity.\+h$>$}
+
+
+
+Graphe de collaboration de player\+:
+% FIG 0
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}} $\ast$ \mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}
+\item 
+int \mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}}
+\item 
+int \mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}}
+\item 
+int \mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}}
+\item 
+int \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}
+\item 
+int \mbox{\hyperlink{structplayer_ae8093acfe6af37e0034079e6960a1b28}{has\+\_\+powerup}}
+\item 
+\mbox{\hyperlink{struct__entity_8h_a63d76fd11044cea80a6d172f8e97b6e3}{Powerup}} $\ast$ \mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}
+\item 
+int \mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}}
+\item 
+int \mbox{\hyperlink{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}{is\+\_\+shooting\+\_\+too\+\_\+much}}
+\item 
+\mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}} $\ast$ \mbox{\hyperlink{structplayer_ac9dd7d69009ecc61f166d81b6b33794d}{hitbox}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+
+
+Définition à la ligne 37 du fichier struct\+\_\+entity.\+h.
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{structplayer_ae8093acfe6af37e0034079e6960a1b28}\label{structplayer_ae8093acfe6af37e0034079e6960a1b28}} 
+\index{player@{player}!has\_powerup@{has\_powerup}}
+\index{has\_powerup@{has\_powerup}!player@{player}}
+\doxysubsubsection{\texorpdfstring{has\_powerup}{has\_powerup}}
+{\footnotesize\ttfamily int player\+::has\+\_\+powerup}
+
+
+
+Définition à la ligne 44 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par active\+\_\+power\+\_\+up(), player\+\_\+get\+\_\+powerup(), et shift().
+
+\mbox{\Hypertarget{structplayer_a46e908a72ca54baf54330861bbc56713}\label{structplayer_a46e908a72ca54baf54330861bbc56713}} 
+\index{player@{player}!health@{health}}
+\index{health@{health}!player@{player}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily int player\+::health}
+
+
+
+Définition à la ligne 41 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par active\+\_\+power\+\_\+up(), draw\+\_\+health(), enemies\+\_\+available(), enemy\+\_\+touch\+\_\+player(), init\+\_\+player(), player\+\_\+is\+\_\+dead(), et rocket\+\_\+available().
+
+\mbox{\Hypertarget{structplayer_ac9dd7d69009ecc61f166d81b6b33794d}\label{structplayer_ac9dd7d69009ecc61f166d81b6b33794d}} 
+\index{player@{player}!hitbox@{hitbox}}
+\index{hitbox@{hitbox}!player@{player}}
+\doxysubsubsection{\texorpdfstring{hitbox}{hitbox}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}}$\ast$ player\+::hitbox}
+
+
+
+Définition à la ligne 49 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par init\+\_\+player(), is\+\_\+inside\+\_\+player\+\_\+hitbox(), et is\+\_\+inside\+\_\+ulti\+\_\+hitbox().
+
+\mbox{\Hypertarget{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}\label{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}} 
+\index{player@{player}!is\_shooting\_too\_much@{is\_shooting\_too\_much}}
+\index{is\_shooting\_too\_much@{is\_shooting\_too\_much}!player@{player}}
+\doxysubsubsection{\texorpdfstring{is\_shooting\_too\_much}{is\_shooting\_too\_much}}
+{\footnotesize\ttfamily int player\+::is\+\_\+shooting\+\_\+too\+\_\+much}
+
+
+
+Définition à la ligne 47 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par check\+\_\+shooting\+\_\+to\+\_\+much(), draw\+\_\+shoot\+\_\+bar(), et space().
+
+\mbox{\Hypertarget{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}\label{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}} 
+\index{player@{player}!position@{position}}
+\index{position@{position}!player@{player}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}}$\ast$ player\+::position}
+
+
+
+Définition à la ligne 39 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par draw\+\_\+player(), free\+\_\+player(), init\+\_\+player(), move\+\_\+player\+\_\+down(), move\+\_\+player\+\_\+left(), move\+\_\+player\+\_\+right(), move\+\_\+player\+\_\+up(), move\+\_\+special\+\_\+rocket(), rocket\+\_\+touch\+\_\+player(), shoot(), et touch\+\_\+powerup().
+
+\mbox{\Hypertarget{structplayer_a0d24b05a96623f99d7597002732f7c41}\label{structplayer_a0d24b05a96623f99d7597002732f7c41}} 
+\index{player@{player}!powerup@{powerup}}
+\index{powerup@{powerup}!player@{player}}
+\doxysubsubsection{\texorpdfstring{powerup}{powerup}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_a63d76fd11044cea80a6d172f8e97b6e3}{Powerup}}$\ast$ player\+::powerup}
+
+
+
+Définition à la ligne 45 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par active\+\_\+power\+\_\+up(), draw\+\_\+player(), draw\+\_\+power\+\_\+up\+\_\+dbz(), draw\+\_\+powerup\+\_\+square(), enemy\+\_\+touch\+\_\+player(), free\+\_\+player(), init\+\_\+player(), move\+\_\+player(), player\+\_\+get\+\_\+powerup(), rocket\+\_\+touch\+\_\+player(), shift(), space(), touch\+\_\+by\+\_\+ultime(), et update\+\_\+powerup().
+
+\mbox{\Hypertarget{structplayer_a0effac341657c96528752f808fa23291}\label{structplayer_a0effac341657c96528752f808fa23291}} 
+\index{player@{player}!score@{score}}
+\index{score@{score}!player@{player}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily int player\+::score}
+
+
+
+Définition à la ligne 43 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par add\+\_\+difficulty(), draw\+\_\+score(), main(), print\+\_\+game\+\_\+over(), et write\+\_\+score().
+
+\mbox{\Hypertarget{structplayer_a144294f674c65c6fce44e03108e5fc86}\label{structplayer_a144294f674c65c6fce44e03108e5fc86}} 
+\index{player@{player}!shoot@{shoot}}
+\index{shoot@{shoot}!player@{player}}
+\doxysubsubsection{\texorpdfstring{shoot}{shoot}}
+{\footnotesize\ttfamily int player\+::shoot}
+
+
+
+Définition à la ligne 46 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par check\+\_\+shooting\+\_\+to\+\_\+much(), draw\+\_\+shoot\+\_\+bar(), et space().
+
+\mbox{\Hypertarget{structplayer_a020721c8bcd004948ca4e5a866f41e32}\label{structplayer_a020721c8bcd004948ca4e5a866f41e32}} 
+\index{player@{player}!size@{size}}
+\index{size@{size}!player@{player}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int player\+::size}
+
+
+
+Définition à la ligne 40 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par draw\+\_\+player(), init\+\_\+player(), move\+\_\+player\+\_\+down(), move\+\_\+player\+\_\+right(), rocket\+\_\+touch\+\_\+player(), shoot(), et touch\+\_\+powerup().
+
+\mbox{\Hypertarget{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}\label{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}} 
+\index{player@{player}!speed@{speed}}
+\index{speed@{speed}!player@{player}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int player\+::speed}
+
+
+
+Définition à la ligne 42 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par active\+\_\+power\+\_\+up(), apply\+\_\+inertie(), move\+\_\+player(), move\+\_\+player\+\_\+down(), move\+\_\+player\+\_\+left(), move\+\_\+player\+\_\+right(), et move\+\_\+player\+\_\+up().
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{struct__entity_8h}{struct\+\_\+entity.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{key__listener_8h}{}\doxysection{Référence du fichier src/include/key\+\_\+listener.h}
+\label{key__listener_8h}\index{src/include/key\_listener.h@{src/include/key\_listener.h}}
+{\ttfamily \#include \char`\"{}struct\+\_\+entity.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de key\+\_\+listener.\+h\+:
+% FIG 0
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+% FIG 1
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{key__listener_8h_a6661073e728eb5818d0faf3dfd8dfe98}{key\+\_\+listener}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that listen the keyboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{key__listener_8h_a6661073e728eb5818d0faf3dfd8dfe98}\label{key__listener_8h_a6661073e728eb5818d0faf3dfd8dfe98}} 
+\index{key\_listener.h@{key\_listener.h}!key\_listener@{key\_listener}}
+\index{key\_listener@{key\_listener}!key\_listener.h@{key\_listener.h}}
+\doxysubsubsection{\texorpdfstring{key\_listener()}{key\_listener()}}
+{\footnotesize\ttfamily void key\+\_\+listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that listen the keyboard. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 158 du fichier key\+\_\+listener.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{159 \{}
+\DoxyCodeLine{160     \mbox{\hyperlink{key__listener_8c_a1fec317765364520a468bfb608600ce1}{move\_player}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     \mbox{\hyperlink{key__listener_8c_ae04ba26dbfbf2c13c757ab1f944df193}{apply\_inertie}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \mbox{\hyperlink{key__listener_8c_ab8b07ab9cdd615dd65c62a0eb61652c3}{space}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{165     \mbox{\hyperlink{key__listener_8c_a1342a4184e69fe4520d0abca852da235}{shift}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{166     \mbox{\hyperlink{key__listener_8c_a4ff9a57b669859fe79ea8e113dc3ad2e}{escape}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{167 \}}
+
+\end{DoxyCode}
+
+
+Références apply\+\_\+inertie(), escape(), move\+\_\+player(), shift(), et space().
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 2
+Voici le graphe des appelants de cette fonction \+:
+% FIG 3

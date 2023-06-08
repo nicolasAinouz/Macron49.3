@@ -1,0 +1,116 @@
+\hypertarget{home_8c}{}\doxysection{Référence du fichier src/view/home.c}
+\label{home_8c}\index{src/view/home.c@{src/view/home.c}}
+
+
+It\textquotesingle{}s the view of the home screen.  
+
+
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../include/const.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de home.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{home_8c_a04c4f719bbf663e66a0eaa2add05d816}{launch\+\_\+home}} ()
+\begin{DoxyCompactList}\small\item\em Function that create window and launch the home screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{home_8c_aefa0163ae52b5b33d6e394567d27161a}{click\+\_\+on\+\_\+play}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Function that check if the user click on the play button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+It\textquotesingle{}s the view of the home screen. 
+
+This file contains all the functions that display the home screen \begin{DoxyAuthor}{Auteur}
+Nicolas Ainouz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+08/06/2022 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{home_8c_aefa0163ae52b5b33d6e394567d27161a}\label{home_8c_aefa0163ae52b5b33d6e394567d27161a}} 
+\index{home.c@{home.c}!click\_on\_play@{click\_on\_play}}
+\index{click\_on\_play@{click\_on\_play}!home.c@{home.c}}
+\doxysubsubsection{\texorpdfstring{click\_on\_play()}{click\_on\_play()}}
+{\footnotesize\ttfamily int click\+\_\+on\+\_\+play (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Function that check if the user click on the play button. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & the x position of the mouse \\
+\hline
+{\em y} & the y position of the mouse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int the boolean if the user click on the play button 
+\end{DoxyReturn}
+
+
+Définition à la ligne 38 du fichier home.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40     \textcolor{keywordflow}{if} (x >= 220 \&\& x <= 355 \&\& y >= 550 \&\& y <= 605)}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+
+
+Référencé par home().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 1
+\mbox{\Hypertarget{home_8c_a04c4f719bbf663e66a0eaa2add05d816}\label{home_8c_a04c4f719bbf663e66a0eaa2add05d816}} 
+\index{home.c@{home.c}!launch\_home@{launch\_home}}
+\index{launch\_home@{launch\_home}!home.c@{home.c}}
+\doxysubsubsection{\texorpdfstring{launch\_home()}{launch\_home()}}
+{\footnotesize\ttfamily void launch\+\_\+home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that create window and launch the home screen. 
+
+
+
+Définition à la ligne 16 du fichier home.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18     MLV\_create\_window(\mbox{\hyperlink{const_8h_ad47db0bb41142f821c56c4ac04bb8a9d}{NAME\_FRAME}}, NULL, 600, 700);}
+\DoxyCodeLine{19     MLV\_Image *img\_background = MLV\_load\_image(\textcolor{stringliteral}{"src/assets/img/home\_bg.png"});}
+\DoxyCodeLine{20     MLV\_Font *font = MLV\_load\_font(\textcolor{stringliteral}{"src/assets/font/fontScore.ttf"}, 30);}
+\DoxyCodeLine{21     MLV\_resize\_image(img\_background, 600, 700);}
+\DoxyCodeLine{22     MLV\_draw\_image(img\_background, 0, 0);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     MLV\_draw\_adapted\_text\_box\_with\_font(120, 450, \textcolor{stringliteral}{"Macron 49.3"}, font, 30, MLV\_COLOR\_BLACK, MLV\_COLOR\_WHITE, MLV\_rgba(0, 0, 0, 100), MLV\_TEXT\_CENTER);}
+\DoxyCodeLine{25     MLV\_draw\_adapted\_text\_box\_with\_font(220, 550, \textcolor{stringliteral}{"PLAY"}, font, 10, MLV\_COLOR\_BLACK, MLV\_COLOR\_WHITE, MLV\_rgba(0, 0, 0, 100), MLV\_TEXT\_CENTER);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     MLV\_actualise\_window();}
+\DoxyCodeLine{28     MLV\_free\_image(img\_background);}
+\DoxyCodeLine{29     MLV\_free\_font(font);}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+Références N\+A\+M\+E\+\_\+\+F\+R\+A\+ME.
+
+
+
+Référencé par home().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
