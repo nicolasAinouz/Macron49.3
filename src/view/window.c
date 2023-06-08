@@ -36,6 +36,7 @@ void set_image(Game *game)
 void set_sound(Game *game)
 {
     game->sounddbz = MLV_load_sound("src/assets/sound/Kamehameha_Goku_SOUND_EFFECT.ogg");
+    game->music = MLV_load_music("src/assets/sound/background_music.mp3");
 }
 void set_font(Game *game)
 {
@@ -210,32 +211,23 @@ void draw_power_up_dbz(Game *game)
     }
 }
 
-/**
- * @brief libère en mémoire la window
- *
- * @return int
- */
-int free_window()
+int draw_input_name(Game *game)
 {
-    MLV_free_window();
+    // char *player_name;
 
-    // free(img);
-    // free(img_rocket);
-    // free(img_enemy);
+    MLV_draw_adapted_text_box_with_font(400, 150, "GAME OVER", game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
+    // party->player->name = player_name;
 
     return EXIT_SUCCESS;
 }
-
 void print_game_over(Game *game)
 {
-
     MLV_draw_adapted_text_box_with_font(400, 150, "GAME OVER", game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
     char chaine[100];
     sprintf(chaine, "Score : %d", game->player->score);
     MLV_draw_adapted_text_box_with_font(400, 250, chaine, game->font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
-
-    MLV_actualise_window();
-    MLV_wait_seconds(3);
+    MLV_draw_text_with_font(200, 360, "Pseudo :", game->font, MLV_COLOR_WHITE);
+    MLV_wait_input_box_with_font(400, 350, 300, 50, MLV_COLOR_INDIAN_RED, MLV_COLOR_INDIAN_RED, MLV_rgba(0, 0, 0, 10), "", &game->pseudo, game->font);
 }
 
 void draw_shoot_bar(Game *game)

@@ -70,6 +70,107 @@ void add_difficulty(Game *game)
     }
 }
 
+void free_image(Image_Game *imgs)
+{
+    MLV_free_image(imgs->img_background);
+    MLV_free_image(imgs->img_bullet_player);
+    MLV_free_image(imgs->img_bullet_tank);
+    MLV_free_image(imgs->img_enemy);
+    MLV_free_image(imgs->img_enemy_tank);
+    MLV_free_image(imgs->img_explosion);
+    MLV_free_image(imgs->img_explosion_dbz);
+    MLV_free_image(imgs->img_player);
+    MLV_free_image(imgs->img_player_dbz);
+    MLV_free_image(imgs->img_powerup_dbz);
+    MLV_free_image(imgs->img_powerup_health);
+    MLV_free_image(imgs->img_powerup_speed);
+    MLV_free_image(imgs->img_rocket);
+
+    free(imgs);
+}
+void free_player(Player *player)
+{
+    if (player->powerup != NULL)
+    {
+        free(player->powerup->position);
+        free(player->powerup);
+    }
+    free(player->position);
+    free(player);
+}
+
+void free_rockets(Rocket **tab_rocket)
+{
+    for (int i = 0; i < NUMBER_OF_ROCKET; i++)
+    {
+        if (tab_rocket[i] != NULL)
+        {
+            if (tab_rocket[i]->position != NULL)
+                free(tab_rocket[i]->position);
+            if (tab_rocket[i]->hitbox != NULL)
+                free(tab_rocket[i]->hitbox);
+        }
+    }
+    if (*tab_rocket != NULL)
+        free(*tab_rocket);
+}
+
+void free_ennemies(Enemy **tab_enemy)
+{
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
+    {
+        if (tab_enemy[i] != NULL)
+        {
+            if (tab_enemy[i]->position != NULL)
+                free(tab_enemy[i]->position);
+            if (tab_enemy[i]->hitbox != NULL)
+                free(tab_enemy[i]->hitbox);
+        }
+    }
+
+    free(*tab_enemy);
+}
+
+void free_all(Game *game)
+{
+    free_image(game->image);
+
+    if (game->powerup != NULL)
+    {
+        if (game->powerup->position != NULL)
+            free(game->powerup->position);
+
+        free(game->powerup);
+    }
+
+    MLV_free_font(game->font);
+
+    free_player(game->player);
+
+    // free_rockets(game->tab_rocket);
+
+    // free_ennemies(game->tab_enemy);
+
+    // MLV_stop_music();
+
+    // MLV_free_sound(game->sounddbz);
+
+    // MLV_free_music(game->music);
+
+    // MLV_free_audio();
+
+    MLV_free_window();
+}
+
+void write_score(Game *game)
+{
+    FILE *file = fopen("src/assets/score.txt", "a");
+    assert(file != NULL);
+
+    fprintf(file, "Player : %s -> Score : %d -> on : %s at : %s \n", game->pseudo, game->player->score, __DATE__, __TIME__);
+    fclose(file);
+}
+
 int main(int argc, char const *argv[])
 {
     int time_frame;
@@ -81,11 +182,11 @@ int main(int argc, char const *argv[])
     init_window(game);
 
     struct timespec start_time, end_time;
+    MLV_play_music(game->music, 0.2, -1);
 
     while (game->end_game == 0 && !player_is_dead(game))
     {
-        // printf("index tab %d\n", game->number_enemies_key);
-        // printf("index tab rocket %d\n", game->number_rocket_key);
+
         game->player->score += 1;
 
         add_difficulty(game);
@@ -116,9 +217,9 @@ int main(int argc, char const *argv[])
     if (player_is_dead(game))
     {
         print_game_over(game);
+        write_score(game);
     }
 
-    free_window();
-    MLV_free_audio();
+    free_all(game);
     return EXIT_SUCCESS;
 }

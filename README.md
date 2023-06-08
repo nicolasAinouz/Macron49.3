@@ -11,10 +11,5 @@ Controle shift i -> formatter sous vsc
 
 
 TODO : 
--> score a la fin
--> enlever int dans window
 -> faire doc
 -> faire rapport
--> faire plus de constante
--> revoir nom de methode
--> voir truc du makefile aussi 

@@ -21,7 +21,7 @@ Player *init_player()
     position->y = HEIGHT_FRAME / 2 - player->size / 2;
     player->position = position;
 
-    player->health = 5;
+    player->health = HEALTH_PLAYER;
 
     Hitbox *hitbox = malloc(sizeof(Hitbox));
     assert(hitbox != NULL);

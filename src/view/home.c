@@ -11,6 +11,7 @@ void launch_home()
 
     MLV_draw_adapted_text_box_with_font(120, 450, "Macron 49.3", font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
     MLV_draw_adapted_text_box_with_font(220, 550, "PLAY", font, 10, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
+
     MLV_actualise_window();
     MLV_free_image(img_background);
     MLV_free_font(font);

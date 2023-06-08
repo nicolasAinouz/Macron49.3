@@ -5,7 +5,6 @@
 #include <assert.h>
 #include <math.h>
 
-#include "../include/main.h"
 #include "../include/const.h"
 #include "../include/window.h"
 #include "../include/struct_entity.h"
@@ -62,7 +61,7 @@ void move_player(Game *game)
         game->last_keyboard_push = 4;
         bool = 1;
     }
-    
+
     if (!bool)
     {
         inertie(game);
@@ -90,7 +89,6 @@ void space(Game *game)
         shoot(game, NULL, 0, 1);
         game->player->shoot += 10;
     }
-   
 }
 void shift(Game *game)
 {

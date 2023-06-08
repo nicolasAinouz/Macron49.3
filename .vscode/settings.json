@@ -2,6 +2,9 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "mlv_all.h": "c",
-        "game.h": "c"
+        "game.h": "c",
+        "home.h": "c",
+        "player_controller.h": "c",
+        "rocket_controller.h": "c"
     }
 }

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror
+CFLAGS=-Wall -Werror 
 LDFLAGS=-lMLV -lm -g
 REPOBJ=bin/main.o bin/window.o bin/key_listener.o bin/player_controller.o bin/enemies_controller.o bin/game.o bin/powerup.o bin/rocket_controller.o bin/home.o
 OBJ=main.o window.o key_listener.o player_controller.o enemies_controller.o game.o powerup.o rocket_controller.o home.o

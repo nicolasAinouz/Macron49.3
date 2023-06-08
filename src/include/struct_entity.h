@@ -58,7 +58,7 @@ typedef struct enemy
     Position *position;
     int size;
     int health;
-    int time; //for special
+    int time; // for special
     int speed;
     int is_alive;   // est en vie si = 1
     int is_special; // est spécial si = 1
@@ -100,7 +100,9 @@ typedef struct game
     Image_Game *image;
     Powerup *powerup;
     MLV_Sound *sounddbz;
+    MLV_Music *music;
     MLV_Font *font;
+    char *pseudo;
 
 } Game;
 

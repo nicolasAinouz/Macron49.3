@@ -5,7 +5,6 @@
 #include <assert.h>
 #include <math.h>
 
-#include "../include/main.h"
 #include "../include/const.h"
 #include "../include/window.h"
 #include "../include/struct_entity.h"

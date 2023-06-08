@@ -12,7 +12,7 @@
 #include "../include/const.h"
 #include "../include/struct_entity.h"
 
-Game* create_game();
+Game *create_game();
 double normal_delay(double mean);
 
 #endif

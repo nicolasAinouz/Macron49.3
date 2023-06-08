@@ -2,7 +2,6 @@
 #define __ROCKET__
 #include "struct_entity.h"
 
-
 void move_rocket(Game *game);
 void init_tab_rocket(Rocket **tab_rocket);
 void rocket_available(Game *game);
