@@ -104,6 +104,9 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a15e38affd62949855c781ff9244ec6a7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a15e38affd62949855c781ff9244ec6a7">normal_delay</a> (double mean)</td></tr>
 <tr class="memdesc:a15e38affd62949855c781ff9244ec6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper))  <a href="game_8h.html#a15e38affd62949855c781ff9244ec6a7">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a15e38affd62949855c781ff9244ec6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b50e23eddbe57f7651401f352707dce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8h.html#a6b50e23eddbe57f7651401f352707dce">free_all</a> (<a class="el" href="struct__entity_8h.html#a25fa88d8fd72fce4763106b5bfdc6c43">Game</a> *<a class="el" href="structgame.html">game</a>)</td></tr>
+<tr class="memdesc:a6b50e23eddbe57f7651401f352707dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that coordinate the free of all the structure.  <a href="game_8h.html#a6b50e23eddbe57f7651401f352707dce">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6b50e23eddbe57f7651401f352707dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
 <a id="aabb10419dbd089ed1f572a817bea10ee"></a>
@@ -172,6 +175,79 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<a id="a6b50e23eddbe57f7651401f352707dce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b50e23eddbe57f7651401f352707dce">&#9670;&nbsp;</a></span>free_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct__entity_8h.html#a25fa88d8fd72fce4763106b5bfdc6c43">Game</a> *&#160;</td>
+          <td class="paramname"><em>game</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that coordinate the free of all the structure. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>the game structure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="game_8c_source.html#l00157">157</a> du fichier <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="game_8c.html#a118e7f39072526a9ded539cc02e1f19e">free_image</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">image</a>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">powerup</a> != NULL)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">powerup</a>-&gt;<a class="code" href="structpowerup.html#ac4a226d87292fb6c61717049cd501a9b">position</a> != NULL)</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            free(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">powerup</a>-&gt;<a class="code" href="structpowerup.html#ac4a226d87292fb6c61717049cd501a9b">position</a>);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        free(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">powerup</a>);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    MLV_free_font(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a48cb9e5a72b809b544f47cd51a6244ee">font</a>);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="game_8c.html#a8f9f3c7c48cb40be854651ca4d681d6b">free_player</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">player</a>);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <a class="code" href="game_8c.html#a594562d31867b758f758adc24d36f3fa">free_rockets</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af00275851bf75c68b263aad70c311bac">tab_rocket</a>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="game_8c.html#ab232532548c08176cc918eb7f4a2281e">free_ennemies</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">tab_enemy</a>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    MLV_stop_music();</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    MLV_free_sound(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a26ccdfc73772ac5afb9bd10de0cb1fe1">sounddbz</a>);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    MLV_free_music(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a4dd54b40b46dacc02cfeea883a6bccc5">music</a>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    MLV_free_audio();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    MLV_free_window();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="structgame.html#a48cb9e5a72b809b544f47cd51a6244ee">game::font</a>, <a class="el" href="game_8c.html#ab232532548c08176cc918eb7f4a2281e">free_ennemies()</a>, <a class="el" href="game_8c.html#a118e7f39072526a9ded539cc02e1f19e">free_image()</a>, <a class="el" href="game_8c.html#a8f9f3c7c48cb40be854651ca4d681d6b">free_player()</a>, <a class="el" href="game_8c.html#a594562d31867b758f758adc24d36f3fa">free_rockets()</a>, <a class="el" href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">game::image</a>, <a class="el" href="structgame.html#a4dd54b40b46dacc02cfeea883a6bccc5">game::music</a>, <a class="el" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">game::player</a>, <a class="el" href="structpowerup.html#ac4a226d87292fb6c61717049cd501a9b">powerup::position</a>, <a class="el" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">game::powerup</a>, <a class="el" href="structgame.html#a26ccdfc73772ac5afb9bd10de0cb1fe1">game::sounddbz</a>, <a class="el" href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">game::tab_enemy</a>, et <a class="el" href="structgame.html#af00275851bf75c68b263aad70c311bac">game::tab_rocket</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089">main()</a>.</p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8h_a6b50e23eddbe57f7651401f352707dce_cgraph.png" border="0" usemap="#game_8h_a6b50e23eddbe57f7651401f352707dce_cgraph" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8h_a6b50e23eddbe57f7651401f352707dce_icgraph.png" border="0" usemap="#game_8h_a6b50e23eddbe57f7651401f352707dce_icgraph" alt=""/></div>
+<!-- MAP 5 -->
+</div>
+
+</div>
+</div>
 <a id="a15e38affd62949855c781ff9244ec6a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a15e38affd62949855c781ff9244ec6a7">&#9670;&nbsp;</a></span>normal_delay()</h2>
 
@@ -207,24 +283,32 @@ Voici le graphe des appelants de cette fonction :</div>
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="game_8h_a15e38affd62949855c781ff9244ec6a7_icgraph.png" border="0" usemap="#game_8h_a15e38affd62949855c781ff9244ec6a7_icgraph" alt=""/></div>
-<!-- MAP 4 -->
+<!-- MAP 6 -->
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="astructgame_html_a580e8ab27dc6c20d58ccc3523bd4080e"><div class="ttname"><a href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">game::tab_enemy</a></div><div class="ttdeci">Enemy * tab_enemy[NUMBER_OF_ENEMY]</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00100">struct_entity.h:100</a></div></div>
+<div class="ttc" id="agame_8c_html_a594562d31867b758f758adc24d36f3fa"><div class="ttname"><a href="game_8c.html#a594562d31867b758f758adc24d36f3fa">free_rockets</a></div><div class="ttdeci">void free_rockets(Rocket **tab_rocket)</div><div class="ttdoc">Function that free the rockets structure.</div><div class="ttdef"><b>Definition:</b> <a href="game_8c_source.html#l00116">game.c:116</a></div></div>
 <div class="ttc" id="aenemies__controller_8c_html_a099030bf9ae5919f1183e3034868f7f2"><div class="ttname"><a href="enemies__controller_8c.html#a099030bf9ae5919f1183e3034868f7f2">init_tab_enemy</a></div><div class="ttdeci">void init_tab_enemy(Enemy **tab_enemy)</div><div class="ttdoc">Function who init all the enemies of the game.</div><div class="ttdef"><b>Definition:</b> <a href="enemies__controller_8c_source.html#l00027">enemies_controller.c:27</a></div></div>
+<div class="ttc" id="agame_8c_html_a118e7f39072526a9ded539cc02e1f19e"><div class="ttname"><a href="game_8c.html#a118e7f39072526a9ded539cc02e1f19e">free_image</a></div><div class="ttdeci">void free_image(Image_Game *imgs)</div><div class="ttdoc">Function that free the image structure.</div><div class="ttdef"><b>Definition:</b> <a href="game_8c_source.html#l00076">game.c:76</a></div></div>
 <div class="ttc" id="astructplayer_html"><div class="ttname"><a href="structplayer.html">player</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00037">struct_entity.h:37</a></div></div>
 <div class="ttc" id="astructimage__game_html"><div class="ttname"><a href="structimage__game.html">image_game</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00078">struct_entity.h:78</a></div></div>
 <div class="ttc" id="astructgame_html_a7a8ea2e99378b9a51255c4079a011e33"><div class="ttname"><a href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">game::image</a></div><div class="ttdeci">Image_Game * image</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00108">struct_entity.h:108</a></div></div>
+<div class="ttc" id="astructgame_html_a26ccdfc73772ac5afb9bd10de0cb1fe1"><div class="ttname"><a href="structgame.html#a26ccdfc73772ac5afb9bd10de0cb1fe1">game::sounddbz</a></div><div class="ttdeci">MLV_Sound * sounddbz</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00110">struct_entity.h:110</a></div></div>
 <div class="ttc" id="astructgame_html_af00275851bf75c68b263aad70c311bac"><div class="ttname"><a href="structgame.html#af00275851bf75c68b263aad70c311bac">game::tab_rocket</a></div><div class="ttdeci">Rocket * tab_rocket[NUMBER_OF_ROCKET]</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00101">struct_entity.h:101</a></div></div>
 <div class="ttc" id="aplayer__controller_8c_html_a37d647b0fb55370a43a05b0e450cc371"><div class="ttname"><a href="player__controller_8c.html#a37d647b0fb55370a43a05b0e450cc371">init_player</a></div><div class="ttdeci">Player * init_player()</div><div class="ttdoc">Function that init the player.</div><div class="ttdef"><b>Definition:</b> <a href="player__controller_8c_source.html#l00025">player_controller.c:25</a></div></div>
+<div class="ttc" id="astructpowerup_html_ac4a226d87292fb6c61717049cd501a9b"><div class="ttname"><a href="structpowerup.html#ac4a226d87292fb6c61717049cd501a9b">powerup::position</a></div><div class="ttdeci">Position * position</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00034">struct_entity.h:34</a></div></div>
 <div class="ttc" id="arocket__controller_8c_html_a15a52cf3cb4adbcd3da3a0ce711a9f9e"><div class="ttname"><a href="rocket__controller_8c.html#a15a52cf3cb4adbcd3da3a0ce711a9f9e">init_tab_rocket</a></div><div class="ttdeci">void init_tab_rocket(Rocket **tab_rocket)</div><div class="ttdoc">Function who init all the rocket of the game.</div><div class="ttdef"><b>Definition:</b> <a href="rocket__controller_8c_source.html#l00026">rocket_controller.c:26</a></div></div>
 <div class="ttc" id="astructgame_html_af56b8a8304a308883bf15e276e84fa9a"><div class="ttname"><a href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">game::player</a></div><div class="ttdeci">Player * player</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00102">struct_entity.h:102</a></div></div>
 <div class="ttc" id="astructpowerup_html"><div class="ttname"><a href="structpowerup.html">powerup</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00027">struct_entity.h:27</a></div></div>
 <div class="ttc" id="astructgame_html_a113fe5d9c2f016ee84b3589945a58419"><div class="ttname"><a href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">game::powerup</a></div><div class="ttdeci">Powerup * powerup</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00109">struct_entity.h:109</a></div></div>
+<div class="ttc" id="astructgame_html_a48cb9e5a72b809b544f47cd51a6244ee"><div class="ttname"><a href="structgame.html#a48cb9e5a72b809b544f47cd51a6244ee">game::font</a></div><div class="ttdeci">MLV_Font * font</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00112">struct_entity.h:112</a></div></div>
 <div class="ttc" id="astructgame_html"><div class="ttname"><a href="structgame.html">game</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00098">struct_entity.h:98</a></div></div>
+<div class="ttc" id="agame_8c_html_a8f9f3c7c48cb40be854651ca4d681d6b"><div class="ttname"><a href="game_8c.html#a8f9f3c7c48cb40be854651ca4d681d6b">free_player</a></div><div class="ttdeci">void free_player(Player *player)</div><div class="ttdoc">Function that free the player structure.</div><div class="ttdef"><b>Definition:</b> <a href="game_8c_source.html#l00100">game.c:100</a></div></div>
+<div class="ttc" id="agame_8c_html_ab232532548c08176cc918eb7f4a2281e"><div class="ttname"><a href="game_8c.html#ab232532548c08176cc918eb7f4a2281e">free_ennemies</a></div><div class="ttdeci">void free_ennemies(Enemy **tab_enemy)</div><div class="ttdoc">Function that free the ennemies structure.</div><div class="ttdef"><b>Definition:</b> <a href="game_8c_source.html#l00136">game.c:136</a></div></div>
+<div class="ttc" id="astructgame_html_a4dd54b40b46dacc02cfeea883a6bccc5"><div class="ttname"><a href="structgame.html#a4dd54b40b46dacc02cfeea883a6bccc5">game::music</a></div><div class="ttdeci">MLV_Music * music</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00111">struct_entity.h:111</a></div></div>
 <div class="ttc" id="astructgame_html_a2b66a54c9ef0b937b6239bb6a6f390a9"><div class="ttname"><a href="structgame.html#a2b66a54c9ef0b937b6239bb6a6f390a9">game::difficulty</a></div><div class="ttdeci">double difficulty</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00107">struct_entity.h:107</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

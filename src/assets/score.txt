@@ -54,3 +54,4 @@ Player : szs -> Score : 155 -> on : Jun  9 2023 at : 20:17:42
 Player : zkspkzpsk -> Score : 131 -> on : Jun  9 2023 at : 20:17:42 
 Player :  kpzks -> Score : 128 -> on : Jun  9 2023 at : 20:19:13 
 Player : zkzpks  -> Score : 156 -> on : Jun  9 2023 at : 20:19:40 
+Player : jdepkde -> Score : 585 -> on : Jun  9 2023 at : 20:36:49 

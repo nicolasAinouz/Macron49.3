@@ -26,7 +26,17 @@ Graphe des dépendances par inclusion de game.\+c\+:
 double \mbox{\hyperlink{game_8c_a15e38affd62949855c781ff9244ec6a7}{normal\+\_\+delay}} (double mean)
 \begin{DoxyCompactList}\small\item\em Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper)) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$ \mbox{\hyperlink{game_8c_aabb10419dbd089ed1f572a817bea10ee}{create\+\_\+game}} ()
-\begin{DoxyCompactList}\small\item\em Initialise the structure of the game who contains all the structure of the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Initialise the structure of the game who contains all the structure of the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a118e7f39072526a9ded539cc02e1f19e}{free\+\_\+image}} (\mbox{\hyperlink{struct__entity_8h_abb2dbbc070b2950d9966260e554e0a4e}{Image\+\_\+\+Game}} $\ast$imgs)
+\begin{DoxyCompactList}\small\item\em Function that free the image structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a8f9f3c7c48cb40be854651ca4d681d6b}{free\+\_\+player}} (\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Function that free the player structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a594562d31867b758f758adc24d36f3fa}{free\+\_\+rockets}} (\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$$\ast$tab\+\_\+rocket)
+\begin{DoxyCompactList}\small\item\em Function that free the rockets structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_ab232532548c08176cc918eb7f4a2281e}{free\+\_\+ennemies}} (\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$$\ast$tab\+\_\+enemy)
+\begin{DoxyCompactList}\small\item\em Function that free the ennemies structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a6b50e23eddbe57f7651401f352707dce}{free\+\_\+all}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that coordinate the free of all the structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -105,6 +115,253 @@ Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
 % FIG 1
 Voici le graphe des appelants de cette fonction \+:
 % FIG 2
+\mbox{\Hypertarget{game_8c_a6b50e23eddbe57f7651401f352707dce}\label{game_8c_a6b50e23eddbe57f7651401f352707dce}} 
+\index{game.c@{game.c}!free\_all@{free\_all}}
+\index{free\_all@{free\_all}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{free\_all()}{free\_all()}}
+{\footnotesize\ttfamily void free\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that coordinate the free of all the structure. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 157 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{158 \{}
+\DoxyCodeLine{159     \mbox{\hyperlink{game_8c_a118e7f39072526a9ded539cc02e1f19e}{free\_image}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}});}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}} != NULL)}
+\DoxyCodeLine{162     \{}
+\DoxyCodeLine{163         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}} != NULL)}
+\DoxyCodeLine{164             free(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}});}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166         free(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}});}
+\DoxyCodeLine{167     \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     MLV\_free\_font(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a48cb9e5a72b809b544f47cd51a6244ee}{font}});}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \mbox{\hyperlink{game_8c_a8f9f3c7c48cb40be854651ca4d681d6b}{free\_player}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}});}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     \mbox{\hyperlink{game_8c_a594562d31867b758f758adc24d36f3fa}{free\_rockets}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}});}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \mbox{\hyperlink{game_8c_ab232532548c08176cc918eb7f4a2281e}{free\_ennemies}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a580e8ab27dc6c20d58ccc3523bd4080e}{tab\_enemy}});}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     MLV\_stop\_music();}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179     MLV\_free\_sound(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a26ccdfc73772ac5afb9bd10de0cb1fe1}{sounddbz}});}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     MLV\_free\_music(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a4dd54b40b46dacc02cfeea883a6bccc5}{music}});}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     MLV\_free\_audio();}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     MLV\_free\_window();}
+\DoxyCodeLine{186 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::font, free\+\_\+ennemies(), free\+\_\+image(), free\+\_\+player(), free\+\_\+rockets(), game\+::image, game\+::music, game\+::player, powerup\+::position, game\+::powerup, game\+::sounddbz, game\+::tab\+\_\+enemy, et game\+::tab\+\_\+rocket.
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 3
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4
+\mbox{\Hypertarget{game_8c_ab232532548c08176cc918eb7f4a2281e}\label{game_8c_ab232532548c08176cc918eb7f4a2281e}} 
+\index{game.c@{game.c}!free\_ennemies@{free\_ennemies}}
+\index{free\_ennemies@{free\_ennemies}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{free\_ennemies()}{free\_ennemies()}}
+{\footnotesize\ttfamily void free\+\_\+ennemies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$$\ast$}]{tab\+\_\+enemy }\end{DoxyParamCaption})}
+
+
+
+Function that free the ennemies structure. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab\+\_\+enemy} & tab of ennemies \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 136 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_af0e7ce6e70afd875b9d089dca981e38f}{NUMBER\_OF\_ENEMY}}; i++)}
+\DoxyCodeLine{139     \{}
+\DoxyCodeLine{140         \textcolor{keywordflow}{if} (tab\_enemy[i] != NULL)}
+\DoxyCodeLine{141         \{}
+\DoxyCodeLine{142             \textcolor{keywordflow}{if} (tab\_enemy[i]-\/>\mbox{\hyperlink{structposition}{position}} != NULL)}
+\DoxyCodeLine{143                 free(tab\_enemy[i]-\/>\mbox{\hyperlink{structposition}{position}});}
+\DoxyCodeLine{144             \textcolor{keywordflow}{if} (tab\_enemy[i]-\/>\mbox{\hyperlink{structhitbox}{hitbox}} != NULL)}
+\DoxyCodeLine{145                 free(tab\_enemy[i]-\/>\mbox{\hyperlink{structhitbox}{hitbox}});}
+\DoxyCodeLine{146         \}}
+\DoxyCodeLine{147     \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     free(*tab\_enemy);}
+\DoxyCodeLine{150 \}}
+
+\end{DoxyCode}
+
+
+Références N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+E\+MY.
+
+
+
+Référencé par free\+\_\+all().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 5
+\mbox{\Hypertarget{game_8c_a118e7f39072526a9ded539cc02e1f19e}\label{game_8c_a118e7f39072526a9ded539cc02e1f19e}} 
+\index{game.c@{game.c}!free\_image@{free\_image}}
+\index{free\_image@{free\_image}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{free\_image()}{free\_image()}}
+{\footnotesize\ttfamily void free\+\_\+image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_abb2dbbc070b2950d9966260e554e0a4e}{Image\+\_\+\+Game}} $\ast$}]{imgs }\end{DoxyParamCaption})}
+
+
+
+Function that free the image structure. 
+
+\begin{DoxyReturn}{Renvoie}
+Image\+\_\+\+Game$\ast$ The image structure 
+\end{DoxyReturn}
+
+
+Définition à la ligne 76 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{77 \{}
+\DoxyCodeLine{78     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a064a8cf2c487b3e355c4af0e993216ca}{img\_background}});}
+\DoxyCodeLine{79     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a73735a0e72e3f2d98fedd04854e8d02a}{img\_bullet\_player}});}
+\DoxyCodeLine{80     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_aa52956811db53ea5f1ee6bb19b021ebc}{img\_bullet\_tank}});}
+\DoxyCodeLine{81     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a7e9b4f35c26a27c1569a84d23edcc910}{img\_enemy}});}
+\DoxyCodeLine{82     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a178c460270ffb41734bea1257fd6becd}{img\_enemy\_tank}});}
+\DoxyCodeLine{83     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_abf4a97db667ed44adf8610c4c70c6d7c}{img\_explosion}});}
+\DoxyCodeLine{84     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a7d33400aca97d7992242199b390c6310}{img\_explosion\_dbz}});}
+\DoxyCodeLine{85     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a7a6587a1ed655bb37713f0ea46f88018}{img\_player}});}
+\DoxyCodeLine{86     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_aab7df6b4a807878a2f1680711e86b2e6}{img\_player\_dbz}});}
+\DoxyCodeLine{87     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_ab2671a68695c7655fdbbd2a7f78fdf16}{img\_powerup\_dbz}});}
+\DoxyCodeLine{88     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a8d6d766c11e488299e250582a93e28f9}{img\_powerup\_health}});}
+\DoxyCodeLine{89     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_a310e650558337a5d52e97b1c0102183f}{img\_powerup\_speed}});}
+\DoxyCodeLine{90     MLV\_free\_image(imgs-\/>\mbox{\hyperlink{structimage__game_aa7f1ff21af5b6c3085b9d26bd12a3b47}{img\_rocket}});}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     free(imgs);}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+
+
+Références image\+\_\+game\+::img\+\_\+background, image\+\_\+game\+::img\+\_\+bullet\+\_\+player, image\+\_\+game\+::img\+\_\+bullet\+\_\+tank, image\+\_\+game\+::img\+\_\+enemy, image\+\_\+game\+::img\+\_\+enemy\+\_\+tank, image\+\_\+game\+::img\+\_\+explosion, image\+\_\+game\+::img\+\_\+explosion\+\_\+dbz, image\+\_\+game\+::img\+\_\+player, image\+\_\+game\+::img\+\_\+player\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+dbz, image\+\_\+game\+::img\+\_\+powerup\+\_\+health, image\+\_\+game\+::img\+\_\+powerup\+\_\+speed, et image\+\_\+game\+::img\+\_\+rocket.
+
+
+
+Référencé par free\+\_\+all().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 6
+\mbox{\Hypertarget{game_8c_a8f9f3c7c48cb40be854651ca4d681d6b}\label{game_8c_a8f9f3c7c48cb40be854651ca4d681d6b}} 
+\index{game.c@{game.c}!free\_player@{free\_player}}
+\index{free\_player@{free\_player}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{free\_player()}{free\_player()}}
+{\footnotesize\ttfamily void free\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function that free the player structure. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em player} & player structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 100 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{101 \{}
+\DoxyCodeLine{102     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}} != NULL)}
+\DoxyCodeLine{103     \{}
+\DoxyCodeLine{104         free(\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_ac4a226d87292fb6c61717049cd501a9b}{position}});}
+\DoxyCodeLine{105         free(\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}});}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107     free(\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}});}
+\DoxyCodeLine{108     free(\mbox{\hyperlink{structplayer}{player}});}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+
+
+Références powerup\+::position, player\+::position, et player\+::powerup.
+
+
+
+Référencé par free\+\_\+all().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 7
+\mbox{\Hypertarget{game_8c_a594562d31867b758f758adc24d36f3fa}\label{game_8c_a594562d31867b758f758adc24d36f3fa}} 
+\index{game.c@{game.c}!free\_rockets@{free\_rockets}}
+\index{free\_rockets@{free\_rockets}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{free\_rockets()}{free\_rockets()}}
+{\footnotesize\ttfamily void free\+\_\+rockets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$$\ast$}]{tab\+\_\+rocket }\end{DoxyParamCaption})}
+
+
+
+Function that free the rockets structure. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab\+\_\+rocket} & tab of rockets \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 116 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117 \{}
+\DoxyCodeLine{118     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_a7b029282ee5d3ea597bd0d0c798149a7}{NUMBER\_OF\_ROCKET}}; i++)}
+\DoxyCodeLine{119     \{}
+\DoxyCodeLine{120         \textcolor{keywordflow}{if} (tab\_rocket[i] != NULL)}
+\DoxyCodeLine{121         \{}
+\DoxyCodeLine{122             \textcolor{keywordflow}{if} (tab\_rocket[i]-\/>\mbox{\hyperlink{structposition}{position}} != NULL)}
+\DoxyCodeLine{123                 free(tab\_rocket[i]-\/>\mbox{\hyperlink{structposition}{position}});}
+\DoxyCodeLine{124             \textcolor{keywordflow}{if} (tab\_rocket[i]-\/>\mbox{\hyperlink{structhitbox}{hitbox}} != NULL)}
+\DoxyCodeLine{125                 free(tab\_rocket[i]-\/>\mbox{\hyperlink{structhitbox}{hitbox}});}
+\DoxyCodeLine{126         \}}
+\DoxyCodeLine{127     \}}
+\DoxyCodeLine{128     free(*tab\_rocket);}
+\DoxyCodeLine{129 \}}
+
+\end{DoxyCode}
+
+
+Références N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+R\+O\+C\+K\+ET.
+
+
+
+Référencé par free\+\_\+all().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 8
 \mbox{\Hypertarget{game_8c_a15e38affd62949855c781ff9244ec6a7}\label{game_8c_a15e38affd62949855c781ff9244ec6a7}} 
 \index{game.c@{game.c}!normal\_delay@{normal\_delay}}
 \index{normal\_delay@{normal\_delay}!game.c@{game.c}}
@@ -139,4 +396,4 @@ Définition à la ligne 30 du fichier game.\+c.
 Référencé par enemy\+\_\+shoot(), move\+\_\+enemies(), et update\+\_\+powerup().
 
 Voici le graphe des appelants de cette fonction \+:
-% FIG 3
+% FIG 9

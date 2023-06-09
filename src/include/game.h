@@ -14,5 +14,6 @@
 
 Game *create_game();
 double normal_delay(double mean);
+void free_all(Game *game);
 
 #endif
