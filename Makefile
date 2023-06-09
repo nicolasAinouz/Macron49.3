@@ -46,5 +46,3 @@ update:
 clean:
 	rm -rf $(BIN)*.o $(MAIN)
 
-doc :
-	firefox generated-doc/html/index.html

@@ -1,0 +1,297 @@
+\hypertarget{rocket__controller_8h}{}\doxysection{Référence du fichier src/include/rocket\+\_\+controller.h}
+\label{rocket__controller_8h}\index{src/include/rocket\_controller.h@{src/include/rocket\_controller.h}}
+{\ttfamily \#include \char`\"{}struct\+\_\+entity.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de rocket\+\_\+controller.\+h\+:
+% FIG 0
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+% FIG 1
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rocket__controller_8h_af80d6005017c5a32c5416e2fa24eae32}{move\+\_\+rocket}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that manage the movement of the rocket and draw it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rocket__controller_8h_a15a52cf3cb4adbcd3da3a0ce711a9f9e}{init\+\_\+tab\+\_\+rocket}} (\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$$\ast$tab\+\_\+rocket)
+\begin{DoxyCompactList}\small\item\em Function who init all the rocket of the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rocket__controller_8h_a0d76320b27aa9020c5d60472eac12d5e}{rocket\+\_\+available}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that check if the rocket respect all the condition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rocket__controller_8h_ada059c3d57305096670459ca267e431f}{shoot}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}}, \mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$\mbox{\hyperlink{structenemy}{enemy}}, int is\+\_\+special, int is\+\_\+player)
+\begin{DoxyCompactList}\small\item\em Function for shoot a rocket for player and enemy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{rocket__controller_8h_a15a52cf3cb4adbcd3da3a0ce711a9f9e}\label{rocket__controller_8h_a15a52cf3cb4adbcd3da3a0ce711a9f9e}} 
+\index{rocket\_controller.h@{rocket\_controller.h}!init\_tab\_rocket@{init\_tab\_rocket}}
+\index{init\_tab\_rocket@{init\_tab\_rocket}!rocket\_controller.h@{rocket\_controller.h}}
+\doxysubsubsection{\texorpdfstring{init\_tab\_rocket()}{init\_tab\_rocket()}}
+{\footnotesize\ttfamily void init\+\_\+tab\+\_\+rocket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_ac40b4625c251da9ceac4f08354b2ce52}{Rocket}} $\ast$$\ast$}]{tab\+\_\+rocket }\end{DoxyParamCaption})}
+
+
+
+Function who init all the rocket of the game. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab\+\_\+rocket} & \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 26 du fichier rocket\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_a7b029282ee5d3ea597bd0d0c798149a7}{NUMBER\_OF\_ROCKET}}; i++)}
+\DoxyCodeLine{29     \{}
+\DoxyCodeLine{30         \mbox{\hyperlink{structrocket}{Rocket}} *\mbox{\hyperlink{structrocket}{rocket}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structrocket}{Rocket}}));}
+\DoxyCodeLine{31         assert(\mbox{\hyperlink{structrocket}{rocket}} != NULL);}
+\DoxyCodeLine{32         \mbox{\hyperlink{structposition}{Position}} *\mbox{\hyperlink{structposition}{position}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{33         assert(\mbox{\hyperlink{structposition}{position}} != NULL);}
+\DoxyCodeLine{34         \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = 0;}
+\DoxyCodeLine{35         \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = 0;}
+\DoxyCodeLine{36         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}} = \mbox{\hyperlink{structposition}{position}};}
+\DoxyCodeLine{37         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}} = 0;}
+\DoxyCodeLine{38         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}} = 0;}
+\DoxyCodeLine{39         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}} = 0;}
+\DoxyCodeLine{40         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}} = 0;}
+\DoxyCodeLine{41         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}} = 0;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43         \mbox{\hyperlink{structhitbox}{Hitbox}} *\mbox{\hyperlink{structhitbox}{hitbox}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structhitbox}{Hitbox}}));}
+\DoxyCodeLine{44         assert(\mbox{\hyperlink{structhitbox}{hitbox}} != NULL);}
+\DoxyCodeLine{45         \mbox{\hyperlink{structposition}{Position}} *position\_hitbox = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{46         assert(position\_hitbox != NULL);}
+\DoxyCodeLine{47         \mbox{\hyperlink{structhitbox}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}} = position\_hitbox;}
+\DoxyCodeLine{48         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}} = \mbox{\hyperlink{structhitbox}{hitbox}};}
+\DoxyCodeLine{49         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = 0;}
+\DoxyCodeLine{50         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = 0;}
+\DoxyCodeLine{51         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = 0;}
+\DoxyCodeLine{52         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = 0;}
+\DoxyCodeLine{53         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_ad43226f4be9811986876dc3df6f43627}{size}} = 0;}
+\DoxyCodeLine{54         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}} = 0;}
+\DoxyCodeLine{55         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}} = 0;}
+\DoxyCodeLine{56         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}} = 0;}
+\DoxyCodeLine{57         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}} = 0;}
+\DoxyCodeLine{58         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}} = 0;}
+\DoxyCodeLine{59         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}{is\_special}} = 0;}
+\DoxyCodeLine{60         tab\_rocket[i] = \mbox{\hyperlink{structrocket}{rocket}};}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+
+
+Références rocket\+::damage, rocket\+::hitbox, rocket\+::is\+\_\+alive, rocket\+::is\+\_\+player, rocket\+::is\+\_\+special, N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+R\+O\+C\+K\+ET, hitbox\+::position, rocket\+::position, hitbox\+::size, rocket\+::size, rocket\+::speed, position\+::x, et position\+::y.
+
+
+
+Référencé par create\+\_\+game().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\mbox{\Hypertarget{rocket__controller_8h_af80d6005017c5a32c5416e2fa24eae32}\label{rocket__controller_8h_af80d6005017c5a32c5416e2fa24eae32}} 
+\index{rocket\_controller.h@{rocket\_controller.h}!move\_rocket@{move\_rocket}}
+\index{move\_rocket@{move\_rocket}!rocket\_controller.h@{rocket\_controller.h}}
+\doxysubsubsection{\texorpdfstring{move\_rocket()}{move\_rocket()}}
+{\footnotesize\ttfamily void move\+\_\+rocket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that manage the movement of the rocket and draw it. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 159 du fichier rocket\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{160 \{}
+\DoxyCodeLine{161     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_a7b029282ee5d3ea597bd0d0c798149a7}{NUMBER\_OF\_ROCKET}}; i++)}
+\DoxyCodeLine{162     \{}
+\DoxyCodeLine{163         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}} ? \mbox{\hyperlink{rocket__controller_8c_ad9f71a9f29143bc65c1d7dc4b1c15570}{move\_rocket\_player}}(\mbox{\hyperlink{structgame}{game}}, i) : \mbox{\hyperlink{structgame}{game}}-\/>tab\_rocket[i]-\/>is\_special ? \mbox{\hyperlink{rocket__controller_8c_ad2cdde14622fe3f61639014da808e1c6}{update\_special\_rocket}}(\mbox{\hyperlink{structgame}{game}}, i)}
+\DoxyCodeLine{164                                                                                                        : \mbox{\hyperlink{rocket__controller_8c_af88d7ddeece208bb01976a351139110a}{move\_rocket\_enemy}}(\mbox{\hyperlink{structgame}{game}}, i);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}})}
+\DoxyCodeLine{167             \mbox{\hyperlink{window_8h_ac91739c09698faa44415abaabf2bdd89}{draw\_rocket}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i], \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_a73735a0e72e3f2d98fedd04854e8d02a}{img\_bullet\_player}});}
+\DoxyCodeLine{168         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{169         \{}
+\DoxyCodeLine{170             \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}{is\_special}} \&\& \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_a96ebe6019fc6c197296e4f002e3b1909}{time}} > 0)}
+\DoxyCodeLine{171             \{}
+\DoxyCodeLine{172                 \mbox{\hyperlink{window_8h_ac91739c09698faa44415abaabf2bdd89}{draw\_rocket}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i], \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aa52956811db53ea5f1ee6bb19b021ebc}{img\_bullet\_tank}});}
+\DoxyCodeLine{173             \}}
+\DoxyCodeLine{174             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}{is\_special}})}
+\DoxyCodeLine{175             \{}
+\DoxyCodeLine{176                 \mbox{\hyperlink{window_8h_ac91739c09698faa44415abaabf2bdd89}{draw\_rocket}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i], \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}}-\/>\mbox{\hyperlink{structimage__game_aa52956811db53ea5f1ee6bb19b021ebc}{img\_bullet\_tank}});}
+\DoxyCodeLine{177             \}}
+\DoxyCodeLine{178         \}}
+\DoxyCodeLine{179     \}}
+\DoxyCodeLine{180 \}}
+
+\end{DoxyCode}
+
+
+Références draw\+\_\+rocket(), game\+::image, image\+\_\+game\+::img\+\_\+bullet\+\_\+player, image\+\_\+game\+::img\+\_\+bullet\+\_\+tank, rocket\+::is\+\_\+player, rocket\+::is\+\_\+special, move\+\_\+rocket\+\_\+enemy(), move\+\_\+rocket\+\_\+player(), N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+R\+O\+C\+K\+ET, game\+::tab\+\_\+rocket, rocket\+::time, et update\+\_\+special\+\_\+rocket().
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 3
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4
+\mbox{\Hypertarget{rocket__controller_8h_a0d76320b27aa9020c5d60472eac12d5e}\label{rocket__controller_8h_a0d76320b27aa9020c5d60472eac12d5e}} 
+\index{rocket\_controller.h@{rocket\_controller.h}!rocket\_available@{rocket\_available}}
+\index{rocket\_available@{rocket\_available}!rocket\_controller.h@{rocket\_controller.h}}
+\doxysubsubsection{\texorpdfstring{rocket\_available()}{rocket\_available()}}
+{\footnotesize\ttfamily void rocket\+\_\+available (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that check if the rocket respect all the condition. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 247 du fichier rocket\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{248 \{}
+\DoxyCodeLine{249     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_a7b029282ee5d3ea597bd0d0c798149a7}{NUMBER\_OF\_ROCKET}}; i++)}
+\DoxyCodeLine{250     \{}
+\DoxyCodeLine{251         \textcolor{keywordflow}{if} (\mbox{\hyperlink{rocket__controller_8c_af43af1036bd161562f3e1402e47b5355}{is\_out\_of\_map}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i], \mbox{\hyperlink{structgame}{game}}))}
+\DoxyCodeLine{252         \{}
+\DoxyCodeLine{253             \mbox{\hyperlink{rocket__controller_8c_a8e1118ec4dfa0938b19e9eb75a942839}{update\_tab\_rocket}}(\mbox{\hyperlink{structgame}{game}}, i);}
+\DoxyCodeLine{254         \}}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256         \textcolor{keywordflow}{if} (\mbox{\hyperlink{rocket__controller_8c_a5b10f5b816991040faa7c20ba3eb52e6}{rocket\_touch\_player}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i], \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}))}
+\DoxyCodeLine{257         \{}
+\DoxyCodeLine{258             \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} -\/= \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}};}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260             \mbox{\hyperlink{rocket__controller_8c_a8e1118ec4dfa0938b19e9eb75a942839}{update\_tab\_rocket}}(\mbox{\hyperlink{structgame}{game}}, i);}
+\DoxyCodeLine{261         \}}
+\DoxyCodeLine{262         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[i]-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}})}
+\DoxyCodeLine{263         \{}
+\DoxyCodeLine{264             \mbox{\hyperlink{rocket__controller_8c_a8e1118ec4dfa0938b19e9eb75a942839}{update\_tab\_rocket}}(\mbox{\hyperlink{structgame}{game}}, i);}
+\DoxyCodeLine{265         \}}
+\DoxyCodeLine{266     \}}
+\DoxyCodeLine{267 \}}
+
+\end{DoxyCode}
+
+
+Références rocket\+::damage, player\+::health, rocket\+::is\+\_\+alive, is\+\_\+out\+\_\+of\+\_\+map(), N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+R\+O\+C\+K\+ET, game\+::player, rocket\+\_\+touch\+\_\+player(), game\+::tab\+\_\+rocket, et update\+\_\+tab\+\_\+rocket().
+
+
+
+Référencé par touch\+\_\+by\+\_\+rocket().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 5
+Voici le graphe des appelants de cette fonction \+:
+% FIG 6
+\mbox{\Hypertarget{rocket__controller_8h_ada059c3d57305096670459ca267e431f}\label{rocket__controller_8h_ada059c3d57305096670459ca267e431f}} 
+\index{rocket\_controller.h@{rocket\_controller.h}!shoot@{shoot}}
+\index{shoot@{shoot}!rocket\_controller.h@{rocket\_controller.h}}
+\doxysubsubsection{\texorpdfstring{shoot()}{shoot()}}
+{\footnotesize\ttfamily void shoot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$}]{enemy,  }\item[{int}]{is\+\_\+special,  }\item[{int}]{is\+\_\+player }\end{DoxyParamCaption})}
+
+
+
+Function for shoot a rocket for player and enemy. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+{\em enemy} & the enemy who shoot \\
+\hline
+{\em is\+\_\+special} & boolean if the ennemy is special \\
+\hline
+{\em is\+\_\+player} & boolean if the rocket is shoot by the player \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 295 du fichier rocket\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{296 \{}
+\DoxyCodeLine{297     \textcolor{keywordtype}{int} index = \mbox{\hyperlink{rocket__controller_8c_a8f13369d5c69922100f5b70dc104784f}{get\_available\_rocket}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{298     \mbox{\hyperlink{structrocket}{Rocket}} *\mbox{\hyperlink{structrocket}{rocket}} = \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[index];}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300     \textcolor{keywordflow}{switch} (is\_player)}
+\DoxyCodeLine{301     \{}
+\DoxyCodeLine{302     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} + \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}};}
+\DoxyCodeLine{305         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}};}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}} = \mbox{\hyperlink{const_8h_a59d0f9bc472d64e14dce206e1ee3572f}{ROCKET\_SIZE}};}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}} = \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}};}
+\DoxyCodeLine{310         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_ad43226f4be9811986876dc3df6f43627}{size}} = \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}};}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}} = 30;}
+\DoxyCodeLine{313         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}} = 5;}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}} = 1;}
+\DoxyCodeLine{316         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}} = 1;}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{319     \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{320         \textcolor{keywordflow}{switch} (is\_special)}
+\DoxyCodeLine{321         \{}
+\DoxyCodeLine{322         \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{323             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} + \mbox{\hyperlink{const_8h_a6a0b554fc9d2e56fad8f55c62fc78f9d}{SIZE\_ENEMY}} / 2;}
+\DoxyCodeLine{324             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}} = 15;}
+\DoxyCodeLine{325             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{326         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{327             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} + \mbox{\hyperlink{const_8h_a1079e52a53a07ad873265f473ee17819}{SIZE\_ENEMY\_TANK}} / 2.2;}
+\DoxyCodeLine{328             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af863f7fa4b181ef401c8ccae7f55f516}{speed}} = 5;}
+\DoxyCodeLine{329             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a96ebe6019fc6c197296e4f002e3b1909}{time}} = 200;}
+\DoxyCodeLine{330             \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af6503f7000142645fdc1a278f5b50b92}{time\_explosion}} = \mbox{\hyperlink{const_8h_a29305f9ebbc14fbc94f61596ed8cc1b6}{TIME\_EXPLOSION\_SPECIAL\_ROCKET}};}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{333         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{334             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{335         \}}
+\DoxyCodeLine{336         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}};}
+\DoxyCodeLine{337         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}} = \mbox{\hyperlink{const_8h_a6e3ff74c58f11f5fa9bf2084188cde50}{ROCKET\_ENNEMY\_SIZE}};}
+\DoxyCodeLine{338         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a75258b1053bb0537a4a168b0553adce9}{damage}} = 1;}
+\DoxyCodeLine{339         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_ae4d14749035325bbee86d73775af5339}{is\_alive}} = 1;}
+\DoxyCodeLine{340         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a06e2258a74158c246c3e68e937f90cf0}{is\_player}} = 0;}
+\DoxyCodeLine{341         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_af75b7d35a2f68d4d71e9d9c0cada6847}{is\_special}} = is\_special;}
+\DoxyCodeLine{342         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}} = \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_afabe6ee32da516d8e78975ec4688e42f}{position}};}
+\DoxyCodeLine{343         \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_aebb9bf3184d0f78e140b42ae2060e2fb}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_ad43226f4be9811986876dc3df6f43627}{size}} = \mbox{\hyperlink{structrocket}{rocket}}-\/>\mbox{\hyperlink{structrocket_a2570866927e75ec614a63dbb65977823}{size}};}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{346     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{347         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{348     \}}
+\DoxyCodeLine{349     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}}[index] = \mbox{\hyperlink{structrocket}{rocket}};}
+\DoxyCodeLine{350 \}}
+
+\end{DoxyCode}
+
+
+Références rocket\+::damage, get\+\_\+available\+\_\+rocket(), rocket\+::hitbox, rocket\+::is\+\_\+alive, rocket\+::is\+\_\+player, rocket\+::is\+\_\+special, game\+::player, hitbox\+::position, player\+::position, rocket\+::position, enemy\+::position, R\+O\+C\+K\+E\+T\+\_\+\+E\+N\+N\+E\+M\+Y\+\_\+\+S\+I\+ZE, R\+O\+C\+K\+E\+T\+\_\+\+S\+I\+ZE, hitbox\+::size, player\+::size, rocket\+::size, S\+I\+Z\+E\+\_\+\+E\+N\+E\+MY, S\+I\+Z\+E\+\_\+\+E\+N\+E\+M\+Y\+\_\+\+T\+A\+NK, rocket\+::speed, game\+::tab\+\_\+rocket, rocket\+::time, rocket\+::time\+\_\+explosion, T\+I\+M\+E\+\_\+\+E\+X\+P\+L\+O\+S\+I\+O\+N\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+R\+O\+C\+K\+ET, position\+::x, et position\+::y.
+
+
+
+Référencé par enemy\+\_\+shoot(), et space().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 7
+Voici le graphe des appelants de cette fonction \+:
+% FIG 8

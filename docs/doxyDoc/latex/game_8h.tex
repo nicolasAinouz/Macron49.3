@@ -1,0 +1,121 @@
+\hypertarget{game_8h}{}\doxysection{Référence du fichier src/include/game.h}
+\label{game_8h}\index{src/include/game.h@{src/include/game.h}}
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+time.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../include/const.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/struct\+\_\+entity.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de game.\+h\+:
+% FIG 0
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+% FIG 1
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$ \mbox{\hyperlink{game_8h_aabb10419dbd089ed1f572a817bea10ee}{create\+\_\+game}} ()
+\begin{DoxyCompactList}\small\item\em Initialise the structure of the game who contains all the structure of the game. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{game_8h_a15e38affd62949855c781ff9244ec6a7}{normal\+\_\+delay}} (double mean)
+\begin{DoxyCompactList}\small\item\em Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper)) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{game_8h_aabb10419dbd089ed1f572a817bea10ee}\label{game_8h_aabb10419dbd089ed1f572a817bea10ee}} 
+\index{game.h@{game.h}!create\_game@{create\_game}}
+\index{create\_game@{create\_game}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{create\_game()}{create\_game()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}}$\ast$ create\+\_\+game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise the structure of the game who contains all the structure of the game. 
+
+\begin{DoxyReturn}{Renvoie}
+Game$\ast$ the game structure 
+\end{DoxyReturn}
+
+
+Définition à la ligne 40 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \mbox{\hyperlink{structgame}{Game}} *\mbox{\hyperlink{structgame}{game}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgame}{Game}}));}
+\DoxyCodeLine{44     assert(\mbox{\hyperlink{structgame}{game}} != NULL);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structplayer}{Player}}));}
+\DoxyCodeLine{47     assert(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}} != NULL);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \mbox{\hyperlink{structplayer}{Player}} *\mbox{\hyperlink{structplayer}{player}} = \mbox{\hyperlink{player__controller_8c_a37d647b0fb55370a43a05b0e450cc371}{init\_player}}();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \mbox{\hyperlink{enemies__controller_8c_a099030bf9ae5919f1183e3034868f7f2}{init\_tab\_enemy}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a580e8ab27dc6c20d58ccc3523bd4080e}{tab\_enemy}});}
+\DoxyCodeLine{52     }
+\DoxyCodeLine{53     \mbox{\hyperlink{rocket__controller_8c_a15a52cf3cb4adbcd3da3a0ce711a9f9e}{init\_tab\_rocket}}(\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af00275851bf75c68b263aad70c311bac}{tab\_rocket}});}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \mbox{\hyperlink{structimage__game}{Image\_Game}} *\mbox{\hyperlink{structimage__game}{image\_game}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structimage__game}{Image\_Game}}));}
+\DoxyCodeLine{56     assert(\mbox{\hyperlink{structimage__game}{image\_game}} != NULL);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \mbox{\hyperlink{structpowerup}{Powerup}} *\mbox{\hyperlink{structpowerup}{powerup}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structpowerup}{Powerup}}));}
+\DoxyCodeLine{59     assert(\mbox{\hyperlink{structpowerup}{powerup}} != NULL);}
+\DoxyCodeLine{60     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a113fe5d9c2f016ee84b3589945a58419}{powerup}} = \mbox{\hyperlink{structpowerup}{powerup}};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a7a8ea2e99378b9a51255c4079a011e33}{image}} = \mbox{\hyperlink{structimage__game}{image\_game}};}
+\DoxyCodeLine{63     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}} = \mbox{\hyperlink{structplayer}{player}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a2b66a54c9ef0b937b6239bb6a6f390a9}{difficulty}} = 1;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keywordflow}{return} \mbox{\hyperlink{structgame}{game}};}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+Références game\+::difficulty, game\+::image, init\+\_\+player(), init\+\_\+tab\+\_\+enemy(), init\+\_\+tab\+\_\+rocket(), game\+::player, game\+::powerup, game\+::tab\+\_\+enemy, et game\+::tab\+\_\+rocket.
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 2
+Voici le graphe des appelants de cette fonction \+:
+% FIG 3
+\mbox{\Hypertarget{game_8h_a15e38affd62949855c781ff9244ec6a7}\label{game_8h_a15e38affd62949855c781ff9244ec6a7}} 
+\index{game.h@{game.h}!normal\_delay@{normal\_delay}}
+\index{normal\_delay@{normal\_delay}!game.h@{game.h}}
+\doxysubsubsection{\texorpdfstring{normal\_delay()}{normal\_delay()}}
+{\footnotesize\ttfamily double normal\+\_\+delay (\begin{DoxyParamCaption}\item[{double}]{mean }\end{DoxyParamCaption})}
+
+
+
+Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper)) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em mean} & the mean of the random \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+double the random 
+\end{DoxyReturn}
+
+
+Définition à la ligne 30 du fichier game.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32     \textcolor{keywordflow}{return} -\/mean * log(1 -\/ ((\textcolor{keywordtype}{double})rand() / RAND\_MAX));}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+
+
+Référencé par enemy\+\_\+shoot(), move\+\_\+enemies(), et update\+\_\+powerup().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4

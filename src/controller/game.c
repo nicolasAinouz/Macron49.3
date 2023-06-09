@@ -6,7 +6,6 @@
  * @date 08/06/2022
  */
 
-
 #include <MLV/MLV_all.h>
 #include <MLV/MLV_time.h>
 #include <time.h>
@@ -24,7 +23,7 @@
 
 /**
  * @brief Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper))
- * 
+ *
  * @param mean the mean of the random
  * @return double the random
  */
@@ -35,7 +34,7 @@ double normal_delay(double mean)
 
 /**
  * @brief Initialise the structure of the game who contains all the structure of the game
- * 
+ *
  * @return Game* the game structure
  */
 Game *create_game()
@@ -50,6 +49,7 @@ Game *create_game()
     Player *player = init_player();
 
     init_tab_enemy(game->tab_enemy);
+    
     init_tab_rocket(game->tab_rocket);
 
     Image_Game *image_game = malloc(sizeof(Image_Game));

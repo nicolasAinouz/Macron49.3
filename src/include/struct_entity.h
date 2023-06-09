@@ -101,8 +101,6 @@ typedef struct game
     Rocket *tab_rocket[NUMBER_OF_ROCKET];
     Player *player;
     int scale;
-    int number_enemies_key;
-    int number_rocket_key;
     int end_game;
     int last_keyboard_push;
     int has_powerup;

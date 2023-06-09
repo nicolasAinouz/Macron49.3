@@ -1,0 +1,12 @@
+digraph "create_enemy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="create_enemy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Create a enemy object."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="check_distance_enemy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enemies__controller_8c.html#a7f593ee3b4cc52d6fbb77de74c809d80",tooltip="Function that check if the special enemy is too close to another special enemy."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="get_available_enemy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$enemies__controller_8c.html#a9dcc1640f6452dc03d049930f59fd358",tooltip="Function that give the index of the first available enemy."];
+}

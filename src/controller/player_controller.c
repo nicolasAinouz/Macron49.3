@@ -7,7 +7,6 @@
  * @date 08/06/2022
  */
 
-
 #include <MLV/MLV_all.h>
 #include <time.h>
 #include <stdio.h>
@@ -20,8 +19,8 @@
 
 /**
  * @brief Function that init the player
- * 
- * @return Player* 
+ *
+ * @return Player*
  */
 Player *init_player()
 {
@@ -53,7 +52,7 @@ Player *init_player()
 
 /**
  * @brief Function that move the player to the left
- * 
+ *
  * @param player the player structure
  */
 void move_player_left(Player *player)
@@ -66,7 +65,7 @@ void move_player_left(Player *player)
 
 /**
  * @brief Function that move the player to the right
- * 
+ *
  * @param player player the player structure
  */
 void move_player_right(Player *player)
@@ -79,7 +78,7 @@ void move_player_right(Player *player)
 
 /**
  * @brief Function that move the player to the top
- * 
+ *
  * @param player the player structure
  */
 void move_player_up(Player *player)
@@ -92,7 +91,7 @@ void move_player_up(Player *player)
 
 /**
  * @brief Function that move the player to the bottom
- * 
+ *
  * @param player the player structure
  */
 void move_player_down(Player *player)
@@ -105,7 +104,7 @@ void move_player_down(Player *player)
 
 /**
  * @brief Function that activate the powerup
- * 
+ *
  * @param game the game structure
  */
 void active_power_up(Game *game)
@@ -145,7 +144,7 @@ void active_power_up(Game *game)
 
 /**
  * @brief Function who check if the player is dead
- * 
+ *
  * @param game the game structure
  * @return int boolean if the player is dead
  */
@@ -156,7 +155,7 @@ int player_is_dead(Game *game)
 
 /**
  * @brief Function that check if the player is shooting too much
- * 
+ *
  * @param game the game structure
  */
 void check_shooting_to_much(Game *game)
@@ -177,7 +176,7 @@ void check_shooting_to_much(Game *game)
 
 /**
  * @brief Function that manage the player and draw it
- * 
+ *
  * @param game the game structure
  */
 void player_update(Game *game)

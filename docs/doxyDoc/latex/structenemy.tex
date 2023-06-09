@@ -1,0 +1,152 @@
+\hypertarget{structenemy}{}\doxysection{Référence de la structure enemy}
+\label{structenemy}\index{enemy@{enemy}}
+
+
+{\ttfamily \#include $<$struct\+\_\+entity.\+h$>$}
+
+
+
+Graphe de collaboration de enemy\+:
+% FIG 0
+\doxysubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}} $\ast$ \mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}}
+\item 
+int \mbox{\hyperlink{structenemy_a05c59ef6945467625d57a3025ade6bf7}{size}}
+\item 
+int \mbox{\hyperlink{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}{health}}
+\item 
+int \mbox{\hyperlink{structenemy_a5e6bc4d7fcadac23f4b1a6038ec20bc9}{time}}
+\item 
+int \mbox{\hyperlink{structenemy_abb858aa58491c911fca53927fbbe280b}{speed}}
+\item 
+int \mbox{\hyperlink{structenemy_a197e7532b166c7c4e8c7eabb8f9d2842}{is\+\_\+alive}}
+\item 
+int \mbox{\hyperlink{structenemy_a6384ca2d6f91bb3bfa1f0b15ee504b93}{is\+\_\+special}}
+\item 
+\mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}} $\ast$ \mbox{\hyperlink{structenemy_a5d49688e350b88d6d0ef903f361c4a70}{hitbox}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+
+
+Définition à la ligne 66 du fichier struct\+\_\+entity.\+h.
+
+
+
+\doxysubsection{Documentation des données membres}
+\mbox{\Hypertarget{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}\label{structenemy_a4daab2e0d1bf32da3fe6bee6904a3df3}} 
+\index{enemy@{enemy}!health@{health}}
+\index{health@{health}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{health}{health}}
+{\footnotesize\ttfamily int enemy\+::health}
+
+
+
+Définition à la ligne 70 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par create\+\_\+enemy(), draw\+\_\+enemy\+\_\+health(), et touch\+\_\+by\+\_\+rocket().
+
+\mbox{\Hypertarget{structenemy_a5d49688e350b88d6d0ef903f361c4a70}\label{structenemy_a5d49688e350b88d6d0ef903f361c4a70}} 
+\index{enemy@{enemy}!hitbox@{hitbox}}
+\index{hitbox@{hitbox}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{hitbox}{hitbox}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_a710e2ca82770a63fd61c175f511a4c41}{Hitbox}}$\ast$ enemy\+::hitbox}
+
+
+
+Définition à la ligne 75 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par check\+\_\+distance\+\_\+enemy(), create\+\_\+enemy(), init\+\_\+tab\+\_\+enemy(), is\+\_\+inside\+\_\+hitbox(), is\+\_\+inside\+\_\+player\+\_\+hitbox(), is\+\_\+inside\+\_\+ulti\+\_\+hitbox(), et move().
+
+\mbox{\Hypertarget{structenemy_a197e7532b166c7c4e8c7eabb8f9d2842}\label{structenemy_a197e7532b166c7c4e8c7eabb8f9d2842}} 
+\index{enemy@{enemy}!is\_alive@{is\_alive}}
+\index{is\_alive@{is\_alive}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{is\_alive}{is\_alive}}
+{\footnotesize\ttfamily int enemy\+::is\+\_\+alive}
+
+
+
+Définition à la ligne 73 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par call\+\_\+view(), create\+\_\+enemy(), enemies\+\_\+available(), enemy\+\_\+shoot(), enemy\+\_\+touch\+\_\+player(), get\+\_\+available\+\_\+enemy(), touch\+\_\+by\+\_\+rocket(), et touch\+\_\+by\+\_\+ultime().
+
+\mbox{\Hypertarget{structenemy_a6384ca2d6f91bb3bfa1f0b15ee504b93}\label{structenemy_a6384ca2d6f91bb3bfa1f0b15ee504b93}} 
+\index{enemy@{enemy}!is\_special@{is\_special}}
+\index{is\_special@{is\_special}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{is\_special}{is\_special}}
+{\footnotesize\ttfamily int enemy\+::is\+\_\+special}
+
+
+
+Définition à la ligne 74 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par call\+\_\+view(), check\+\_\+distance\+\_\+enemy(), create\+\_\+enemy(), et enemy\+\_\+shoot().
+
+\mbox{\Hypertarget{structenemy_a5ad113a6574c4e2398b757f41309a755}\label{structenemy_a5ad113a6574c4e2398b757f41309a755}} 
+\index{enemy@{enemy}!position@{position}}
+\index{position@{position}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_abde133978ffab28d5cb283e6bb442cc4}{Position}}$\ast$ enemy\+::position}
+
+
+
+Définition à la ligne 68 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par create\+\_\+enemy(), draw\+\_\+enemy(), draw\+\_\+enemy\+\_\+health(), enemies\+\_\+available(), init\+\_\+tab\+\_\+enemy(), move(), et shoot().
+
+\mbox{\Hypertarget{structenemy_a05c59ef6945467625d57a3025ade6bf7}\label{structenemy_a05c59ef6945467625d57a3025ade6bf7}} 
+\index{enemy@{enemy}!size@{size}}
+\index{size@{size}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int enemy\+::size}
+
+
+
+Définition à la ligne 69 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par create\+\_\+enemy(), draw\+\_\+enemy(), enemies\+\_\+available(), et move().
+
+\mbox{\Hypertarget{structenemy_abb858aa58491c911fca53927fbbe280b}\label{structenemy_abb858aa58491c911fca53927fbbe280b}} 
+\index{enemy@{enemy}!speed@{speed}}
+\index{speed@{speed}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int enemy\+::speed}
+
+
+
+Définition à la ligne 72 du fichier struct\+\_\+entity.\+h.
+
+
+
+Référencé par create\+\_\+enemy(), et move().
+
+\mbox{\Hypertarget{structenemy_a5e6bc4d7fcadac23f4b1a6038ec20bc9}\label{structenemy_a5e6bc4d7fcadac23f4b1a6038ec20bc9}} 
+\index{enemy@{enemy}!time@{time}}
+\index{time@{time}!enemy@{enemy}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily int enemy\+::time}
+
+
+
+Définition à la ligne 71 du fichier struct\+\_\+entity.\+h.
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+src/include/\mbox{\hyperlink{struct__entity_8h}{struct\+\_\+entity.\+h}}\end{DoxyCompactItemize}

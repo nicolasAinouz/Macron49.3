@@ -1,0 +1,122 @@
+\hypertarget{enemies__controller_8h}{}\doxysection{Référence du fichier src/include/enemies\+\_\+controller.h}
+\label{enemies__controller_8h}\index{src/include/enemies\_controller.h@{src/include/enemies\_controller.h}}
+{\ttfamily \#include \char`\"{}struct\+\_\+entity.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de enemies\+\_\+controller.\+h\+:
+% FIG 0
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \+:
+% FIG 1
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{enemies__controller_8h_a099030bf9ae5919f1183e3034868f7f2}{init\+\_\+tab\+\_\+enemy}} (\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$$\ast$tab\+\_\+enemy)
+\begin{DoxyCompactList}\small\item\em Function who init all the enemies of the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{enemies__controller_8h_ad6d942feaf487fc2a0fdba53584d00be}{move\+\_\+enemies}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that manage the enemies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{enemies__controller_8h_a099030bf9ae5919f1183e3034868f7f2}\label{enemies__controller_8h_a099030bf9ae5919f1183e3034868f7f2}} 
+\index{enemies\_controller.h@{enemies\_controller.h}!init\_tab\_enemy@{init\_tab\_enemy}}
+\index{init\_tab\_enemy@{init\_tab\_enemy}!enemies\_controller.h@{enemies\_controller.h}}
+\doxysubsubsection{\texorpdfstring{init\_tab\_enemy()}{init\_tab\_enemy()}}
+{\footnotesize\ttfamily void init\+\_\+tab\+\_\+enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a911fe3b91ede437faf067a2180ef4c66}{Enemy}} $\ast$$\ast$}]{tab\+\_\+enemy }\end{DoxyParamCaption})}
+
+
+
+Function who init all the enemies of the game. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab\+\_\+enemy} & the tab of the enemies \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 27 du fichier enemies\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{const_8h_af0e7ce6e70afd875b9d089dca981e38f}{NUMBER\_OF\_ENEMY}}; i++)}
+\DoxyCodeLine{30     \{}
+\DoxyCodeLine{31         \mbox{\hyperlink{structenemy}{Enemy}} *\mbox{\hyperlink{structenemy}{enemy}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structenemy}{Enemy}}));}
+\DoxyCodeLine{32         assert(\mbox{\hyperlink{structenemy}{enemy}} != NULL);}
+\DoxyCodeLine{33         \mbox{\hyperlink{structposition}{Position}} *\mbox{\hyperlink{structposition}{position}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{34         assert(\mbox{\hyperlink{structposition}{position}} != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36         \mbox{\hyperlink{structhitbox}{Hitbox}} *\mbox{\hyperlink{structhitbox}{hitbox}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structhitbox}{Hitbox}}));}
+\DoxyCodeLine{37         assert(\mbox{\hyperlink{structhitbox}{hitbox}} != NULL);}
+\DoxyCodeLine{38         \mbox{\hyperlink{structposition}{Position}} *position\_hitbox = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{39         assert(position\_hitbox != NULL);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \mbox{\hyperlink{structhitbox}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}} = position\_hitbox;}
+\DoxyCodeLine{42         \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5d49688e350b88d6d0ef903f361c4a70}{hitbox}} = \mbox{\hyperlink{structhitbox}{hitbox}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \mbox{\hyperlink{structenemy}{enemy}}-\/>\mbox{\hyperlink{structenemy_a5ad113a6574c4e2398b757f41309a755}{position}} = \mbox{\hyperlink{structposition}{position}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         tab\_enemy[i] = \mbox{\hyperlink{structenemy}{enemy}};}
+\DoxyCodeLine{47     \}}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+Références enemy\+::hitbox, N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+E\+N\+E\+MY, hitbox\+::position, et enemy\+::position.
+
+
+
+Référencé par create\+\_\+game().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\mbox{\Hypertarget{enemies__controller_8h_ad6d942feaf487fc2a0fdba53584d00be}\label{enemies__controller_8h_ad6d942feaf487fc2a0fdba53584d00be}} 
+\index{enemies\_controller.h@{enemies\_controller.h}!move\_enemies@{move\_enemies}}
+\index{move\_enemies@{move\_enemies}!enemies\_controller.h@{enemies\_controller.h}}
+\doxysubsubsection{\texorpdfstring{move\_enemies()}{move\_enemies()}}
+{\footnotesize\ttfamily void move\+\_\+enemies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that manage the enemies. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 330 du fichier enemies\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{331 \{}
+\DoxyCodeLine{332     \textcolor{keywordflow}{if} (\mbox{\hyperlink{game_8c_a15e38affd62949855c781ff9244ec6a7}{normal\_delay}}(30) < 0.5 * \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a2b66a54c9ef0b937b6239bb6a6f390a9}{difficulty}})}
+\DoxyCodeLine{333         \mbox{\hyperlink{enemies__controller_8c_a84d28ee5bda4f5366a6746b930376322}{create\_enemy}}(\mbox{\hyperlink{structgame}{game}}, 0);}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335     \textcolor{keywordflow}{if} (\mbox{\hyperlink{game_8c_a15e38affd62949855c781ff9244ec6a7}{normal\_delay}}(30) < 0.3 * \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_a2b66a54c9ef0b937b6239bb6a6f390a9}{difficulty}})}
+\DoxyCodeLine{336         \mbox{\hyperlink{enemies__controller_8c_a84d28ee5bda4f5366a6746b930376322}{create\_enemy}}(\mbox{\hyperlink{structgame}{game}}, 1);}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338     \mbox{\hyperlink{enemies__controller_8c_a6b76b7bf9425bab65000abb24492a12d}{enemies\_available}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{339     \mbox{\hyperlink{enemies__controller_8c_a4db27b2e569063ee7bd07f9837e5fb88}{touch\_by\_rocket}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{340     \mbox{\hyperlink{enemies__controller_8c_a5183c89b5ef1b4e7e14105a76ad3b9e5}{touch\_by\_ultime}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{341     \mbox{\hyperlink{enemies__controller_8c_a9888602f88e018d662efc6ecba5405b7}{move}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{342     \mbox{\hyperlink{enemies__controller_8c_a9908f4e396f6ef312894469c5ea384fc}{enemy\_shoot}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{343     \mbox{\hyperlink{enemies__controller_8c_a93ed0425652d01d624a03f8551209093}{enemy\_touch\_player}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345     \mbox{\hyperlink{enemies__controller_8c_a9412891fedaa8c299a947988d81cbe80}{call\_view}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{346 \}}
+
+\end{DoxyCode}
+
+
+Références call\+\_\+view(), create\+\_\+enemy(), game\+::difficulty, enemies\+\_\+available(), enemy\+\_\+shoot(), enemy\+\_\+touch\+\_\+player(), move(), normal\+\_\+delay(), touch\+\_\+by\+\_\+rocket(), et touch\+\_\+by\+\_\+ultime().
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 3
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4

@@ -7,7 +7,6 @@
  * @date 08/06/2022
  */
 
-
 #include <MLV/MLV_all.h>
 #include <math.h>
 #include <stdlib.h>
@@ -22,7 +21,7 @@
 
 /**
  * @brief Function who init all the enemies of the game
- * 
+ *
  * @param tab_enemy the tab of the enemies
  */
 void init_tab_enemy(Enemy **tab_enemy)
@@ -34,6 +33,14 @@ void init_tab_enemy(Enemy **tab_enemy)
         Position *position = malloc(sizeof(Position));
         assert(position != NULL);
 
+        Hitbox *hitbox = malloc(sizeof(Hitbox));
+        assert(hitbox != NULL);
+        Position *position_hitbox = malloc(sizeof(Position));
+        assert(position_hitbox != NULL);
+
+        hitbox->position = position_hitbox;
+        enemy->hitbox = hitbox;
+
         enemy->position = position;
 
         tab_enemy[i] = enemy;
@@ -42,7 +49,7 @@ void init_tab_enemy(Enemy **tab_enemy)
 
 /**
  * @brief Function that check if the rocket touch the enemy
- * 
+ *
  * @param rocket rocket structure
  * @param enemy enemy structure
  * @return int boolean if the rocket touch the enemy
@@ -58,13 +65,13 @@ int is_inside_hitbox(Rocket *rocket, Enemy *enemy)
 
 /**
  * @brief Function that manage the shoot of the enemies
- * 
+ *
  * @param game the game structure
  */
 void enemy_shoot(Game *game)
 {
 
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY ;i++)
     {
         if (normal_delay(1) < 0.010 && game->tab_enemy[i]->is_alive && !game->tab_enemy[i]->is_special)
         {
@@ -79,7 +86,7 @@ void enemy_shoot(Game *game)
 
 /**
  * @brief Function that check if the rocket touch the enemy
- * 
+ *
  * @param game the game structure
  */
 void touch_by_rocket(Game *game)
@@ -108,12 +115,12 @@ void touch_by_rocket(Game *game)
 
 /**
  * @brief Function that move the enemies
- * 
+ *
  * @param game the game structure
  */
 void move(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
         game->tab_enemy[i]->position->x -= game->tab_enemy[i]->speed;
         Hitbox *hitbox = malloc(sizeof(Hitbox));
@@ -125,13 +132,13 @@ void move(Game *game)
 
 /**
  * @brief Function that check if the special enemy is too close to another special enemy
- * 
+ *
  * @param game the game structure
  * @return int boolean if the special enemy is too close to another special enemy
  */
 int check_distance_enemy(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
         if (game->tab_enemy[i]->is_special && game->tab_enemy[i]->hitbox->position->x < WIDTH_FRAME + SIZE_ENEMY && game->tab_enemy[i]->hitbox->position->x > WIDTH_FRAME - SIZE_ENEMY * 3)
         {
@@ -142,8 +149,25 @@ int check_distance_enemy(Game *game)
 }
 
 /**
+ * @brief Function that give the index of the first available enemy
+ *
+ * @param game the game structure
+ */
+int get_available_enemy(Game *game)
+{
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
+    {
+        if (!game->tab_enemy[i]->is_alive)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/**
  * @brief Create a enemy object
- * 
+ *
  * @param game the game structure
  * @param is_special the boolean if the enemy is special
  */
@@ -153,30 +177,28 @@ void create_enemy(Game *game, int is_special)
     {
         return;
     }
-    Enemy *enemy = malloc(sizeof(Enemy));
-    assert(enemy != NULL);
-    Position *position = malloc(sizeof(Position));
-    assert(position != NULL);
-    Hitbox *hitbox = malloc(sizeof(Hitbox));
-    assert(hitbox != NULL);
+    int index = get_available_enemy(game);
+    Enemy *enemy = game->tab_enemy[index];
+
     switch (is_special)
     {
     case 0:
         enemy->size = SIZE_ENEMY;
-        position->x = WIDTH_FRAME + SIZE_ENEMY;
-        position->y = rand() % (HEIGHT_FRAME - (SIZE_ENEMY * 2));
-        if (position->y < PADDING_TOP)
+        enemy->position->x = WIDTH_FRAME + SIZE_ENEMY;
+        enemy->position->y = rand() % (HEIGHT_FRAME - (SIZE_ENEMY * 2));
+        if (enemy->position->y < PADDING_TOP)
         {
-            int x = PADDING_TOP - position->y;
-            position->y += x;
+            int x = PADDING_TOP - enemy->position->y;
+            enemy->position->y += x;
         }
         enemy->health = HEALTH_ENEMY;
         enemy->speed = SPEED_ENEMY;
+        enemy->is_special = 0;
         break;
     case 1:
         enemy->size = SIZE_ENEMY_TANK;
-        position->x = WIDTH_FRAME;
-        position->y = HEIGHT_FRAME - enemy->size;
+        enemy->position->x = WIDTH_FRAME;
+        enemy->position->y = HEIGHT_FRAME - enemy->size;
         enemy->health = HEALTH_SPECIAL_ENEMY;
         enemy->speed = SPEED_SPECIAL_ENEMY;
         enemy->is_special = 1;
@@ -185,23 +207,22 @@ void create_enemy(Game *game, int is_special)
     default:
         break;
     }
-    enemy->position = position;
-    hitbox->position = enemy->position;
-    hitbox->size = enemy->size;
-    enemy->hitbox = hitbox;
+
+    enemy->hitbox->position = enemy->position;
+    enemy->hitbox->size = enemy->size;
+
     enemy->is_alive = 1;
-    game->tab_enemy[game->number_enemies_key] = enemy;
-    game->number_enemies_key++;
+    game->tab_enemy[index] = enemy;
 }
 
 /**
  * @brief Function that check if the enemy is available (if he is out of the screen, if he is dead)
- * 
+ *
  * @param game the game structure
  */
 void enemies_available(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
 
         if (game->tab_enemy[i]->position->x < 0 - game->tab_enemy[i]->size)
@@ -209,20 +230,15 @@ void enemies_available(Game *game)
             if (game->tab_enemy[i]->is_alive)
             {
                 game->player->health -= 1;
+                game->tab_enemy[i]->is_alive = 0;
             }
-            for (int j = i + 1; j < game->number_enemies_key; j++)
-            {
-                game->tab_enemy[j - 1] = game->tab_enemy[j];
-            }
-
-            game->number_enemies_key--;
         }
     }
 }
 
 /**
  * @brief Function that check if the enemy touch the player
- * 
+ *
  * @param enemy the enemy structure
  * @param player the player structure
  * @return int boolean if the enemy touch the player
@@ -238,7 +254,7 @@ int is_inside_player_hitbox(Enemy *enemy, Player *player)
 
 /**
  * @brief Function that check if the enemy is inside the ulti hitbox
- * 
+ *
  * @param enemy the enemy structure
  * @param player the player structure
  * @return int boolean if the enemy is inside the ulti hitbox
@@ -255,12 +271,12 @@ int is_inside_ulti_hitbox(Enemy *enemy, Player *player)
 
 /**
  * @brief Function that check if the enemy touch the player and kill him
- * 
+ *
  * @param game the game structure
  */
 void enemy_touch_player(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
         if (game->tab_enemy[i]->is_alive && is_inside_player_hitbox(game->tab_enemy[i], game->player))
         {
@@ -275,12 +291,12 @@ void enemy_touch_player(Game *game)
 
 /**
  * @brief Function that check if the enemy is inside the ulti hitbox and kill him
- * 
+ *
  * @param game the game structure
  */
 void touch_by_ultime(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
         if (game->tab_enemy[i]->is_alive && is_inside_ulti_hitbox(game->tab_enemy[i], game->player) && game->player->powerup->is_actif && game->player->powerup->type == 1 && game->player->powerup->animation < 70)
         {
@@ -291,12 +307,12 @@ void touch_by_ultime(Game *game)
 
 /**
  * @brief Function that draw the enemy
- * 
+ *
  * @param game the game structure
  */
 void call_view(Game *game)
 {
-    for (int i = 0; i < game->number_enemies_key; i++)
+    for (int i = 0; i < NUMBER_OF_ENEMY; i++)
     {
 
         if (game->tab_enemy[i]->is_alive)
@@ -308,8 +324,8 @@ void call_view(Game *game)
 
 /**
  * @brief Function that manage the enemies
- * 
- * @param game 
+ *
+ * @param game
  */
 void move_enemies(Game *game)
 {

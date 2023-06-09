@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Macron 49.3: Référence du fichier src/controller/game.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Macron 49.3
+   </div>
+   <div id="projectbrief">Projet de prog. C pour l&#39;ESIPE</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_41ef5d8a90b9cc03a02949a5c062e6f0.html">controller</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier game.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>It's the controller of the structure game and the utils functions.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;MLV/MLV_all.h&gt;</code><br />
+<code>#include &lt;MLV/MLV_time.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="const_8h_source.html">../include/const.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="struct__entity_8h_source.html">../include/struct_entity.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="enemies__controller_8h_source.html">../include/enemies_controller.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="player__controller_8h_source.html">../include/player_controller.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="key__listener_8h_source.html">../include/key_listener.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="rocket__controller_8h_source.html">../include/rocket_controller.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de game.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8c__incl.png" border="0" usemap="#src_2controller_2game_8c" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="game_8c_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a15e38affd62949855c781ff9244ec6a7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#a15e38affd62949855c781ff9244ec6a7">normal_delay</a> (double mean)</td></tr>
+<tr class="memdesc:a15e38affd62949855c781ff9244ec6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper))  <a href="game_8c.html#a15e38affd62949855c781ff9244ec6a7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a15e38affd62949855c781ff9244ec6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb10419dbd089ed1f572a817bea10ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct__entity_8h.html#a25fa88d8fd72fce4763106b5bfdc6c43">Game</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game_8c.html#aabb10419dbd089ed1f572a817bea10ee">create_game</a> ()</td></tr>
+<tr class="memdesc:aabb10419dbd089ed1f572a817bea10ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the structure of the game who contains all the structure of the game.  <a href="game_8c.html#aabb10419dbd089ed1f572a817bea10ee">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aabb10419dbd089ed1f572a817bea10ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>It's the controller of the structure game and the utils functions. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Nicolas Ainouz </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>08/06/2022 </dd></dl>
+
+<p class="definition">Définition dans le fichier <a class="el" href="game_8c_source.html">game.c</a>.</p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="aabb10419dbd089ed1f572a817bea10ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabb10419dbd089ed1f572a817bea10ee">&#9670;&nbsp;</a></span>create_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct__entity_8h.html#a25fa88d8fd72fce4763106b5bfdc6c43">Game</a>* create_game </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise the structure of the game who contains all the structure of the game. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Game* the game structure </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="game_8c_source.html#l00040">40</a> du fichier <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structgame.html">Game</a> *<a class="code" href="structgame.html">game</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structgame.html">Game</a>));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    assert(<a class="code" href="structgame.html">game</a> != NULL);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">player</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structplayer.html">Player</a>));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    assert(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">player</a> != NULL);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="structplayer.html">Player</a> *<a class="code" href="structplayer.html">player</a> = <a class="code" href="player__controller_8c.html#a37d647b0fb55370a43a05b0e450cc371">init_player</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="enemies__controller_8c.html#a099030bf9ae5919f1183e3034868f7f2">init_tab_enemy</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">tab_enemy</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="rocket__controller_8c.html#a15a52cf3cb4adbcd3da3a0ce711a9f9e">init_tab_rocket</a>(<a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af00275851bf75c68b263aad70c311bac">tab_rocket</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="structimage__game.html">Image_Game</a> *<a class="code" href="structimage__game.html">image_game</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structimage__game.html">Image_Game</a>));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    assert(<a class="code" href="structimage__game.html">image_game</a> != NULL);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structpowerup.html">Powerup</a> *<a class="code" href="structpowerup.html">powerup</a> = malloc(<span class="keyword">sizeof</span>(<a class="code" href="structpowerup.html">Powerup</a>));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    assert(<a class="code" href="structpowerup.html">powerup</a> != NULL);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">powerup</a> = <a class="code" href="structpowerup.html">powerup</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">image</a> = <a class="code" href="structimage__game.html">image_game</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">player</a> = <a class="code" href="structplayer.html">player</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="structgame.html">game</a>-&gt;<a class="code" href="structgame.html#a2b66a54c9ef0b937b6239bb6a6f390a9">difficulty</a> = 1;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="structgame.html">game</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="structgame.html#a2b66a54c9ef0b937b6239bb6a6f390a9">game::difficulty</a>, <a class="el" href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">game::image</a>, <a class="el" href="player__controller_8c.html#a37d647b0fb55370a43a05b0e450cc371">init_player()</a>, <a class="el" href="enemies__controller_8c.html#a099030bf9ae5919f1183e3034868f7f2">init_tab_enemy()</a>, <a class="el" href="rocket__controller_8c.html#a15a52cf3cb4adbcd3da3a0ce711a9f9e">init_tab_rocket()</a>, <a class="el" href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">game::player</a>, <a class="el" href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">game::powerup</a>, <a class="el" href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">game::tab_enemy</a>, et <a class="el" href="structgame.html#af00275851bf75c68b263aad70c311bac">game::tab_rocket</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="main_8c.html#abf9e6b7e6f15df4b525a2e7705ba3089">main()</a>.</p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8c_aabb10419dbd089ed1f572a817bea10ee_cgraph.png" border="0" usemap="#game_8c_aabb10419dbd089ed1f572a817bea10ee_cgraph" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8c_aabb10419dbd089ed1f572a817bea10ee_icgraph.png" border="0" usemap="#game_8c_aabb10419dbd089ed1f572a817bea10ee_icgraph" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+
+</div>
+</div>
+<a id="a15e38affd62949855c781ff9244ec6a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e38affd62949855c781ff9244ec6a7">&#9670;&nbsp;</a></span>normal_delay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double normal_delay </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mean</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that generate random (Function from the Algorithmic course (Thanks Mr Thapper)) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>the mean of the random </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>double the random </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="game_8c_source.html#l00030">30</a> du fichier <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">return</span> -mean * log(1 - ((<span class="keywordtype">double</span>)rand() / RAND_MAX));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Référencé par <a class="el" href="enemies__controller_8c.html#a9908f4e396f6ef312894469c5ea384fc">enemy_shoot()</a>, <a class="el" href="enemies__controller_8h.html#ad6d942feaf487fc2a0fdba53584d00be">move_enemies()</a>, et <a class="el" href="main_8c.html#a85a8b9c08bab86b80e9584d5845b6a06">update_powerup()</a>.</p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="game_8c_a15e38affd62949855c781ff9244ec6a7_icgraph.png" border="0" usemap="#game_8c_a15e38affd62949855c781ff9244ec6a7_icgraph" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<div class="ttc" id="astructgame_html_a580e8ab27dc6c20d58ccc3523bd4080e"><div class="ttname"><a href="structgame.html#a580e8ab27dc6c20d58ccc3523bd4080e">game::tab_enemy</a></div><div class="ttdeci">Enemy * tab_enemy[NUMBER_OF_ENEMY]</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00100">struct_entity.h:100</a></div></div>
+<div class="ttc" id="aenemies__controller_8c_html_a099030bf9ae5919f1183e3034868f7f2"><div class="ttname"><a href="enemies__controller_8c.html#a099030bf9ae5919f1183e3034868f7f2">init_tab_enemy</a></div><div class="ttdeci">void init_tab_enemy(Enemy **tab_enemy)</div><div class="ttdoc">Function who init all the enemies of the game.</div><div class="ttdef"><b>Definition:</b> <a href="enemies__controller_8c_source.html#l00027">enemies_controller.c:27</a></div></div>
+<div class="ttc" id="astructplayer_html"><div class="ttname"><a href="structplayer.html">player</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00037">struct_entity.h:37</a></div></div>
+<div class="ttc" id="astructimage__game_html"><div class="ttname"><a href="structimage__game.html">image_game</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00078">struct_entity.h:78</a></div></div>
+<div class="ttc" id="astructgame_html_a7a8ea2e99378b9a51255c4079a011e33"><div class="ttname"><a href="structgame.html#a7a8ea2e99378b9a51255c4079a011e33">game::image</a></div><div class="ttdeci">Image_Game * image</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00108">struct_entity.h:108</a></div></div>
+<div class="ttc" id="astructgame_html_af00275851bf75c68b263aad70c311bac"><div class="ttname"><a href="structgame.html#af00275851bf75c68b263aad70c311bac">game::tab_rocket</a></div><div class="ttdeci">Rocket * tab_rocket[NUMBER_OF_ROCKET]</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00101">struct_entity.h:101</a></div></div>
+<div class="ttc" id="aplayer__controller_8c_html_a37d647b0fb55370a43a05b0e450cc371"><div class="ttname"><a href="player__controller_8c.html#a37d647b0fb55370a43a05b0e450cc371">init_player</a></div><div class="ttdeci">Player * init_player()</div><div class="ttdoc">Function that init the player.</div><div class="ttdef"><b>Definition:</b> <a href="player__controller_8c_source.html#l00025">player_controller.c:25</a></div></div>
+<div class="ttc" id="arocket__controller_8c_html_a15a52cf3cb4adbcd3da3a0ce711a9f9e"><div class="ttname"><a href="rocket__controller_8c.html#a15a52cf3cb4adbcd3da3a0ce711a9f9e">init_tab_rocket</a></div><div class="ttdeci">void init_tab_rocket(Rocket **tab_rocket)</div><div class="ttdoc">Function who init all the rocket of the game.</div><div class="ttdef"><b>Definition:</b> <a href="rocket__controller_8c_source.html#l00026">rocket_controller.c:26</a></div></div>
+<div class="ttc" id="astructgame_html_af56b8a8304a308883bf15e276e84fa9a"><div class="ttname"><a href="structgame.html#af56b8a8304a308883bf15e276e84fa9a">game::player</a></div><div class="ttdeci">Player * player</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00102">struct_entity.h:102</a></div></div>
+<div class="ttc" id="astructpowerup_html"><div class="ttname"><a href="structpowerup.html">powerup</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00027">struct_entity.h:27</a></div></div>
+<div class="ttc" id="astructgame_html_a113fe5d9c2f016ee84b3589945a58419"><div class="ttname"><a href="structgame.html#a113fe5d9c2f016ee84b3589945a58419">game::powerup</a></div><div class="ttdeci">Powerup * powerup</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00109">struct_entity.h:109</a></div></div>
+<div class="ttc" id="astructgame_html"><div class="ttname"><a href="structgame.html">game</a></div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00098">struct_entity.h:98</a></div></div>
+<div class="ttc" id="astructgame_html_a2b66a54c9ef0b937b6239bb6a6f390a9"><div class="ttname"><a href="structgame.html#a2b66a54c9ef0b937b6239bb6a6f390a9">game::difficulty</a></div><div class="ttdeci">double difficulty</div><div class="ttdef"><b>Definition:</b> <a href="struct__entity_8h_source.html#l00107">struct_entity.h:107</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

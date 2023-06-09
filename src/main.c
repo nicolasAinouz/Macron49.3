@@ -7,7 +7,6 @@
  * @date 08/06/2022
  */
 
-
 #include <MLV/MLV_all.h>
 #include <MLV/MLV_time.h>
 #include <time.h>
@@ -28,7 +27,7 @@
 
 /**
  * @brief Function that launch the home screen
- * 
+ *
  */
 void home()
 {
@@ -46,7 +45,7 @@ void home()
 /**
  * @brief Function that move the background
  * @param game The game structure
- * 
+ *
  */
 void move_scale(Game *game)
 {
@@ -59,7 +58,7 @@ void move_scale(Game *game)
 
 /**
  * @brief Function that do the actions on the powerup like move it, draw it
- * 
+ *
  * @param game The game structure
  */
 void update_powerup(Game *game)
@@ -88,7 +87,7 @@ void update_powerup(Game *game)
 }
 /**
  * @brief Function that add difficulty to the game
- * 
+ *
  * @param game The game structure
  */
 void add_difficulty(Game *game)
@@ -101,7 +100,7 @@ void add_difficulty(Game *game)
 
 /**
  * @brief Function that free the image structure
- * 
+ *
  * @return Image_Game* The image structure
  */
 void free_image(Image_Game *imgs)
@@ -125,7 +124,7 @@ void free_image(Image_Game *imgs)
 
 /**
  * @brief Function that free the player structure
- * 
+ *
  * @param player player structure
  */
 void free_player(Player *player)
@@ -141,7 +140,7 @@ void free_player(Player *player)
 
 /**
  * @brief Function that free the rockets structure
- * 
+ *
  * @param tab_rocket tab of rockets
  */
 void free_rockets(Rocket **tab_rocket)
@@ -156,13 +155,12 @@ void free_rockets(Rocket **tab_rocket)
                 free(tab_rocket[i]->hitbox);
         }
     }
-    if (*tab_rocket != NULL)
-        free(*tab_rocket);
+    free(*tab_rocket);
 }
 
 /**
  * @brief Function that free the ennemies structure
- * 
+ *
  * @param tab_enemy tab of ennemies
  */
 void free_ennemies(Enemy **tab_enemy)
@@ -183,7 +181,7 @@ void free_ennemies(Enemy **tab_enemy)
 
 /**
  * @brief Function that coordinate the free of all the structure
- * 
+ *
  * @param game the game structure
  */
 void free_all(Game *game)
@@ -202,24 +200,24 @@ void free_all(Game *game)
 
     free_player(game->player);
 
-    // free_rockets(game->tab_rocket);
+    free_rockets(game->tab_rocket);
 
-    // free_ennemies(game->tab_enemy);
+    free_ennemies(game->tab_enemy);
 
-    // MLV_stop_music();
+    MLV_stop_music();
 
-    // MLV_free_sound(game->sounddbz);
+    MLV_free_sound(game->sounddbz);
 
-    // MLV_free_music(game->music);
+    MLV_free_music(game->music);
 
-    // MLV_free_audio();
+    MLV_free_audio();
 
     MLV_free_window();
 }
 
 /**
  * @brief Function that write the score of the player in a file
- * 
+ *
  * @param game the game structure
  */
 void write_score(Game *game)
@@ -233,10 +231,10 @@ void write_score(Game *game)
 
 /**
  * @brief Main function of the project contain the game loop
- * 
+ *
  * @param argc number of arguments
  * @param argv arguments
- * @return int 
+ * @return int
  */
 int main(int argc, char const *argv[])
 {

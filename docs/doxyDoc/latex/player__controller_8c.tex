@@ -1,0 +1,465 @@
+\hypertarget{player__controller_8c}{}\doxysection{Référence du fichier src/controller/player\+\_\+controller.c}
+\label{player__controller_8c}\index{src/controller/player\_controller.c@{src/controller/player\_controller.c}}
+
+
+It\textquotesingle{}s the controller of the player.  
+
+
+{\ttfamily \#include $<$M\+L\+V/\+M\+L\+V\+\_\+all.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../include/const.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/struct\+\_\+entity.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../include/window.\+h\char`\"{}}\newline
+Graphe des dépendances par inclusion de player\+\_\+controller.\+c\+:
+% FIG 0
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$ \mbox{\hyperlink{player__controller_8c_a37d647b0fb55370a43a05b0e450cc371}{init\+\_\+player}} ()
+\begin{DoxyCompactList}\small\item\em Function that init the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_aa263a1cf3651d448f2ca86aec9604459}{move\+\_\+player\+\_\+left}} (\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Function that move the player to the left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_a18bcc4dac04fe247ff08506d51facaab}{move\+\_\+player\+\_\+right}} (\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Function that move the player to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_aa21a690be5aff36ed3a4a98bea0213b2}{move\+\_\+player\+\_\+up}} (\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Function that move the player to the top. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_a2b2c40c3536d5891e3407efbd72b0772}{move\+\_\+player\+\_\+down}} (\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Function that move the player to the bottom. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_a8345e200d71766192b004ab08de09bfa}{active\+\_\+power\+\_\+up}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that activate the powerup. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{player__controller_8c_a773bd5c2a9538744c6d15cdca0169a54}{player\+\_\+is\+\_\+dead}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function who check if the player is dead. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_aeebc6bb4f4ffef292cf1702cc5fe4650}{check\+\_\+shooting\+\_\+to\+\_\+much}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that check if the player is shooting too much. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player__controller_8c_a53910d2be856df7fe69f5b37f707e338}{player\+\_\+update}} (\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$\mbox{\hyperlink{structgame}{game}})
+\begin{DoxyCompactList}\small\item\em Function that manage the player and draw it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+It\textquotesingle{}s the controller of the player. 
+
+This file contains all the functions that manage the player of the game \begin{DoxyAuthor}{Auteur}
+Nicolas Ainouz 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+08/06/2022 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{player__controller_8c_a8345e200d71766192b004ab08de09bfa}\label{player__controller_8c_a8345e200d71766192b004ab08de09bfa}} 
+\index{player\_controller.c@{player\_controller.c}!active\_power\_up@{active\_power\_up}}
+\index{active\_power\_up@{active\_power\_up}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{active\_power\_up()}{active\_power\_up()}}
+{\footnotesize\ttfamily void active\+\_\+power\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that activate the powerup. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 110 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111 \{}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keywordflow}{switch} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}})}
+\DoxyCodeLine{114     \{}
+\DoxyCodeLine{115     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{116         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a2067a25a56fdb3c55c72e93c13afdaee}{animation}} = 180;}
+\DoxyCodeLine{117         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a65ba5bf19668808bbdf8c4e918149cb5}{is\_actif}} = 1;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119         \mbox{\hyperlink{window_8h_a0095dead6f24ff59e0fb077c3f53fa02}{draw\_power\_up\_dbz}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{120         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{121     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{122         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a2067a25a56fdb3c55c72e93c13afdaee}{animation}} = 0;}
+\DoxyCodeLine{123         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a65ba5bf19668808bbdf8c4e918149cb5}{is\_actif}} = 0;}
+\DoxyCodeLine{124         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}} = 0;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} < 5)}
+\DoxyCodeLine{127         \{}
+\DoxyCodeLine{128             \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} += 1;}
+\DoxyCodeLine{129         \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{132     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{133         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a2067a25a56fdb3c55c72e93c13afdaee}{animation}} = 180;}
+\DoxyCodeLine{134         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a65ba5bf19668808bbdf8c4e918149cb5}{is\_actif}} = 1;}
+\DoxyCodeLine{135         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}}-\/>\mbox{\hyperlink{structpowerup_a3be7ea9582c86be23f7e39228fb63c43}{type}} = 3;}
+\DoxyCodeLine{136         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}} = 80;}
+\DoxyCodeLine{137         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{138     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{139         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_ae8093acfe6af37e0034079e6960a1b28}{has\_powerup}} = 0;}
+\DoxyCodeLine{143 \}}
+
+\end{DoxyCode}
+
+
+Références powerup\+::animation, draw\+\_\+power\+\_\+up\+\_\+dbz(), player\+::has\+\_\+powerup, player\+::health, powerup\+::is\+\_\+actif, game\+::player, player\+::powerup, player\+::speed, et powerup\+::type.
+
+
+
+Référencé par shift().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 1
+Voici le graphe des appelants de cette fonction \+:
+% FIG 2
+\mbox{\Hypertarget{player__controller_8c_aeebc6bb4f4ffef292cf1702cc5fe4650}\label{player__controller_8c_aeebc6bb4f4ffef292cf1702cc5fe4650}} 
+\index{player\_controller.c@{player\_controller.c}!check\_shooting\_to\_much@{check\_shooting\_to\_much}}
+\index{check\_shooting\_to\_much@{check\_shooting\_to\_much}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{check\_shooting\_to\_much()}{check\_shooting\_to\_much()}}
+{\footnotesize\ttfamily void check\+\_\+shooting\+\_\+to\+\_\+much (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that check if the player is shooting too much. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 161 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{162 \{}
+\DoxyCodeLine{163     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}{is\_shooting\_too\_much}} \&\& \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}} <= 0)}
+\DoxyCodeLine{164     \{}
+\DoxyCodeLine{165         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}{is\_shooting\_too\_much}} = 0;}
+\DoxyCodeLine{166     \}}
+\DoxyCodeLine{167     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}} >= 100)}
+\DoxyCodeLine{168     \{}
+\DoxyCodeLine{169         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_ab74bf3a05fbc2b358e6bc601d7be6e91}{is\_shooting\_too\_much}} = 1;}
+\DoxyCodeLine{170     \}}
+\DoxyCodeLine{171     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}} > -\/1)}
+\DoxyCodeLine{172         \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a144294f674c65c6fce44e03108e5fc86}{shoot}} -\/= 2;}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174     \mbox{\hyperlink{window_8h_a9629912b354b0b6e8dffe24525dd9b50}{draw\_shoot\_bar}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{175 \}}
+
+\end{DoxyCode}
+
+
+Références draw\+\_\+shoot\+\_\+bar(), player\+::is\+\_\+shooting\+\_\+too\+\_\+much, game\+::player, et player\+::shoot.
+
+
+
+Référencé par player\+\_\+update().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 3
+Voici le graphe des appelants de cette fonction \+:
+% FIG 4
+\mbox{\Hypertarget{player__controller_8c_a37d647b0fb55370a43a05b0e450cc371}\label{player__controller_8c_a37d647b0fb55370a43a05b0e450cc371}} 
+\index{player\_controller.c@{player\_controller.c}!init\_player@{init\_player}}
+\index{init\_player@{init\_player}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{init\_player()}{init\_player()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}}$\ast$ init\+\_\+player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that init the player. 
+
+\begin{DoxyReturn}{Renvoie}
+Player$\ast$ 
+\end{DoxyReturn}
+
+
+Définition à la ligne 25 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \mbox{\hyperlink{structplayer}{Player}} *\mbox{\hyperlink{structplayer}{player}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structplayer}{Player}}));}
+\DoxyCodeLine{29     assert(\mbox{\hyperlink{structplayer}{player}} != NULL);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} = \mbox{\hyperlink{const_8h_a6c01420a031847055fb0cca685f513bd}{SIZE\_PLAYER}};}
+\DoxyCodeLine{32     \mbox{\hyperlink{structposition}{Position}} *\mbox{\hyperlink{structposition}{position}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structposition}{Position}}));}
+\DoxyCodeLine{33     assert(\mbox{\hyperlink{structposition}{position}} != NULL);}
+\DoxyCodeLine{34     \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}});}
+\DoxyCodeLine{35     \mbox{\hyperlink{structposition}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{const_8h_a487d92c6233ad2c0e39f79093ddec0a5}{HEIGHT\_FRAME}} / 2 -\/ \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} / 2;}
+\DoxyCodeLine{36     \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}} = \mbox{\hyperlink{structposition}{position}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} = \mbox{\hyperlink{const_8h_a1e7b9dc23509ac72b184ae469fe19cb5}{HEALTH\_PLAYER}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \mbox{\hyperlink{structhitbox}{Hitbox}} *\mbox{\hyperlink{structhitbox}{hitbox}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structhitbox}{Hitbox}}));}
+\DoxyCodeLine{41     assert(\mbox{\hyperlink{structhitbox}{hitbox}} != NULL);}
+\DoxyCodeLine{42     \mbox{\hyperlink{structhitbox}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_a7459903f75f4e3370ef0ea103a2a58b4}{position}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}};}
+\DoxyCodeLine{43     \mbox{\hyperlink{structhitbox}{hitbox}}-\/>\mbox{\hyperlink{structhitbox_ad43226f4be9811986876dc3df6f43627}{size}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} / 2;}
+\DoxyCodeLine{44     \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_ac9dd7d69009ecc61f166d81b6b33794d}{hitbox}} = \mbox{\hyperlink{structhitbox}{hitbox}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \mbox{\hyperlink{structpowerup}{Powerup}} *\mbox{\hyperlink{structpowerup}{powerup}} = malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structpowerup}{Powerup}}));}
+\DoxyCodeLine{47     assert(\mbox{\hyperlink{structpowerup}{powerup}} != NULL);}
+\DoxyCodeLine{48     \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a0d24b05a96623f99d7597002732f7c41}{powerup}} = \mbox{\hyperlink{structpowerup}{powerup}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordflow}{return} \mbox{\hyperlink{structplayer}{player}};}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::health, H\+E\+A\+L\+T\+H\+\_\+\+P\+L\+A\+Y\+ER, H\+E\+I\+G\+H\+T\+\_\+\+F\+R\+A\+ME, player\+::hitbox, hitbox\+::position, player\+::position, player\+::powerup, hitbox\+::size, player\+::size, S\+I\+Z\+E\+\_\+\+P\+L\+A\+Y\+ER, position\+::x, et position\+::y.
+
+
+
+Référencé par create\+\_\+game().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 5
+\mbox{\Hypertarget{player__controller_8c_a2b2c40c3536d5891e3407efbd72b0772}\label{player__controller_8c_a2b2c40c3536d5891e3407efbd72b0772}} 
+\index{player\_controller.c@{player\_controller.c}!move\_player\_down@{move\_player\_down}}
+\index{move\_player\_down@{move\_player\_down}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{move\_player\_down()}{move\_player\_down()}}
+{\footnotesize\ttfamily void move\+\_\+player\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function that move the player to the bottom. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em player} & the player structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 97 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{98 \{}
+\DoxyCodeLine{99     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} < \mbox{\hyperlink{const_8h_a487d92c6233ad2c0e39f79093ddec0a5}{HEIGHT\_FRAME}} -\/ \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}} / 1.1)}
+\DoxyCodeLine{100     \{}
+\DoxyCodeLine{101         \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} + \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}};}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 \}}
+
+\end{DoxyCode}
+
+
+Références H\+E\+I\+G\+H\+T\+\_\+\+F\+R\+A\+ME, player\+::position, player\+::size, player\+::speed, et position\+::y.
+
+
+
+Référencé par inertie(), et move\+\_\+player().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 6
+\mbox{\Hypertarget{player__controller_8c_aa263a1cf3651d448f2ca86aec9604459}\label{player__controller_8c_aa263a1cf3651d448f2ca86aec9604459}} 
+\index{player\_controller.c@{player\_controller.c}!move\_player\_left@{move\_player\_left}}
+\index{move\_player\_left@{move\_player\_left}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{move\_player\_left()}{move\_player\_left()}}
+{\footnotesize\ttfamily void move\+\_\+player\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function that move the player to the left. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em player} & the player structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 58 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} > 0)}
+\DoxyCodeLine{61     \{}
+\DoxyCodeLine{62         \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} -\/ \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}};}
+\DoxyCodeLine{63     \}}
+\DoxyCodeLine{64 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::position, player\+::speed, et position\+::x.
+
+
+
+Référencé par inertie(), et move\+\_\+player().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 7
+\mbox{\Hypertarget{player__controller_8c_a18bcc4dac04fe247ff08506d51facaab}\label{player__controller_8c_a18bcc4dac04fe247ff08506d51facaab}} 
+\index{player\_controller.c@{player\_controller.c}!move\_player\_right@{move\_player\_right}}
+\index{move\_player\_right@{move\_player\_right}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{move\_player\_right()}{move\_player\_right()}}
+{\footnotesize\ttfamily void move\+\_\+player\+\_\+right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function that move the player to the right. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em player} & player the player structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 71 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{72 \{}
+\DoxyCodeLine{73     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} < \mbox{\hyperlink{const_8h_a8abb9e8263a207a702887fa9bbd318f8}{WIDTH\_FRAME}} -\/ \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a020721c8bcd004948ca4e5a866f41e32}{size}})}
+\DoxyCodeLine{74     \{}
+\DoxyCodeLine{75         \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_aad0117268685890818989a6c0112ab8a}{x}} + \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}};}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::position, player\+::size, player\+::speed, W\+I\+D\+T\+H\+\_\+\+F\+R\+A\+ME, et position\+::x.
+
+
+
+Référencé par inertie(), et move\+\_\+player().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 8
+\mbox{\Hypertarget{player__controller_8c_aa21a690be5aff36ed3a4a98bea0213b2}\label{player__controller_8c_aa21a690be5aff36ed3a4a98bea0213b2}} 
+\index{player\_controller.c@{player\_controller.c}!move\_player\_up@{move\_player\_up}}
+\index{move\_player\_up@{move\_player\_up}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{move\_player\_up()}{move\_player\_up()}}
+{\footnotesize\ttfamily void move\+\_\+player\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_aacfbfbd6ace468c21c5128fced4e632c}{Player}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function that move the player to the top. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em player} & the player structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 84 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{85 \{}
+\DoxyCodeLine{86     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} > \mbox{\hyperlink{const_8h_a61dc7a2456cfa7d47264da38932ff138}{PADDING\_TOP}})}
+\DoxyCodeLine{87     \{}
+\DoxyCodeLine{88         \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} = \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_af64d8a12d6ecef10932ae7c84e2e25b8}{position}}-\/>\mbox{\hyperlink{structposition_ab7163210f8aa5e8dc68ef434a315792c}{y}} -\/ \mbox{\hyperlink{structplayer}{player}}-\/>\mbox{\hyperlink{structplayer_a9da65f396b8f7d7e572b4ba3148ef4ce}{speed}};}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 \}}
+
+\end{DoxyCode}
+
+
+Références P\+A\+D\+D\+I\+N\+G\+\_\+\+T\+OP, player\+::position, player\+::speed, et position\+::y.
+
+
+
+Référencé par inertie(), et move\+\_\+player().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 9
+\mbox{\Hypertarget{player__controller_8c_a773bd5c2a9538744c6d15cdca0169a54}\label{player__controller_8c_a773bd5c2a9538744c6d15cdca0169a54}} 
+\index{player\_controller.c@{player\_controller.c}!player\_is\_dead@{player\_is\_dead}}
+\index{player\_is\_dead@{player\_is\_dead}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{player\_is\_dead()}{player\_is\_dead()}}
+{\footnotesize\ttfamily int player\+\_\+is\+\_\+dead (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function who check if the player is dead. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int boolean if the player is dead 
+\end{DoxyReturn}
+
+
+Définition à la ligne 151 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{152 \{}
+\DoxyCodeLine{153     \textcolor{keywordflow}{return} \mbox{\hyperlink{structgame}{game}}-\/>\mbox{\hyperlink{structgame_af56b8a8304a308883bf15e276e84fa9a}{player}}-\/>\mbox{\hyperlink{structplayer_a46e908a72ca54baf54330861bbc56713}{health}} <= 0 ? 1 : 0;}
+\DoxyCodeLine{154 \}}
+
+\end{DoxyCode}
+
+
+Références player\+::health, et game\+::player.
+
+
+
+Référencé par main().
+
+Voici le graphe des appelants de cette fonction \+:
+% FIG 10
+\mbox{\Hypertarget{player__controller_8c_a53910d2be856df7fe69f5b37f707e338}\label{player__controller_8c_a53910d2be856df7fe69f5b37f707e338}} 
+\index{player\_controller.c@{player\_controller.c}!player\_update@{player\_update}}
+\index{player\_update@{player\_update}!player\_controller.c@{player\_controller.c}}
+\doxysubsubsection{\texorpdfstring{player\_update()}{player\_update()}}
+{\footnotesize\ttfamily void player\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__entity_8h_a25fa88d8fd72fce4763106b5bfdc6c43}{Game}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Function that manage the player and draw it. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em game} & the game structure \\
+\hline
+\end{DoxyParams}
+
+
+Définition à la ligne 182 du fichier player\+\_\+controller.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{183 \{}
+\DoxyCodeLine{184     \mbox{\hyperlink{player__controller_8c_aeebc6bb4f4ffef292cf1702cc5fe4650}{check\_shooting\_to\_much}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{185     \mbox{\hyperlink{window_8h_a83f32927a3f69547a411c268117189d2}{draw\_player}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{186     \mbox{\hyperlink{window_8h_ad848a2f5317abc95acfaf9f305cabc7b}{draw\_health}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{187     \mbox{\hyperlink{window_8h_a99ddc35b5a5fed9329669d02cd0c04cd}{draw\_score}}(\mbox{\hyperlink{structgame}{game}});}
+\DoxyCodeLine{188 \}}
+
+\end{DoxyCode}
+
+
+Références check\+\_\+shooting\+\_\+to\+\_\+much(), draw\+\_\+health(), draw\+\_\+player(), et draw\+\_\+score().
+
+
+
+Référencé par main().
+
+Voici le graphe d\textquotesingle{}appel pour cette fonction \+:
+% FIG 11
+Voici le graphe des appelants de cette fonction \+:
+% FIG 12
