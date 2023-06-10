@@ -1,0 +1,1 @@
+C'est pour garder le repertoire bin sur github sans configuré git.
