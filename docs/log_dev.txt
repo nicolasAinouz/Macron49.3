@@ -1,0 +1,51 @@
+2023-06-10 (nicolas): git log
+2023-06-10 (ainouz): fin du projet
+2023-06-09 (ainouz): new doc
+2023-06-09 (ainouz): fix du bug ur les free -> changement de structure sur le programme
+2023-06-08 (ainouz): doc
+2023-06-08 (nicolas): add doxy
+2023-06-08 (ainouz): fin prog etc
+2023-06-08 (Nicolas Ainouz): Create mainwithfree.c
+2023-05-20 (ainouz): clean code 4
+2023-05-20 (ainouz): ajout de la difficulté
+2023-05-20 (ainouz): updt V1
+2023-05-20 (ainouz): FIN V1
+2023-05-20 (ainouz): shooting too much
+2023-05-20 (ainouz): clean code part 3
+2023-05-20 (ainouz): clean code part 2
+2023-05-20 (ainouz): clean code
+2023-05-19 (ainouz): clean
+2023-05-19 (ainouz): fin powerup
+2023-05-19 (ainouz): fix bug index bound
+2023-05-19 (ainouz): fin premier power up
+2023-05-19 (ainouz): add home screen fix bug
+2023-04-25 (ainouz): power up peuvent -être tester
+2023-04-25 (ainouz): ajout powerup
+2023-04-25 (ainouz): ajout des images et des barres de vie
+2023-04-25 (ainouz): implementation grosse structure
+2023-04-25 (nicolas): création structure majeure
+2023-04-25 (ainouz): bcp amelio et changement code
+2023-04-23 (Nicolas Ainouz): Update README.md
+2023-04-20 (ainouz): preparation shooter
+2023-04-20 (ainouz): ennemi à tete chercheuses
+2023-04-20 (ainouz): grosse correction du code sur les structures + inertie
+2023-04-19 (ainouz): Changement du programme : suppression des declarations des variables en debut de fichier mais tout est dans la main et passer an arg
+2023-04-18 (ainouz): reglage
+2023-04-17 (ainouz): Enfin un déplacement correct, petit probleme quand on fait gauche et haut
+2023-04-17 (ainouz): score du joueur
+2023-04-10 (ainouz): les ennemies tirent, le joueur perd de la vie si il se fait toucher
+2023-04-10 (ainouz): Installation de la hitbox, les ennemis peuvent se faire tuer
+2023-04-10 (ainouz): exit avec quit
+2023-04-07 (ainouz): fix bug -> c'est la view qui gérait les positions des rockets et ennemis
+2023-04-06 (ainouz): gestion des ennemies sans qu'il ne puisse tirer
+2023-04-06 (ainouz): fix rocket bug
+2023-04-06 (ainouz): gestion déplacement vaisseau + tire de missiles
+2023-04-05 (ainouz): Merge branch 'main' of https://github.com/nicolasAinouz/Macron49.3 into main
+2023-04-05 (ainouz): Set-up du projet, doxyfile, création des répo, créations de la première frame
+2023-03-27 (Nicolas Ainouz): Update README.md
+2023-03-27 (Nicolas Ainouz): Update README.md
+2023-03-27 (Nicolas Ainouz): Update README.md
+2023-03-25 (ainouz): Creation de main et de makefile
+2023-03-25 (ainouz): test
+2023-03-25 (ainouz): test
+2023-03-25 (Nicolas Ainouz): Initial commit
