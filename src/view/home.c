@@ -11,7 +11,7 @@
 
 /**
  * @brief Function that create window and launch the home screen
- * 
+ *
  */
 void launch_home()
 {
@@ -21,7 +21,6 @@ void launch_home()
     MLV_resize_image(img_background, 600, 700);
     MLV_draw_image(img_background, 0, 0);
 
-    MLV_draw_adapted_text_box_with_font(120, 450, "Macron 49.3", font, 30, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
     MLV_draw_adapted_text_box_with_font(220, 550, "PLAY", font, 10, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_rgba(0, 0, 0, 100), MLV_TEXT_CENTER);
 
     MLV_actualise_window();
@@ -30,7 +29,7 @@ void launch_home()
 }
 /**
  * @brief Function that check if the user click on the play button
- * 
+ *
  * @param x the x position of the mouse
  * @param y the y position of the mouse
  * @return int the boolean if the user click on the play button
